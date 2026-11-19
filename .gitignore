@@ -1,0 +1,6 @@
+.venv/
+sample/
+output/
+*.zip
+__pycache__/
+airflow-home/

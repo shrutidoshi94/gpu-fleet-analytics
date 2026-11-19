@@ -1,0 +1,269 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "GPU fleet analytics: single CPU worker and private S3 for network trace day 109.",
+  "Parameters": {
+    "VpcId": {
+      "Type": "AWS::EC2::VPC::Id"
+    },
+    "SubnetId": {
+      "Type": "AWS::EC2::Subnet::Id",
+      "Description": "Existing public subnet with an internet gateway route."
+    },
+    "AmiId": {
+      "Type": "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>",
+      "Default": "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-6.1-x86_64"
+    }
+  },
+  "Resources": {
+    "TraceBucket": {
+      "Type": "AWS::S3::Bucket",
+      "DeletionPolicy": "Retain",
+      "UpdateReplacePolicy": "Retain",
+      "Properties": {
+        "PublicAccessBlockConfiguration": {
+          "BlockPublicAcls": true,
+          "IgnorePublicAcls": true,
+          "BlockPublicPolicy": true,
+          "RestrictPublicBuckets": true
+        },
+        "OwnershipControls": {
+          "Rules": [
+            {
+              "ObjectOwnership": "BucketOwnerEnforced"
+            }
+          ]
+        },
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256"
+              }
+            }
+          ]
+        },
+        "LifecycleConfiguration": {
+          "Rules": [
+            {
+              "Id": "AbortIncompleteUploads",
+              "Status": "Enabled",
+              "AbortIncompleteMultipartUpload": {
+                "DaysAfterInitiation": 1
+              }
+            }
+          ]
+        },
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "gpu-fleet-analytics"
+          }
+        ]
+      }
+    },
+    "BucketPolicy": {
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "Bucket": {
+          "Ref": "TraceBucket"
+        },
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Deny",
+              "Principal": "*",
+              "Action": "s3:*",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "TraceBucket",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Fn::Sub": "${TraceBucket.Arn}/*"
+                }
+              ],
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": "false"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "WorkerRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "ec2.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/AmazonSSMManagedInstanceCore"
+          }
+        ],
+        "Policies": [
+          {
+            "PolicyName": "ProjectBucketAccess",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "s3:ListBucket",
+                    "s3:GetBucketLocation"
+                  ],
+                  "Resource": {
+                    "Fn::GetAtt": [
+                      "TraceBucket",
+                      "Arn"
+                    ]
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "s3:GetObject",
+                    "s3:PutObject",
+                    "s3:DeleteObject",
+                    "s3:AbortMultipartUpload"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": "${TraceBucket.Arn}/*"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "gpu-fleet-analytics"
+          }
+        ]
+      }
+    },
+    "WorkerProfile": {
+      "Type": "AWS::IAM::InstanceProfile",
+      "Properties": {
+        "Roles": [
+          {
+            "Ref": "WorkerRole"
+          }
+        ]
+      }
+    },
+    "WorkerSecurityGroup": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "GPU fleet worker: no inbound access; management through SSM",
+        "VpcId": {
+          "Ref": "VpcId"
+        },
+        "SecurityGroupIngress": [],
+        "SecurityGroupEgress": [
+          {
+            "IpProtocol": "-1",
+            "CidrIp": "0.0.0.0/0"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "gpu-fleet-analytics"
+          }
+        ]
+      }
+    },
+    "Worker": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "ImageId": {
+          "Ref": "AmiId"
+        },
+        "InstanceType": "t3.large",
+        "IamInstanceProfile": {
+          "Ref": "WorkerProfile"
+        },
+        "CreditSpecification": {
+          "CPUCredits": "standard"
+        },
+        "MetadataOptions": {
+          "HttpTokens": "required",
+          "HttpEndpoint": "enabled"
+        },
+        "InstanceInitiatedShutdownBehavior": "stop",
+        "NetworkInterfaces": [
+          {
+            "DeviceIndex": "0",
+            "AssociatePublicIpAddress": true,
+            "SubnetId": {
+              "Ref": "SubnetId"
+            },
+            "GroupSet": [
+              {
+                "Ref": "WorkerSecurityGroup"
+              }
+            ]
+          }
+        ],
+        "BlockDeviceMappings": [
+          {
+            "DeviceName": "/dev/xvda",
+            "Ebs": {
+              "VolumeSize": 30,
+              "VolumeType": "gp3",
+              "Encrypted": true,
+              "DeleteOnTermination": true
+            }
+          }
+        ],
+        "UserData": {
+          "Fn::Base64": "#!/bin/bash\nset -euo pipefail\ncat > /etc/systemd/system/gpu-fleet-stop.service <<'EOF'\n[Unit]\nDescription=Stop the GPU fleet analytics demo worker\n[Service]\nType=oneshot\nExecStart=/usr/sbin/shutdown -h now\nEOF\ncat > /etc/systemd/system/gpu-fleet-stop.timer <<'EOF'\n[Unit]\nDescription=Limit each demo worker boot to two hours\n[Timer]\nOnBootSec=2h\nUnit=gpu-fleet-stop.service\n[Install]\nWantedBy=timers.target\nEOF\nsystemctl daemon-reload\nsystemctl enable --now gpu-fleet-stop.timer\n"
+        },
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "gpu-fleet-analytics"
+          },
+          {
+            "Key": "Name",
+            "Value": "gpu-fleet-network-demo"
+          }
+        ]
+      }
+    }
+  },
+  "Outputs": {
+    "BucketName": {
+      "Value": {
+        "Ref": "TraceBucket"
+      }
+    },
+    "InstanceId": {
+      "Value": {
+        "Ref": "Worker"
+      }
+    },
+    "Region": {
+      "Value": {
+        "Ref": "AWS::Region"
+      }
+    }
+  }
+}
