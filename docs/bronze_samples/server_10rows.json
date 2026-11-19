@@ -1,0 +1,148 @@
+{
+  "dataset": "server",
+  "source_bucket": "gpu-fleet-network-demo-tracebucket-ojk2fpexu8a6",
+  "source_key": "bronze/server/day=109/hour=00/part-000.parquet",
+  "source_bytes": 726125,
+  "source_crc32": "797922cc",
+  "file_rows": 32296,
+  "row_groups": 1,
+  "sample_method": "first 10 physical rows from selected Parquet object; not a ranking or representative distribution",
+  "partition": {
+    "day": 109,
+    "hour": 0
+  },
+  "schema": [
+    {
+      "name": "server_id",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "cluster_id",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "asw_id",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "gpu_spec_public",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "gpu_count",
+      "type": "int64",
+      "nullable": true
+    },
+    {
+      "name": "cpu_capacity_cores",
+      "type": "int64",
+      "nullable": true
+    }
+  ],
+  "rows": [
+    {
+      "server_id": "0ffe36ac53562610e94c536f400b7574",
+      "cluster_id": "4d6f06d02df4e9de96966a73d9e8a4dd",
+      "asw_id": "a1c70c1f98b2d1690ee7ed69d4556995",
+      "gpu_spec_public": "XPU-B",
+      "gpu_count": 1,
+      "cpu_capacity_cores": 192,
+      "day": 109,
+      "hour": 0
+    },
+    {
+      "server_id": "15939ce1494cc1b97f3588748ce3df9c",
+      "cluster_id": "4d6f06d02df4e9de96966a73d9e8a4dd",
+      "asw_id": "a28472d8b50324756ef99606fccb50c5",
+      "gpu_spec_public": "A10",
+      "gpu_count": 1,
+      "cpu_capacity_cores": 128,
+      "day": 109,
+      "hour": 0
+    },
+    {
+      "server_id": "dd5b40ebde2dddb0b5959195103ff773",
+      "cluster_id": "9089d80baea5f56a3c169801052daa1f",
+      "asw_id": "133ce5d6102c7605fe370f7f9d073af0",
+      "gpu_spec_public": "XPU-E",
+      "gpu_count": 16,
+      "cpu_capacity_cores": 192,
+      "day": 109,
+      "hour": 0
+    },
+    {
+      "server_id": "524579f89f81520e5d3770ce9a9532b4",
+      "cluster_id": "da8d7fb8796ea962e14eef38624d8059",
+      "asw_id": "164108edf742c3dda23fe0969ce07e62",
+      "gpu_spec_public": "A10",
+      "gpu_count": 1,
+      "cpu_capacity_cores": 128,
+      "day": 109,
+      "hour": 0
+    },
+    {
+      "server_id": "0a236d2ac2e3a7aa0b4c301b3f10f495",
+      "cluster_id": "4d6f06d02df4e9de96966a73d9e8a4dd",
+      "asw_id": "b63faa33eaf66f66095814de4eb42c78",
+      "gpu_spec_public": "L20",
+      "gpu_count": 2,
+      "cpu_capacity_cores": 192,
+      "day": 109,
+      "hour": 0
+    },
+    {
+      "server_id": "0571a0b90c9b35dafc470a1ae2d87595",
+      "cluster_id": "2f9611355f71fe804da2606899ddfb36",
+      "asw_id": "316e31f981ca0bbbd02333478c31217d",
+      "gpu_spec_public": "A10",
+      "gpu_count": 1,
+      "cpu_capacity_cores": 128,
+      "day": 109,
+      "hour": 0
+    },
+    {
+      "server_id": "c761743ed0d8bf19f37273dabb82d2c3",
+      "cluster_id": "9089d80baea5f56a3c169801052daa1f",
+      "asw_id": "4a0a7ba548d888f261b23422ddab9889",
+      "gpu_spec_public": "XPU-E",
+      "gpu_count": 16,
+      "cpu_capacity_cores": 192,
+      "day": 109,
+      "hour": 0
+    },
+    {
+      "server_id": "6e629ec44de1089485650ea0817afab2",
+      "cluster_id": "1f28e063c4e5e1bc48ff55269617dd2f",
+      "asw_id": "7b39f1498b7a4c42b46c440960e863b9",
+      "gpu_spec_public": "XPU-A",
+      "gpu_count": 8,
+      "cpu_capacity_cores": 192,
+      "day": 109,
+      "hour": 0
+    },
+    {
+      "server_id": "2846fb05c701e56d4506af486346c60f",
+      "cluster_id": "87532e3737169e035fad3c9f3ab7f85e",
+      "asw_id": "948ee84da6b54c135d150ad32c353b03",
+      "gpu_spec_public": "L20",
+      "gpu_count": 2,
+      "cpu_capacity_cores": 192,
+      "day": 109,
+      "hour": 0
+    },
+    {
+      "server_id": "558522924d2b7d2015d94058041d72dc",
+      "cluster_id": "da8d7fb8796ea962e14eef38624d8059",
+      "asw_id": "6bbd2c125365a81b5bad63bf59a026dc",
+      "gpu_spec_public": "A10",
+      "gpu_count": 1,
+      "cpu_capacity_cores": 128,
+      "day": 109,
+      "hour": 0
+    }
+  ]
+}

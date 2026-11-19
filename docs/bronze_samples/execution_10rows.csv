@@ -1,0 +1,11 @@
+pod_id,workload_id,server_id,gpu_spec_public,priority_class,job_type_public,model_type_public,is_genai_request,gpu_request,duration_hours,schedule_delay_sec,ready_delay_sec,ready_status,schedule_status
+0ccbed7284ab5fa6382c439c321c7a23,,55990b27d94dc6c80b61cc52a38da8a4,A10,HP,online_inference,unknown,False,0.24,1437.9833333333333,1,24,True,True
+62985c359d9a137ccc73423ba8bcce11,,f579528811271d5e6072eda2033d2ac6,XPU-E,LP,offline_inference,genai,True,1.0,0.6611111111111111,0,-1,False,True
+da8066c2c91f2a688afd131bf9cb15d8,,f7a565c928f3b5562562e5ec3903760a,L20,HP,online_inference,genai,True,1.0,408.0,0,23,True,True
+4d9d01510417aa2e7fc265305c878639,f827a90b4737cc6b9eead9f57f0a030b,5c67089184ad80c16b682ef8152262aa,XPU-E,HP,online_inference,genai,True,1.0,764.3555555555556,137,-1,True,True
+c7aadf5f3d27d9f1384e9f416acd4b23,,091e608e03895dad407234439c6e5272,A10,HP,online_inference,cv,False,0.31,0.28888888888888886,0,-1,False,True
+dba30572dc76a1a793145739ad144ef2,,7d5424a91776869886fdbcf8e7df70dc,XPU-E,LP,offline_inference,genai,True,1.0,1.3666666666666667,0,5,True,True
+1538f94daa381e2f0f01c47e378e6b04,,b47cc12233abcbf4b65dd88b5bd07fbb,XPU-E,HP,online_inference,genai,False,1.0,1223.9555555555555,131,7,True,True
+b942f407b44d44e057cdbf1c4ec8860a,2ef8a21c3973151464571441bf2588df,3bb8de4de669b478f16db2ce4cc0f269,XPU-B,HP,online_inference,rec,False,1.0,1631.9722222222222,0,-1,True,True
+7066b1776bb2dbe868d164ab1c2a9987,54559265d7522bd87be201e08446198f,6b10b10a60ad5e421caae9d77922ae93,XPU-E,HP,online_inference,rec,False,1.0,545.9944444444444,133,-1,True,True
+88439f7eea571d665cdb413734c8e5b3,,4b772581a3ef7ea01603969fed05d88b,XPU-A,LP,offline_inference,genai,True,1.0,0.8277777777777777,86394,-1,True,True

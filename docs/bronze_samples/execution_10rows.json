@@ -1,0 +1,245 @@
+{
+  "dataset": "execution",
+  "source_bucket": "gpu-fleet-network-demo-tracebucket-ojk2fpexu8a6",
+  "source_key": "bronze/execution/all/part-000.parquet",
+  "source_bytes": 1188294827,
+  "source_crc32": "4c949841",
+  "file_rows": 40522321,
+  "row_groups": 346,
+  "sample_method": "first 10 physical rows from selected Parquet object; not a ranking or representative distribution",
+  "partition": null,
+  "schema": [
+    {
+      "name": "pod_id",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "workload_id",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "server_id",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "gpu_spec_public",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "priority_class",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "job_type_public",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "model_type_public",
+      "type": "string",
+      "nullable": true
+    },
+    {
+      "name": "is_genai_request",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "gpu_request",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "duration_hours",
+      "type": "double",
+      "nullable": true
+    },
+    {
+      "name": "schedule_delay_sec",
+      "type": "int64",
+      "nullable": true
+    },
+    {
+      "name": "ready_delay_sec",
+      "type": "int64",
+      "nullable": true
+    },
+    {
+      "name": "ready_status",
+      "type": "bool",
+      "nullable": true
+    },
+    {
+      "name": "schedule_status",
+      "type": "bool",
+      "nullable": true
+    }
+  ],
+  "rows": [
+    {
+      "pod_id": "0ccbed7284ab5fa6382c439c321c7a23",
+      "workload_id": null,
+      "server_id": "55990b27d94dc6c80b61cc52a38da8a4",
+      "gpu_spec_public": "A10",
+      "priority_class": "HP",
+      "job_type_public": "online_inference",
+      "model_type_public": "unknown",
+      "is_genai_request": false,
+      "gpu_request": 0.24,
+      "duration_hours": 1437.9833333333333,
+      "schedule_delay_sec": 1,
+      "ready_delay_sec": 24,
+      "ready_status": true,
+      "schedule_status": true
+    },
+    {
+      "pod_id": "62985c359d9a137ccc73423ba8bcce11",
+      "workload_id": null,
+      "server_id": "f579528811271d5e6072eda2033d2ac6",
+      "gpu_spec_public": "XPU-E",
+      "priority_class": "LP",
+      "job_type_public": "offline_inference",
+      "model_type_public": "genai",
+      "is_genai_request": true,
+      "gpu_request": 1.0,
+      "duration_hours": 0.6611111111111111,
+      "schedule_delay_sec": 0,
+      "ready_delay_sec": -1,
+      "ready_status": false,
+      "schedule_status": true
+    },
+    {
+      "pod_id": "da8066c2c91f2a688afd131bf9cb15d8",
+      "workload_id": null,
+      "server_id": "f7a565c928f3b5562562e5ec3903760a",
+      "gpu_spec_public": "L20",
+      "priority_class": "HP",
+      "job_type_public": "online_inference",
+      "model_type_public": "genai",
+      "is_genai_request": true,
+      "gpu_request": 1.0,
+      "duration_hours": 408.0,
+      "schedule_delay_sec": 0,
+      "ready_delay_sec": 23,
+      "ready_status": true,
+      "schedule_status": true
+    },
+    {
+      "pod_id": "4d9d01510417aa2e7fc265305c878639",
+      "workload_id": "f827a90b4737cc6b9eead9f57f0a030b",
+      "server_id": "5c67089184ad80c16b682ef8152262aa",
+      "gpu_spec_public": "XPU-E",
+      "priority_class": "HP",
+      "job_type_public": "online_inference",
+      "model_type_public": "genai",
+      "is_genai_request": true,
+      "gpu_request": 1.0,
+      "duration_hours": 764.3555555555556,
+      "schedule_delay_sec": 137,
+      "ready_delay_sec": -1,
+      "ready_status": true,
+      "schedule_status": true
+    },
+    {
+      "pod_id": "c7aadf5f3d27d9f1384e9f416acd4b23",
+      "workload_id": null,
+      "server_id": "091e608e03895dad407234439c6e5272",
+      "gpu_spec_public": "A10",
+      "priority_class": "HP",
+      "job_type_public": "online_inference",
+      "model_type_public": "cv",
+      "is_genai_request": false,
+      "gpu_request": 0.31,
+      "duration_hours": 0.28888888888888886,
+      "schedule_delay_sec": 0,
+      "ready_delay_sec": -1,
+      "ready_status": false,
+      "schedule_status": true
+    },
+    {
+      "pod_id": "dba30572dc76a1a793145739ad144ef2",
+      "workload_id": null,
+      "server_id": "7d5424a91776869886fdbcf8e7df70dc",
+      "gpu_spec_public": "XPU-E",
+      "priority_class": "LP",
+      "job_type_public": "offline_inference",
+      "model_type_public": "genai",
+      "is_genai_request": true,
+      "gpu_request": 1.0,
+      "duration_hours": 1.3666666666666667,
+      "schedule_delay_sec": 0,
+      "ready_delay_sec": 5,
+      "ready_status": true,
+      "schedule_status": true
+    },
+    {
+      "pod_id": "1538f94daa381e2f0f01c47e378e6b04",
+      "workload_id": null,
+      "server_id": "b47cc12233abcbf4b65dd88b5bd07fbb",
+      "gpu_spec_public": "XPU-E",
+      "priority_class": "HP",
+      "job_type_public": "online_inference",
+      "model_type_public": "genai",
+      "is_genai_request": false,
+      "gpu_request": 1.0,
+      "duration_hours": 1223.9555555555555,
+      "schedule_delay_sec": 131,
+      "ready_delay_sec": 7,
+      "ready_status": true,
+      "schedule_status": true
+    },
+    {
+      "pod_id": "b942f407b44d44e057cdbf1c4ec8860a",
+      "workload_id": "2ef8a21c3973151464571441bf2588df",
+      "server_id": "3bb8de4de669b478f16db2ce4cc0f269",
+      "gpu_spec_public": "XPU-B",
+      "priority_class": "HP",
+      "job_type_public": "online_inference",
+      "model_type_public": "rec",
+      "is_genai_request": false,
+      "gpu_request": 1.0,
+      "duration_hours": 1631.9722222222222,
+      "schedule_delay_sec": 0,
+      "ready_delay_sec": -1,
+      "ready_status": true,
+      "schedule_status": true
+    },
+    {
+      "pod_id": "7066b1776bb2dbe868d164ab1c2a9987",
+      "workload_id": "54559265d7522bd87be201e08446198f",
+      "server_id": "6b10b10a60ad5e421caae9d77922ae93",
+      "gpu_spec_public": "XPU-E",
+      "priority_class": "HP",
+      "job_type_public": "online_inference",
+      "model_type_public": "rec",
+      "is_genai_request": false,
+      "gpu_request": 1.0,
+      "duration_hours": 545.9944444444444,
+      "schedule_delay_sec": 133,
+      "ready_delay_sec": -1,
+      "ready_status": true,
+      "schedule_status": true
+    },
+    {
+      "pod_id": "88439f7eea571d665cdb413734c8e5b3",
+      "workload_id": null,
+      "server_id": "4b772581a3ef7ea01603969fed05d88b",
+      "gpu_spec_public": "XPU-A",
+      "priority_class": "LP",
+      "job_type_public": "offline_inference",
+      "model_type_public": "genai",
+      "is_genai_request": true,
+      "gpu_request": 1.0,
+      "duration_hours": 0.8277777777777777,
+      "schedule_delay_sec": 86394,
+      "ready_delay_sec": -1,
+      "ready_status": true,
+      "schedule_status": true
+    }
+  ]
+}

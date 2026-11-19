@@ -53,3 +53,7 @@ Pricing references: https://aws.amazon.com/vpc/pricing/ and https://aws.amazon.c
 AWS CloudFormation `validate-template` succeeded. This validates the template but does not prove resource-creation permissions, capacity availability, bootstrap success, or the runtime stop timer. Those checks happen after approved deployment.
 
 Deployment requires `CAPABILITY_IAM` because it creates a dedicated instance role. No existing role or networking resources will be changed.
+
+## Storage expansion
+
+The separately deployed `gpu-fleet-data` stack (`data-volume.json`) adds an encrypted 500 GiB gp3 data disk. Worker must be running before the CloudFormation volume attachment is created. See HANDOFF.md for current IDs and mount paths. Estimated added storage cost is $40/month, prorated. Delete the data stack before the worker stack when tearing down; preserve required results first.
