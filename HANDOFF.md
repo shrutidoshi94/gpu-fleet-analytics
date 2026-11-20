@@ -1,6 +1,6 @@
 # Agent handoff
 
-Snapshot: November20,2026,12:36PM Pacific. Refresh AWS status before acting.
+Snapshot: November20,2026,12:59PM Pacific. Refresh AWS status before acting.
 
 ## Current operation
 
@@ -19,10 +19,10 @@ Day5/hour06 has zero requests but positive GPU activity: preserve/flag, do not i
 
 ## Next actions
 
-1. Verify all378 manifests and192 final audit bindings; save final status, finalizer outcome and EC2 stopped snapshot under `docs/evidence/`. Refresh the evidence checksum inventory and README/HANDOFF status together.
-2. Gold planning only is authorized: review [Gold design](docs/design/GOLD_TRANSFORMATION_PLAN.md), complete quality/semantic review, implement/local-test, then seek the bounded pilot/full-run decision. Do not launch Gold merely because Silver finishes.
+1. Verify all378 manifests and192 final audit bindings; save final status and the Gold handoff outcome under `docs/evidence/`; capture the stopped EC2 snapshot after Gold finishes. Refresh the evidence checksum inventory and README/HANDOFF status together.
+2. Gold execution is authorized and deployed: see [Gold runbook](docs/runbooks/GOLD_RUNBOOK.md). A success-only Silver finalizer handoff is armed. Gold service explicitly waits for Silver finalization; it then runs the four-day pilot,12-hour projection gate and full Gold release/export. Do not duplicate the queued run or stop a healthy worker. Gold internal/service limits15/16hours,10-GiB disk floor and independent shutdown guards apply. New Gold release ID `gold_20261120`; status under `run-logs/gold/gold_20261120/`.
 3. Export compact Gold bundle and validate Streamlit without AWS before any cloud teardown. Deletion requires the user's teardown instruction.
-4. Preserve existing uncommitted work. Documentation reorganization is not a commit/push instruction.
+4. The user authorized commit/push. Documentation/Silver were pushed at `d8fe8b8` on `gpu-fleet-analytics`; Gold implementation/deployment are included in the subsequent commit. Do not claim main was merged.
 
 ## Navigation
 

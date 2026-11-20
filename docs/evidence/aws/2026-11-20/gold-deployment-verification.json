@@ -1,0 +1,8 @@
+{
+  "CommandId": "19743cca-f992-40ec-98b0-d030ce070519",
+  "Status": "Success",
+  "ResponseCode": 0,
+  "StandardOutputContent": "RuntimeMaxUSec=1d 7h\nId=gpu-silver-full.service\nActiveState=active\nSubState=running\n\nRuntimeMaxUSec=16h\nId=gpu-gold-full.service\nActiveState=inactive\nSubState=dead\n764ac34222474e2c09f71d10ba97db753a8b471f04cdaa776ff49c591165211b  /opt/gpu-fleet/gold.py\n{\n  \"started_utc\": \"2026-11-20T03:50:54.594530+00:00\",\n  \"updated_utc\": \"2026-11-20T21:04:12.838831+00:00\",\n  \"run_id\": \"silver_full_20261119_r2\",\n  \"dag_state\": \"running\",\n  \"task_states\": {\n    \"success\": 379,\n    \"running\": 1\n  },\n  \"runtime_hours\": 17.22173453573611,\n  \"seconds_since_task_progress\": 1863.6767122745514,\n  \"free_disk_gib\": 53.280494689941406,\n  \"services\": {\n    \"api\": \"active\",\n    \"scheduler\": \"active\",\n    \"dag-processor\": \"active\"\n  },\n  \"expected_transform_partitions\": 378,\n  \"active_tasks\": [\n    {\n      \"task\": \"audit_committed_partitions\",\n      \"map_index\": -1,\n      \"state\": \"running\"\n    }\n  ],\n  \"failed_tasks\": []\n}",
+  "StandardErrorContent": "",
+  "ExecutionEndDateTime": "2026-11-20T21:04:13.791Z"
+}

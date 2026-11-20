@@ -1,0 +1,242 @@
+test_resume_checks_evidence (test_benchmark_resume.BenchmarkResume.test_resume_checks_evidence) ... ok
+test_execution_layout_and_unsafe_member (test_bronze_inventory.BronzeInventoryTest.test_execution_layout_and_unsafe_member) ... ok
+test_forward_reader_prevents_zip_prescan (test_bronze_inventory.BronzeInventoryTest.test_forward_reader_prevents_zip_prescan) ... ok
+test_network_full_coverage_and_missing_hour (test_bronze_inventory.BronzeInventoryTest.test_network_full_coverage_and_missing_hour) ... ok
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/11/20 12:53:21 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+test_capacity_unknown_and_publication (test_gold.GoldContract.test_capacity_unknown_and_publication) ... /Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=9, family=2, type=1, proto=6, laddr=('127.0.0.1', 58201), raddr=('127.0.0.1', 58200)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=9, family=2, type=1, proto=6, laddr=('127.0.0.1', 58203), raddr=('127.0.0.1', 58202)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=9, family=2, type=1, proto=6, laddr=('127.0.0.1', 58205), raddr=('127.0.0.1', 58204)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=9, family=2, type=1, proto=6, laddr=('127.0.0.1', 58207), raddr=('127.0.0.1', 58206)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=9, family=2, type=1, proto=6, laddr=('127.0.0.1', 58209), raddr=('127.0.0.1', 58208)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_production_gate_cannot_be_bypassed (test_gold.GoldContract.test_production_gate_cannot_be_bypassed) ... ok
+test_sample_retry_and_offline_dashboard (test_sample.SampleEndToEnd.test_sample_retry_and_offline_dashboard) ... 2026-11-20 12:54:06.100 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+test_full_contract (test_silver.SilverEndToEnd.test_full_contract) ... [Stage 0:>                                                          (0 + 2) / 2]                                                                                /Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58241), raddr=('127.0.0.1', 58240)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58243), raddr=('127.0.0.1', 58242)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58245), raddr=('127.0.0.1', 58244)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58247), raddr=('127.0.0.1', 58246)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58249), raddr=('127.0.0.1', 58248)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58251), raddr=('127.0.0.1', 58250)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58253), raddr=('127.0.0.1', 58252)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58255), raddr=('127.0.0.1', 58254)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58257), raddr=('127.0.0.1', 58256)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58259), raddr=('127.0.0.1', 58258)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58261), raddr=('127.0.0.1', 58260)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58263), raddr=('127.0.0.1', 58262)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+[Stage 115:>                                                        (0 + 2) / 2]                                                                                /Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58265), raddr=('127.0.0.1', 58264)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58267), raddr=('127.0.0.1', 58266)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58269), raddr=('127.0.0.1', 58268)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58271), raddr=('127.0.0.1', 58270)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58274), raddr=('127.0.0.1', 58273)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58276), raddr=('127.0.0.1', 58275)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58278), raddr=('127.0.0.1', 58277)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58280), raddr=('127.0.0.1', 58279)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+[Stage 200:>                                                        (0 + 2) / 2]                                                                                /Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58282), raddr=('127.0.0.1', 58281)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58284), raddr=('127.0.0.1', 58283)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58286), raddr=('127.0.0.1', 58285)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58288), raddr=('127.0.0.1', 58287)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+[Stage 242:>                                                        (0 + 2) / 2]                                                                                /Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58291), raddr=('127.0.0.1', 58290)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58293), raddr=('127.0.0.1', 58292)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58295), raddr=('127.0.0.1', 58294)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58297), raddr=('127.0.0.1', 58296)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58299), raddr=('127.0.0.1', 58298)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58301), raddr=('127.0.0.1', 58300)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58303), raddr=('127.0.0.1', 58302)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58305), raddr=('127.0.0.1', 58304)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58307), raddr=('127.0.0.1', 58306)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58309), raddr=('127.0.0.1', 58308)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58311), raddr=('127.0.0.1', 58310)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58313), raddr=('127.0.0.1', 58312)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58315), raddr=('127.0.0.1', 58314)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58317), raddr=('127.0.0.1', 58316)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58319), raddr=('127.0.0.1', 58318)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58321), raddr=('127.0.0.1', 58320)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58323), raddr=('127.0.0.1', 58322)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58325), raddr=('127.0.0.1', 58324)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58327), raddr=('127.0.0.1', 58326)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58329), raddr=('127.0.0.1', 58328)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58331), raddr=('127.0.0.1', 58330)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58333), raddr=('127.0.0.1', 58332)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58335), raddr=('127.0.0.1', 58334)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58337), raddr=('127.0.0.1', 58336)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_lossless_numeric_widening_and_precision_rejection (test_silver.SilverEndToEnd.test_lossless_numeric_widening_and_precision_rejection) ... [Stage 487:>                                                        (0 + 2) / 2]                                                                                /Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58339), raddr=('127.0.0.1', 58338)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58341), raddr=('127.0.0.1', 58340)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58343), raddr=('127.0.0.1', 58342)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58345), raddr=('127.0.0.1', 58344)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_null_only_physical_column_uses_nullable_logical_type (test_silver.SilverEndToEnd.test_null_only_physical_column_uses_nullable_logical_type) ... /Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58347), raddr=('127.0.0.1', 58346)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58349), raddr=('127.0.0.1', 58348)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58351), raddr=('127.0.0.1', 58350)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58353), raddr=('127.0.0.1', 58352)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58355), raddr=('127.0.0.1', 58354)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58357), raddr=('127.0.0.1', 58356)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58359), raddr=('127.0.0.1', 58358)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58361), raddr=('127.0.0.1', 58360)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_schema_drift_keeps_previous_commit (test_silver.SilverEndToEnd.test_schema_drift_keeps_previous_commit) ... /Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58363), raddr=('127.0.0.1', 58362)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58365), raddr=('127.0.0.1', 58364)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58367), raddr=('127.0.0.1', 58366)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58369), raddr=('127.0.0.1', 58368)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_source_warning_is_committed_and_partition_scoped (test_silver.SilverEndToEnd.test_source_warning_is_committed_and_partition_scoped) ... /Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58371), raddr=('127.0.0.1', 58370)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58373), raddr=('127.0.0.1', 58372)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58375), raddr=('127.0.0.1', 58374)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=10, family=2, type=1, proto=6, laddr=('127.0.0.1', 58377), raddr=('127.0.0.1', 58376)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_reject_disk_before_start (test_silver_guard.SilverGuard.test_reject_disk_before_start) ... ok
+test_timeout_and_failure (test_silver_guard.SilverGuard.test_timeout_and_failure) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 104.688s
+
+OK

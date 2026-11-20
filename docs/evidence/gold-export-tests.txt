@@ -1,0 +1,28 @@
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+26/11/20 13:02:52 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+test_capacity_unknown_and_publication (test_gold.GoldContract.test_capacity_unknown_and_publication) ... [Stage 0:>                                                          (0 + 0) / 1][Stage 0:>                                                          (0 + 1) / 1]                                                                                /Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=9, family=2, type=1, proto=6, laddr=('127.0.0.1', 58510), raddr=('127.0.0.1', 58509)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=9, family=2, type=1, proto=6, laddr=('127.0.0.1', 58512), raddr=('127.0.0.1', 58511)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=9, family=2, type=1, proto=6, laddr=('127.0.0.1', 58514), raddr=('127.0.0.1', 58513)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=9, family=2, type=1, proto=6, laddr=('127.0.0.1', 58516), raddr=('127.0.0.1', 58515)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=9, family=2, type=1, proto=6, laddr=('127.0.0.1', 58518), raddr=('127.0.0.1', 58517)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/python/cpython-3.11.18-macos-aarch64-none/lib/python3.11/socket.py:789: ResourceWarning: unclosed <socket.socket fd=9, family=2, type=1, proto=6, laddr=('127.0.0.1', 58520), raddr=('127.0.0.1', 58519)>
+  self._sock = None
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_production_gate_cannot_be_bypassed (test_gold.GoldContract.test_production_gate_cannot_be_bypassed) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 12.717s
+
+OK

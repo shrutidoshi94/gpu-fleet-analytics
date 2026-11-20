@@ -12,6 +12,10 @@ These files preserve the project execution record after AWS teardown. They are n
 | Source edge cases investigated and repaired | [whole-trace profile](../data/whole-bronze-preflight.json), [observations](aws/2026-11-20/source-quality-observations.json), [test transcript](recovery-tests.txt) | All9,049 footers, rare schema variation, source inconsistency,12 passing recovery tests |
 | Dashboard will survive teardown | [Gold design](../design/GOLD_TRANSFORMATION_PLAN.md) | Planned offline bundle; final capacity Gold/dashboard not implemented yet |
 
+## Gold deployment checkpoint
+
+The user authorized Gold November20. [Queued marker](aws/2026-11-20/gold-queued.json) and [SSM verification](aws/2026-11-20/gold-deployment-verification.json) confirm deployment on the existing worker and the armed handoff. Gold remains inactive until Silver is verified complete; these are not Gold processing results. All14 regressions passed ([transcript](gold-regression-tests.txt)); a final focused run also verified resumable offline export ([transcript](gold-export-tests.txt)). The deployment probe caught and corrected a service-finalization ordering issue before arming the handoff.
+
 ## Verify without AWS
 
 Run `python3 examples/verify_evidence.py` from the repository root. It checks the saved file hashes, Bronze file totals, sampled row reconciliation, real-source indicators, and correspondence between current Silver code and saved production manifest hashes. It also reports the checkpoint state. No credentials or third-party Python packages are needed.

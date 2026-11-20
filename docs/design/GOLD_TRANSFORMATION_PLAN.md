@@ -1,10 +1,12 @@
 # Gold transformation plan — capacity planning
 
-Proposed November 20, 2026. Planning only: this does not launch Gold or change the running Silver job. Build on the versioned Silver pipeline; legacy pilot Gold is a separate product.
+Design updated November20,2026. The user authorized Gold execution. `gold.py`, `dags/gpu_gold.py` and guarded operators are implemented, locally tested and deployed. The same-worker handoff is armed after verified Silver success. Legacy pilot Gold is a separate product.
+
+Implementation checkpoint: the first release produces hourly capacity/activity/mix/quality evidence, daily placement bins, aligned network context, global execution aggregates and a checksummed offline Parquet bundle. Server-hour intermediates are cached within each Spark application rather than written to S3. Historical-window scenario UI, ranked opportunity rules, additional telemetry histograms and expanded distribution metrics remain follow-up work; do not claim those dashboard features already exist. See the [Gold runbook](../runbooks/GOLD_RUNBOOK.md).
 
 ## Decision and scope
 
-Use one existing m6a.2xlarge, Spark for aggregation and Airflow for bounded day-level tasks. Read each large Silver pod day once, write reusable reduced facts, and build window summaries from those facts. Keep one Spark application active at a time with the tested six threads/12-GiB heap and disk/runtime guards. No second machine is justified before measuring a Gold pilot. Keep the existing Silver completion shutdown policy; a later Gold run can restart the worker after readiness review.
+Use one existing m6a.2xlarge, Spark for aggregation and Airflow for bounded day-level tasks. Read each large Silver pod day once, write reusable reduced facts, and build window summaries from those facts. Keep one Spark application active at a time with the tested six threads/12-GiB heap and disk/runtime guards. No second machine is justified before measuring a Gold pilot. The authorized handoff continues on the same worker only after verified Silver success, with an explicitly tested finalizer wait and independent Gold shutdown guards. Any Silver failure retains the original shutdown path.
 
 Main planning data covers relative days0–184; no calendar dates are invented. Network is separate context for days109–115 only. Execution is global and must not be joined into hourly demand using pod ID alone. GPU model labels are masked cohorts, not interchangeable performance units.
 
@@ -58,7 +60,7 @@ New manual Gold-only DAG: validate pinned Silver release -> mapped daily reducti
 
 Write versioned Parquet Gold in S3. Build a portable local bundle with compact Parquet/JSON, schemas, metric definitions, quality annotations, source window/cohort metadata, hashes and software versions. Streamlit reads local files without boto3 calls or AWS authentication. Target initial bundle under100MiB, measure actual size, and trim bounded examples rather than discard needed quality metadata. No claim that this target is already met.
 
-Download and verify bundle hashes, start Streamlit with AWS access disabled, and compare displayed metrics to independent aggregates before any teardown. Keep a release archive outside AWS. Cloud deletion and new Gold execution are separate from this planning request.
+Download and verify bundle hashes, start Streamlit with AWS access disabled, and compare displayed metrics to independent aggregates before any teardown. Keep a release archive outside AWS. Gold execution is authorized; cloud deletion remains a separate instruction.
 
 ## Validation and pilot
 
@@ -70,4 +72,4 @@ Gold is aggregation-heavy but must still scan billions of Silver rows. No Gold b
 
 ## Next review decisions
 
-Review the table/metric contracts and source semantics first; validate complete Silver quality reports; implement and locally test Gold; run the bounded four-day pilot; review measured runtime/size and decision eligibility; then launch full Gold. The current request authorizes planning, not Gold execution or changes to the active Silver job.
+Review the table/metric contracts and source semantics first; validate complete Silver quality reports; implement and locally test Gold; run the bounded four-day pilot; review measured runtime/size and decision eligibility; then launch full Gold. Gold execution and the guarded same-worker handoff were authorized November20. The four-day pilot must pass the12-hour projected daily-processing gate before the remaining185-day scope proceeds. No additional approval is required within that authorized scope.

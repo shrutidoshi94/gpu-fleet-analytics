@@ -8,5 +8,6 @@
   "silver-pod-day109.json": "manifests/silver/pod/day=109.current.json",
   "silver-server-day109.json": "manifests/silver/server/day=109.current.json",
   "silver-network-day109.json": "manifests/silver/network/day=109.current.json",
-  "silver-execution-global.json": "manifests/silver/execution/all.current.json"
+  "silver-execution-global.json": "manifests/silver/execution/all.current.json",
+  "gold-queued.json": "run-logs/gold/gold_20261120/queued.json"
 }

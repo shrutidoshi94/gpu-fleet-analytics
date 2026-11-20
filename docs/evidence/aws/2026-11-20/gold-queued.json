@@ -1,0 +1,1 @@
+{"release":"gold_20261120","state":"waiting_for_verified_silver","pilot_days":[3,5,109,173],"full_days":185,"pilot_projection_budget_hours":12,"runtime_guard_hours":16,"same_worker":true,"handoff_ordering_probe":"passed","authorization":"user requested commit to GitHub and start Gold transformations"}

@@ -4,15 +4,15 @@ An AWS data engineering project for GPU infrastructure capacity planning, using 
 
 **Scale:** four source tables · 9,049 Parquet files · 6.76 billion rows · 356.28 GB of downloaded archives.
 
-**Status — November 20, 2026:** all 378 Silver partitions transformed; final join audits running. Capacity-planning Gold and the final dashboard are planned. The existing Streamlit app is a validated pilot.
+**Status — November 20, 2026:** all 378 Silver partitions transformed; final join audits running. Gold is implemented and queued behind verified Silver completion; the final capacity dashboard is planned. The existing Streamlit app is a validated pilot.
 
 ```mermaid
 flowchart LR
     A[Alibaba archives] --> B[S3 Bronze]
     B --> C[Spark on EC2: Silver]
     D[Airflow + PostgreSQL] --> C
-    C -. planned .-> E[Gold aggregates]
-    E -. export .-> F[Local Parquet bundle]
+    C --> E[Spark: Gold aggregates]
+    E --> F[Portable Parquet bundle]
     F -. planned .-> G[Streamlit: no AWS dependency]
 ```
 
@@ -45,6 +45,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 unset SPARK_HOME TRACE_BUCKET
 export SPARK_LOCAL_IP=127.0.0.1
+export PYSPARK_PYTHON="$(command -v python)"
 python examples/make_sample.py
 TRACE_DIR=sample python pipeline.py network 109
 streamlit run dashboard.py
@@ -56,12 +57,12 @@ For the full-width Silver implementation and Airflow setup, use the [Silver runb
 
 | Location | Purpose |
 |---|---|
-| `silver.py`, `ingest_bronze.py` | Production Silver and verified Bronze ingestion |
-| `dags/gpu_silver.py`, `ops/` | Airflow orchestration, profiling and safeguards |
+| `ingest_bronze.py`, `silver.py`, `gold.py` | Verified ingestion, full-width Silver and capacity Gold |
+| `dags/gpu_{silver,gold}.py`, `ops/` | Serial Airflow orchestration, safeguards and offline export |
 | `infra/` | CloudFormation templates and operator scripts |
 | `tests/`, `examples/` | Regression tests, synthetic demos and evidence verification |
 | [Data](docs/data/BRONZE_PROFILE.md) · [contracts](docs/data/COLUMN_CONTRACTS.md) | Dataset profile and edge-case handling |
-| [Gold plan](docs/design/GOLD_TRANSFORMATION_PLAN.md) | Capacity metrics, quality gates and offline delivery |
+| [Gold design](docs/design/GOLD_TRANSFORMATION_PLAN.md) · [runbook](docs/runbooks/GOLD_RUNBOOK.md) | Metrics, quality gates and offline delivery |
 | [AWS evidence](docs/evidence/README.md) · [runbooks](docs/runbooks/README.md) | Execution records and reproduction instructions |
 | [HANDOFF.md](HANDOFF.md) | Current operations and continuation instructions |
 
