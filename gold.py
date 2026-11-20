@@ -93,6 +93,9 @@ def assert_source_current(store, plan, day=None):
             continue
         if store.read(key) != value:
             raise ValueError('Pinned Silver changed: ' + key)
+        for area in ('accepted', 'quarantine'):
+            if store.files(value[area]) != value['output_files'][area]:
+                raise ValueError('Pinned Silver output inventory changed: ' + key)
 
 
 def save_tables(store, plan, unit, tables, quality):
@@ -142,11 +145,15 @@ def daily(spark, store, plan, day):
             total('gpu_request', 'observed_gpu_requests'), count_valid('gpu_request', 'valid_request_rows'),
             total('used_gpu_hours', 'reported_gpu_hours'),
             F.countDistinct('gpu_spec_public').alias('pod_model_variants'),
+            F.count('gpu_spec_public').alias('pod_known_model_rows'),
+            F.count('cluster_id').alias('pod_known_cluster_rows'),
             F.first('gpu_spec_public', ignorenulls=True).alias('pod_model'),
             F.countDistinct('cluster_id').alias('pod_cluster_variants'),
             F.first('cluster_id', ignorenulls=True).alias('pod_cluster'))
         joined = inv.select(*KEYS, 'gpu_spec_public', 'cluster_id', 'gpu_count').join(pods, KEYS, 'left')
-        joined = joined.withColumn('model_cluster_mismatch', F.coalesce(
+        joined = joined.withColumn('model_cluster_mismatch', F.col('pod_observations').isNotNull() & F.coalesce(
+            (F.col('pod_known_model_rows') != F.col('pod_observations')) |
+            (F.col('pod_known_cluster_rows') != F.col('pod_observations')) |
             (F.col('pod_model_variants') != 1) | (F.col('pod_cluster_variants') != 1) |
             ~F.col('pod_model').eqNullSafe(F.col('gpu_spec_public')) |
             ~F.col('pod_cluster').eqNullSafe(F.col('cluster_id')), F.lit(False)))
@@ -154,7 +161,8 @@ def daily(spark, store, plan, day):
         try:
             eligible = (F.col('pod_observations').isNotNull() &
                         (F.col('valid_request_rows') == F.col('pod_observations')) &
-                        ~F.col('model_cluster_mismatch') & valid('gpu_count'))
+                        ~F.col('model_cluster_mismatch') & valid('gpu_count') &
+                        ~F.col('hour').isin(anomaly_hours) & F.lit(duplicates == 0))
             joined = joined.withColumn('observed_headroom', F.when(eligible,
                 F.col('gpu_count') - F.col('observed_gpu_requests')))
             capacity = joined.groupBy(*COHORT).agg(total('gpu_count', 'inventory_gpu_slots'),
@@ -170,6 +178,8 @@ def daily(spark, store, plan, day):
                 F.count('observed_headroom').alias('headroom_evidenced_server_hours'),
                 F.min('observed_headroom').alias('min_observed_headroom'),
                 F.max('observed_headroom').alias('max_observed_headroom'))
+            capacity = capacity.withColumn('inventory_gpu_slots',
+                F.when(F.col('valid_capacity_server_hours') > 0, F.col('inventory_gpu_slots')))
             capacity = capacity.withColumn('partial_request_to_inventory_ratio',
                 F.when((F.col('inventory_gpu_slots') > 0) & (F.col('compatible_valid_request_rows') > 0), F.col('compatible_observed_gpu_requests') / F.col('inventory_gpu_slots')))
             capacity = capacity.withColumn('source_anomaly', F.col('hour').isin(anomaly_hours))
@@ -178,9 +188,10 @@ def daily(spark, store, plan, day):
                 F.lit('request/lifecycle completeness unverified; observed evidence only'))
             # Telemetry is aligned to inventory by key; mismatches remain a visible dimension.
             tagged = p.alias('p').join(inv.select(*KEYS, F.col('gpu_spec_public').alias('inventory_model'),
-                  F.col('cluster_id').alias('inventory_cluster')).alias('i'), KEYS, 'left')
-            tagged = tagged.withColumn('inventory_match', F.col('inventory_model').isNotNull())
+                  F.col('cluster_id').alias('inventory_cluster'), F.lit(True).alias('_inventory_key_exists')).alias('i'), KEYS, 'left')
+            tagged = tagged.withColumn('inventory_match', F.coalesce(F.col('_inventory_key_exists'), F.lit(False)))
             tagged = tagged.withColumn('cohort_match', F.col('inventory_match') &
+                F.col('inventory_model').isNotNull() & F.col('inventory_cluster').isNotNull() &
                 F.col('gpu_spec_public').eqNullSafe(F.col('inventory_model')) &
                 F.col('cluster_id').eqNullSafe(F.col('inventory_cluster')))
             tagged = tagged.persist(StorageLevel.MEMORY_AND_DISK)
