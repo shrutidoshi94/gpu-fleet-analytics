@@ -28,6 +28,16 @@ jobs:
         run: |
           airflow db migrate
           airflow dags test gpu_trace_day 2026-01-01
+      - name: Verify Silver-only orchestration
+        env:
+          TRACE_PROJECT: ${{ github.workspace }}
+          TRACE_SILVER_ROOT: ${{ github.workspace }}/silver-sample
+          AIRFLOW_HOME: ${{ github.workspace }}/airflow-home
+          AIRFLOW__CORE__DAGS_FOLDER: ${{ github.workspace }}/dags
+          SPARK_LOCAL_IP: 127.0.0.1
+        run: |
+          python examples/make_silver_sample.py silver-sample
+          airflow dags test gpu_silver_backfill 2026-01-02 -c '{"datasets":["server","pod","network","execution"],"days":[109]}'
       - uses: actions/upload-artifact@v4
         with:
           name: synthetic-network-summary

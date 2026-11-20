@@ -1,0 +1,8 @@
+{
+    "InstanceId": "i-09dc0bfe45b0d275f",
+    "State": "running",
+    "Type": "m6a.2xlarge",
+    "LaunchTime": "2026-11-20T03:28:23+00:00",
+    "AvailabilityZone": "us-east-2a",
+    "RootDevice": "/dev/xvda"
+}

@@ -1,0 +1,12 @@
+{
+  "bronze-pod-success.json": "manifests/bronze/pod.success.json",
+  "bronze-server-success.json": "manifests/bronze/server.success.json",
+  "bronze-network-success.json": "manifests/bronze/network.success.json",
+  "bronze-execution-success.json": "manifests/bronze/execution.success.json",
+  "silver-run-status.json": "run-logs/full-silver-20261119/status.json",
+  "source-quality-observations.json": "manifests/bronze/quality-observations.json",
+  "silver-pod-day109.json": "manifests/silver/pod/day=109.current.json",
+  "silver-server-day109.json": "manifests/silver/server/day=109.current.json",
+  "silver-network-day109.json": "manifests/silver/network/day=109.current.json",
+  "silver-execution-global.json": "manifests/silver/execution/all.current.json"
+}

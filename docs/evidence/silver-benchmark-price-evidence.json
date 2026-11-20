@@ -1,0 +1,74 @@
+[
+  {
+    "source": "AWS Pricing API GetProducts",
+    "retrieved_date_pacific": "2026-11-19",
+    "service": "Amazon Elastic Compute Cloud",
+    "sku": "9MH3R7NV3X9U6W5T",
+    "region": "us-east-2",
+    "instance_type": "m6a.2xlarge",
+    "usage_type": "USE2-BoxUsage:m6a.2xlarge",
+    "description": "$0.3456 per On Demand Linux m6a.2xlarge Instance Hour",
+    "unit": "Hrs",
+    "usd": "0.3456000000"
+  },
+  {
+    "source": "AWS Pricing API GetProducts",
+    "retrieved_date_pacific": "2026-11-19",
+    "service": "Amazon Elastic Compute Cloud",
+    "sku": "WMNX2DDVQXFEJM2X",
+    "region": "us-east-2",
+    "instance_type": "m6a.xlarge",
+    "usage_type": "USE2-BoxUsage:m6a.xlarge",
+    "description": "$0.1728 per On Demand Linux m6a.xlarge Instance Hour",
+    "unit": "Hrs",
+    "usd": "0.1728000000"
+  },
+  {
+    "source": "AWS Pricing API GetProducts",
+    "retrieved_date_pacific": "2026-11-19",
+    "service": "Amazon Elastic Compute Cloud",
+    "sku": "9RX9YU2HAPBCJ2JE",
+    "region": "us-east-2",
+    "instance_type": "m6a.4xlarge",
+    "usage_type": "USE2-BoxUsage:m6a.4xlarge",
+    "description": "$0.6912 per On Demand Linux m6a.4xlarge Instance Hour",
+    "unit": "Hrs",
+    "usd": "0.6912000000"
+  },
+  {
+    "source": "AWS Pricing API GetProducts",
+    "retrieved_date_pacific": "2026-11-19",
+    "service": "Amazon Elastic Compute Cloud",
+    "sku": "M6UGCCQ3CDJQAA37",
+    "region": "us-east-2",
+    "instance_type": null,
+    "usage_type": "USE2-EBS:VolumeUsage.gp3",
+    "description": "$0.08 per GB-month of General Purpose (gp3) provisioned storage - US East (Ohio)",
+    "unit": "GB-Mo",
+    "usd": "0.0800000000"
+  },
+  {
+    "source": "AWS Pricing API GetProducts",
+    "retrieved_date_pacific": "2026-11-19",
+    "service": "Amazon Virtual Private Cloud",
+    "sku": "8HFJK44D9234XNWA",
+    "region": "us-east-2",
+    "instance_type": null,
+    "usage_type": "USE2-PublicIPv4:InUseAddress",
+    "description": "$0.005 per In-use public IPv4 address per hour",
+    "unit": "Hrs",
+    "usd": "0.0050000000"
+  },
+  {
+    "source": "AWS Pricing API GetProducts",
+    "retrieved_date_pacific": "2026-11-19",
+    "service": "Amazon Simple Storage Service",
+    "sku": "YPGKVRB2EKTVDJDT",
+    "region": "us-east-2",
+    "instance_type": null,
+    "usage_type": "USE2-TimedStorage-ByteHrs",
+    "description": "$0.023 per GB - first 50 TB / month of storage used",
+    "unit": "GB-Mo",
+    "usd": "0.0230000000"
+  }
+]

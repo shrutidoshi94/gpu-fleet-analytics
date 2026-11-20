@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "benchmark_cases": 9,
+  "final_join_audits": 4,
+  "same_source_and_code_for_all_cases": true,
+  "three_vs_six_thread_quality_reports_equal": true,
+  "row_accounting_all_cases": true,
+  "spark_readback_and_independent_arrow_footer_checks": "passed before each commit",
+  "final_audit_attempt_and_inventory_bindings": "verified",
+  "local_tests": "7 pipeline regression tests plus 1 benchmark-resume regression test passed in their latest runs",
+  "network_unmatched_observations_retained": 190,
+  "instance_state_verified": "stopped",
+  "root_gib_verified": 60,
+  "full_backfill_started": false,
+  "new_gold_generated": false
+}

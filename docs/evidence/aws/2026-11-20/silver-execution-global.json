@@ -1,0 +1,134 @@
+{
+  "dataset": "execution",
+  "day": null,
+  "synthetic_source": false,
+  "version": "silver-v1",
+  "code_sha256": "99a4033d88e95eed80ff20dcf6ec87cdd149ce316a05ccaaf3d44ab7b639b2a0",
+  "source_fingerprint": "9b36038c5b431596d9c7acc151de64645fc52f39497015cd9e5f5fcdc1c0fa21",
+  "source_bytes": 1188294827,
+  "accepted": "silver_versions/execution/all/silver-v1/885ac2f3f8484c6095e0e56bbff720af/accepted",
+  "quarantine": "silver_versions/execution/all/silver-v1/885ac2f3f8484c6095e0e56bbff720af/quarantine",
+  "quality": {
+    "input_rows": 40522321,
+    "accepted_rows": 40522321,
+    "quarantined_rows": 0,
+    "null_counts": {
+      "pod_id": 0,
+      "workload_id": 35729919,
+      "server_id": 0,
+      "gpu_spec_public": 0,
+      "priority_class": 0,
+      "job_type_public": 0,
+      "model_type_public": 0,
+      "is_genai_request": 0,
+      "gpu_request": 0,
+      "duration_hours": 0,
+      "schedule_delay_sec": 392427,
+      "ready_delay_sec": 392427,
+      "ready_status": 392427,
+      "schedule_status": 392427
+    },
+    "blank_counts": {
+      "pod_id": 0,
+      "workload_id": 0,
+      "server_id": 0,
+      "gpu_spec_public": 0,
+      "priority_class": 0,
+      "job_type_public": 0,
+      "model_type_public": 0
+    },
+    "unknown_literal_counts": {
+      "pod_id": 0,
+      "workload_id": 0,
+      "server_id": 0,
+      "gpu_spec_public": 0,
+      "priority_class": 0,
+      "job_type_public": 170977,
+      "model_type_public": 1393920
+    },
+    "non_finite_counts": {
+      "gpu_request": {
+        "nan": 0,
+        "positive_infinity": 0,
+        "negative_infinity": 0
+      },
+      "duration_hours": {
+        "nan": 0,
+        "positive_infinity": 0,
+        "negative_infinity": 0
+      }
+    },
+    "boolean_counts": {
+      "is_genai_request": {
+        "true": 31425554,
+        "false": 9096767,
+        "null": 0
+      },
+      "ready_status": {
+        "true": 18979472,
+        "false": 21150422,
+        "null": 392427
+      },
+      "schedule_status": {
+        "true": 39896941,
+        "false": 232953,
+        "null": 392427
+      }
+    },
+    "quality_flags": {
+      "ready_delay_sec:negative": 22502335,
+      "model_type_public:unknown": 1393920,
+      "job_type_public:unknown": 170977,
+      "schedule_delay_sec:negative": 232953
+    },
+    "quarantine_reasons": {},
+    "candidate_key_audit": {
+      "keys": [
+        "pod_id"
+      ],
+      "duplicate_groups": 2184460,
+      "rows_in_duplicate_groups": 6021763,
+      "policy": "retain_and_report_unproven_key"
+    },
+    "source_observations": [],
+    "inventory_join_audit": {
+      "status": "not_applicable"
+    }
+  },
+  "output_files": {
+    "accepted": [
+      {
+        "path": "silver_versions/execution/all/silver-v1/885ac2f3f8484c6095e0e56bbff720af/accepted/part-00000-fb4415c3-cd61-4cf2-a0a5-ea47c4f17c00-c000.zstd.parquet",
+        "bytes": 361594025,
+        "identity": "\"e6b04c0f1db43cea2e7cc1a1f18f5a5d-6\""
+      },
+      {
+        "path": "silver_versions/execution/all/silver-v1/885ac2f3f8484c6095e0e56bbff720af/accepted/part-00001-fb4415c3-cd61-4cf2-a0a5-ea47c4f17c00-c000.zstd.parquet",
+        "bytes": 361829702,
+        "identity": "\"81351444d0f8f8fccbfbd0605d301010-6\""
+      },
+      {
+        "path": "silver_versions/execution/all/silver-v1/885ac2f3f8484c6095e0e56bbff720af/accepted/part-00002-fb4415c3-cd61-4cf2-a0a5-ea47c4f17c00-c000.zstd.parquet",
+        "bytes": 361662862,
+        "identity": "\"cc10a3d418947f567a466ce757d573c5-6\""
+      },
+      {
+        "path": "silver_versions/execution/all/silver-v1/885ac2f3f8484c6095e0e56bbff720af/accepted/part-00003-fb4415c3-cd61-4cf2-a0a5-ea47c4f17c00-c000.zstd.parquet",
+        "bytes": 361633820,
+        "identity": "\"481b63b67316c3671d520123b301469e-6\""
+      }
+    ],
+    "quarantine": [
+      {
+        "path": "silver_versions/execution/all/silver-v1/885ac2f3f8484c6095e0e56bbff720af/quarantine/part-00000-949adfd8-90d5-421d-8bff-955903b61c5c-c000.zstd.parquet",
+        "bytes": 2658,
+        "identity": "\"d3f46abe2444f7dc639585d65be4b79f\""
+      }
+    ]
+  },
+  "elapsed_seconds": 234.79879015799816,
+  "spark_application_id": "local-1795206550475",
+  "spark_master": "local[6]",
+  "output_partitions": 4,
+  "gpu_view_filter": null
+}
