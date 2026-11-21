@@ -1,15 +1,15 @@
 # Agent handoff
 
-Snapshot: November20,2026,4:06PM Pacific. Refresh AWS status before acting.
+Snapshot: November21,2026. Gold completed at12:56AM Pacific; EC2 confirmed stopped. Refresh AWS state before acting.
 
 ## Current operation
 
-- Silver `silver_full_20261119_r2` is verified complete:378 partitions,192 audit bindings,6,759,480,015 accepted rows. Gold `gold_20261120` is running the four-day pilot on the same worker; source pinning succeeded, no failed Gold tasks at the snapshot.
+- Silver `silver_full_20261119_r2` is verified complete:378 partitions,192 audit bindings,6,759,480,015 accepted rows. Gold `gold_20261120` is verified complete:185 daily partitions plus global context, all186 Airflow tasks successful, export47,379,950bytes across seven Parquet tables plus lineage/metrics metadata. Runtime8h52m. The finalizer succeeded and EC2 is stopped.
 - Account498768607823, profile `gpu-fleet`, region `us-east-2`; worker `i-09dc0bfe45b0d275f`, m6a.2xlarge,60-GiB gp3. Temporary500-GiB volume deleted.
 - Bucket `gpu-fleet-network-demo-tracebucket-ojk2fpexu8a6`; live report `run-logs/full-silver-20261119/status.json`. Check freshness, final `verified_complete`, `run_outcome`, and service result before declaring success.
-- Airflow3.0.6/LocalExecutor/PostgreSQL15; isolated Silver-only DAG folder. Spark local[6],12-GiB heap. API binds worker loopback8080; local dashboard requires an SSM tunnel.
+- Airflow3.0.6/LocalExecutor/PostgreSQL15; isolated production folder containing only the new Silver/Gold DAGs. Spark local[6],12-GiB heap. API binds worker loopback8080; local dashboard requires an SSM tunnel.
 - `/opt/gpu-fleet/production.env.sh` contains private configuration. Legacy `env.sh` has pilot limits. Never publish secrets, Airflow database dumps or authentication files.
-- Supervisor: minute health checks, two-hour checkpoints,10-GiB disk floor,30-hour internal cap,31-hour service cap,34-hour boot guard; independent180-second finalizer shutdown watchdog. Leave healthy processing running.
+- Supervisor: minute health checks, two-hour checkpoints,10-GiB disk floor,30-hour internal cap,31-hour service cap,34-hour boot guard; independent180-second finalizer shutdown watchdog. No processing is currently active; do not restart EC2 for a local S3 download.
 
 ## Completion-checker recovery (November20)
 
@@ -23,10 +23,11 @@ Day5/hour06 has zero requests but positive GPU activity: preserve/flag, do not i
 
 ## Next actions
 
-1. Monitor Gold pilot and its12-hour daily-processing projection gate, then the automatic remaining-day scope, global context and offline export. Silver verification and handoff evidence are saved under docs/evidence/. Capture final Gold evidence and stopped EC2 state after Gold finishes; refresh checksums and README/HANDOFF together.
-2. Gold execution is authorized and deployed: see [Gold runbook](docs/runbooks/GOLD_RUNBOOK.md). The success-only Silver handoff completed at4:04PM; Gold is active. Gold service explicitly waits for Silver finalization; it then runs the four-day pilot,12-hour projection gate and full Gold release/export. Do not duplicate the active run or stop a healthy worker. Gold internal/service limits15/16hours,10-GiB disk floor and independent shutdown guards apply. New Gold release ID `gold_20261120`; status under `run-logs/gold/gold_20261120/`.
-3. Export compact Gold bundle and validate Streamlit without AWS before any cloud teardown. Deletion requires the user's teardown instruction.
-4. The user authorized commit/push. Documentation/Silver were pushed at `d8fe8b8` on `gpu-fleet-analytics`; Gold implementation/deployment are included in the subsequent commit. Do not claim main was merged.
+1. **User deferred the data download.** Do not download the Gold bundle now. Only small completion/export metadata has been saved under docs/evidence/aws/2026-11-21/.
+2. When requested, download `gold_exports/gold_20261120/` directly from S3 to a local bundle directory; EC2 can remain stopped. Verify file hashes/row counts and independent sample metrics before claiming local readiness. Keep a second backup. Do not confuse the saved export manifest with locally verified data.
+3. Build/test the capacity-planning Streamlit dashboard using local Gold; no AWS requests during dashboard use. Ranked opportunities/scenario UI remain follow-up work.
+4. Keep S3 and60-GiB root until verified local backups and explicit teardown instruction. Storage charges continue while retained. No AWS resources were deleted in this completion update.
+5. User authorized commit/push through this checkpoint. Branch is gpu-fleet-analytics; main was not merged. Final completion evidence and the deferred-download boundary are included in this update.
 
 ## Navigation
 

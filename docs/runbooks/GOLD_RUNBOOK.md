@@ -1,6 +1,6 @@
 # Gold runbook
 
-Authorized November20,2026. Release/run ID: `gold_20261120`. Source: pinned production Silver; no new archive downloads. Silver verified at4:04PM Pacific after a completion-checker import fix. The automatic handoff launched Gold; its four-day pilot is running. No Silver transformations were repeated.
+Authorized November20,2026. Release/run ID: `gold_20261120`. Source: pinned production Silver; no new archive downloads. Silver verified at4:04PM Pacific after a completion-checker import fix. The automatic handoff launched Gold; Gold completed successfully November21 at12:56AM Pacific, with an exported47.4-MB bundle; EC2 is stopped. Local download is deferred. No Silver transformations were repeated.
 
 ## Readiness and orchestration
 

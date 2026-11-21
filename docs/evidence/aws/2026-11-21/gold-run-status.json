@@ -1,0 +1,22 @@
+{
+  "updated_utc": "2026-11-21T08:56:58.018591+00:00",
+  "release": "gold_20261120",
+  "run_id": "gold_20261120",
+  "dag_state": "success",
+  "task_states": {
+    "success": 186
+  },
+  "runtime_hours": 8.86848629616861,
+  "free_disk_gib": 53.527099609375,
+  "services": {
+    "api": "active",
+    "scheduler": "active",
+    "dag-processor": "active"
+  },
+  "active_tasks": [],
+  "failed_tasks": [],
+  "verified_complete": true,
+  "gold_day_partitions": 185,
+  "bundle_bytes": 47379950,
+  "completed_utc": "2026-11-21T08:56:58.212150+00:00"
+}

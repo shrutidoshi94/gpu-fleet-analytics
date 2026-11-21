@@ -4,7 +4,7 @@ An AWS data engineering project for GPU infrastructure capacity planning, using 
 
 **Scale:** four source tables · 9,049 Parquet files · 6.76 billion rows · 356.28 GB of downloaded archives.
 
-**Status — November 20, 2026:** Silver verified complete: 378 partitions, 6,759,480,015 accepted rows. Gold’s four-day pilot is running on the same EC2 worker. The final capacity dashboard is planned; the existing Streamlit app is a validated pilot.
+**Status — November 21, 2026:** Silver and Gold verified complete. Gold: 185 days, seven tables, 47.4-MB export, 8h52m runtime. EC2 stopped. Local bundle download and the final capacity dashboard remain pending.
 
 ```mermaid
 flowchart LR

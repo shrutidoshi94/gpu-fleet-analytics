@@ -1,0 +1,11 @@
+{
+  "captured_utc": "2026-11-21T18:54:10.331079+00:00",
+  "bucket": "gpu-fleet-network-demo-tracebucket-ojk2fpexu8a6",
+  "objects": {
+    "gold-run-status.json": "run-logs/gold/gold_20261120/status.json",
+    "gold-service-result.json": "run-logs/gold/gold_20261120/service-result.json",
+    "gold-export-manifest.json": "manifests/gold/gold_20261120/export.json"
+  },
+  "ec2-stopped-snapshot.json": "aws ec2 describe-instances --instance-ids i-09dc0bfe45b0d275f (selected fields)",
+  "scope": "Metadata only. Gold data bundle not downloaded or locally verified."
+}

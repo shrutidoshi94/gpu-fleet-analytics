@@ -1,6 +1,6 @@
 # AWS execution evidence
 
-These files preserve the project execution record after AWS teardown. They are not synthetic dashboard fixtures. Current checkpoint: November20,2026,4:06PM Pacific. Silver is verified complete:378 partitions and all192 final audit bindings checked;6,759,480,015 accepted rows, zero quarantined. Gold is running its four-day pilot. These are distinct stage outcomes, not full Gold success.
+These files preserve the AWS execution record for later review, including after teardown. They are not synthetic dashboard fixtures. **November21 checkpoint:** Silver and Gold are verified complete. Gold finished at12:56AM Pacific:185 daily partitions,186 successful Airflow tasks, seven compact tables,47,379,950-byte export,8h52m runtime. EC2 is stopped. The user deferred local data download; offline data validation and the final dashboard are still pending.
 
 | Claim | Evidence | What to inspect |
 |---|---|---|
@@ -10,15 +10,20 @@ These files preserve the project execution record after AWS teardown. They are n
 | EC2 was used in Ohio | [resource snapshot](aws/2026-11-20/ec2-resource-snapshot.json) | Instance ID, m6a.2xlarge type, availability zone, launch time and running state |
 | Measured CPU/Spark tradeoffs | [benchmark report](AWS_BENCHMARK_RESULTS.md), [raw results](silver-benchmark-results.json), [validation](silver-benchmark-validation.json) |9 timed cases,4 sampled final join audits, six-vs-three-thread comparison |
 | Source edge cases investigated and repaired | [whole-trace profile](../data/whole-bronze-preflight.json), [observations](aws/2026-11-20/source-quality-observations.json), [test transcript](recovery-tests.txt) | All9,049 footers, rare schema variation, source inconsistency,12 passing recovery tests |
-| Dashboard will survive teardown | [Gold design](../design/GOLD_TRANSFORMATION_PLAN.md) | Planned offline bundle; final capacity Gold/dashboard not implemented yet |
+| Gold/export finished and EC2 stopped | [Final evidence](aws/2026-11-21/) | verified_complete,185 day partitions,186 successful tasks, export schemas/checksums, successful finalizer and stopped worker |
+| Dashboard will survive teardown | [Gold design](../design/GOLD_TRANSFORMATION_PLAN.md) | Portable bundle generated on AWS; download, local verification and final dashboard remain pending |
 
 ## Gold deployment checkpoint
 
-The user authorized Gold November20. [Queued marker](aws/2026-11-20/gold-queued.json) and [SSM verification](aws/2026-11-20/gold-deployment-verification.json) confirm deployment on the existing worker and the armed handoff. The queued/deployment files are earlier checkpoints. The [live-run snapshot](aws/2026-11-20/gold-run-status.json) records successful source pinning and the running pilot after verified Silver completion; no Gold pilot success is claimed yet. All14 regressions passed ([transcript](gold-regression-tests.txt)); a final focused run also verified resumable offline export ([transcript](gold-export-tests.txt)). The deployment probe caught and corrected a service-finalization ordering issue before arming the handoff.
+The user authorized Gold November20. [Queued marker](aws/2026-11-20/gold-queued.json) and [SSM verification](aws/2026-11-20/gold-deployment-verification.json) confirm deployment on the existing worker and the armed handoff. The queued/deployment files are earlier checkpoints. The [live-run snapshot](aws/2026-11-20/gold-run-status.json) records successful source pinning and the running pilot after verified Silver completion; this is an earlier checkpoint. The final evidence below supersedes its running state. All14 regressions passed ([transcript](gold-regression-tests.txt)); a final focused run also verified resumable offline export ([transcript](gold-export-tests.txt)). The deployment probe caught and corrected a service-finalization ordering issue before arming the handoff.
 
 ## Completion-checker recovery
 
 Airflow finished all Silver transformations/audits at2:19PM. Its separate final checker failed to import silver.py, so the worker stopped and Gold did not start. The [failure checkpoint](aws/2026-11-20/silver-completion-import-failure.json) and [traceback](aws/2026-11-20/silver-checker-import-error.txt) preserve that event. Explicit project-path initialization fixed the entry point; an [isolated-interpreter regression](supervisor-import-test.txt) passed. Only final source/output/audit verification was rerun; no Spark transformations repeated. Silver verified at4:04PM and handed off to Gold. Original run timing is retained across the checker restart. The stopped interval was not EC2 compute time.
+
+## Final Gold completion
+
+[Run result](aws/2026-11-21/gold-run-status.json), [finalizer result](aws/2026-11-21/gold-service-result.json), [export manifest](aws/2026-11-21/gold-export-manifest.json), and [stopped EC2 snapshot](aws/2026-11-21/ec2-stopped-snapshot.json) record cloud completion. The export manifest contains table row counts, columns, file sizes and expected SHA256 hashes. These are metadata exports, not the47.4-MB data bundle. No claim of local data-hash or independent metric validation is made yet.
 
 ## Verify without AWS
 
@@ -30,6 +35,6 @@ The benchmark predates the recovery code: its hash and stopped-worker state are 
 
 AWS JSON exports were downloaded via AWS CLI using the project profile; [sources.json](aws/2026-11-20/sources.json) maps saved names to original S3 keys. EC2 output uses a selected read-only describe-instances query. Exports retain non-secret resource identifiers for traceability. Benchmark JSON and the local test transcript are operator-collected validation evidence, not AWS-signed attestations.
 
-[checksums.json](checksums.json) detects accidental changes against this checked-in snapshot; it does not independently prove AWS origin. Recruiters can cross-check infrastructure, DAGs, Spark code and matching execution metadata without live account access. Silver completion evidence is saved. Gold completion/export lineage, the final shutdown snapshot and offline comparison results must be added when those stages finish. Hosted GitHub Actions success is not claimed until a real run is available.
+[checksums.json](checksums.json) detects accidental changes against this checked-in snapshot; it does not independently prove AWS origin. Recruiters can cross-check infrastructure, DAGs, Spark code and matching execution metadata without live account access. Silver completion evidence is saved. Gold completion/export metadata and the stopped-worker snapshot are saved. Full lineage remains inside the deferred bundle; local hash/metric verification and offline dashboard comparison must be added later. Hosted GitHub Actions success is not claimed until a real run is available.
 
 No credentials, signed URLs, Airflow passwords, database dumps, billing screenshots or bulk trace data belong here. Bucket names, application IDs and instance IDs are identifiers, not authentication secrets. Original source data remains subject to its upstream terms.
