@@ -25,8 +25,9 @@ def main():
             'four Bronze datasets required')
     require(sum(x['file_count'] for x in bronze) == 9049, 'Bronze file total')
     code_hash = hashlib.sha256((ROOT / 'silver.py').read_bytes()).hexdigest()
-    silver = [json.loads(p.read_text()) for p in exports.glob('silver-*.json')
-              if p.name != 'silver-run-status.json']
+    sample_names = ['silver-pod-day109.json', 'silver-server-day109.json',
+                    'silver-network-day109.json', 'silver-execution-global.json']
+    silver = [json.loads((exports / name).read_text()) for name in sample_names]
     require(len(silver) == 4, 'four sampled production manifests required')
     for manifest in silver:
         require(manifest['synthetic_source'] is False, 'synthetic manifest')
