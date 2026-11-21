@@ -1,6 +1,6 @@
 # Gold transformation plan — capacity planning
 
-Design updated November20,2026. The user authorized Gold execution. `gold.py`, `dags/gpu_gold.py` and guarded operators are implemented, locally tested and deployed. The same-worker handoff is armed after verified Silver success. Legacy pilot Gold is a separate product.
+Design updated November20,2026. The user authorized Gold execution. `gold.py`, `dags/gpu_gold.py` and guarded operators are implemented, locally tested and deployed. The same-worker handoff completed after verified Silver success; the Gold pilot is running. Legacy pilot Gold is a separate product.
 
 Implementation checkpoint: the first release produces hourly capacity/activity/mix/quality evidence, daily placement bins, aligned network context, global execution aggregates and a checksummed offline Parquet bundle. Server-hour intermediates are cached within each Spark application rather than written to S3. Historical-window scenario UI, ranked opportunity rules, additional telemetry histograms and expanded distribution metrics remain follow-up work; do not claim those dashboard features already exist. See the [Gold runbook](../runbooks/GOLD_RUNBOOK.md).
 

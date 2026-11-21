@@ -9,5 +9,7 @@
   "silver-server-day109.json": "manifests/silver/server/day=109.current.json",
   "silver-network-day109.json": "manifests/silver/network/day=109.current.json",
   "silver-execution-global.json": "manifests/silver/execution/all.current.json",
-  "gold-queued.json": "run-logs/gold/gold_20261120/queued.json"
+  "gold-queued.json": "run-logs/gold/gold_20261120/queued.json",
+  "silver-completion-import-failure.json": "run-logs/full-silver-20261119/completion-import-failure.json",
+  "gold-run-status.json": "run-logs/gold/gold_20261120/status.json"
 }

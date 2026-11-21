@@ -35,6 +35,7 @@ done
 state=$(systemctl show gpu-silver-full.service -p ActiveState --value)
 case "$state" in inactive|failed) ;; *) echo 'Silver finalizer did not finish'; exit 1 ;; esac
 systemctl stop gpu-gold-handoff-stop.timer || true
+systemctl stop gpu-completion-recovery-stop.timer || true
 systemctl start gpu-airflow-api gpu-airflow-scheduler gpu-airflow-dag-processor
 exec runuser -u ec2-user -- bash -c 'cd /opt/gpu-fleet; source production.env.sh; export TRACE_GOLD_RELEASE=gold_20261120 TRACE_GOLD_LOG_DIR=/opt/gpu-fleet/logs/gold/gold_20261120; exec python ops/gold_supervisor.py' > /opt/gpu-fleet/logs/gold/gold_20261120/supervisor.log 2>&1
 RUN

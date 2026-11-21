@@ -1,0 +1,26 @@
+{
+  "updated_utc": "2026-11-21T00:06:51.916881+00:00",
+  "release": "gold_20261120",
+  "run_id": "gold_20261120",
+  "dag_state": "running",
+  "task_states": {
+    "not_scheduled": 4,
+    "success": 1,
+    "running": 1
+  },
+  "runtime_hours": 0.03345804561944444,
+  "free_disk_gib": 52.84386444091797,
+  "services": {
+    "api": "active",
+    "scheduler": "active",
+    "dag-processor": "active"
+  },
+  "active_tasks": [
+    {
+      "task": "pilot",
+      "map_index": -1,
+      "state": "running"
+    }
+  ],
+  "failed_tasks": []
+}

@@ -8,6 +8,8 @@ from pathlib import Path
 import shutil
 import subprocess
 import time
+import sys
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 
 
 def now():return datetime.now(timezone.utc).isoformat()
@@ -23,7 +25,13 @@ def main():
     from sqlalchemy import select
     root=Path(os.environ['TRACE_RUN_LOG_DIR']);root.mkdir(parents=True,exist_ok=True)
     client=boto3.client('s3');bucket=os.environ['TRACE_BUCKET']
-    started=time.monotonic();started_utc=now();last_check=time.monotonic()-7200;last_backup=0;last_count=-1;last_progress=time.time()
+    started=time.monotonic();started_utc=now()
+    previous_status=root/'status.json'
+    if previous_status.exists():
+        previous=json.loads(previous_status.read_text())
+        if previous.get('run_id')==args.run_id and previous.get('started_utc'):
+            started_utc=previous['started_utc']
+    last_check=time.monotonic()-7200;last_backup=0;last_count=-1;last_progress=time.time()
     def publish(value):
         (root/'status.json').write_text(json.dumps(value,indent=2))
         client.put_object(Bucket=bucket,Key='run-logs/full-silver-20261119/status.json',Body=json.dumps(value).encode(),ContentType='application/json')
@@ -38,7 +46,7 @@ def main():
         if finished!=last_count:last_progress=time.time();last_count=finished
         units={name:subprocess.check_output(['systemctl','show',f'gpu-airflow-{name}','--property=ActiveState','--value'],text=True).strip() for name in ('api','scheduler','dag-processor')}
         value={'started_utc':started_utc,'updated_utc':now(),'run_id':args.run_id,'dag_state':state,'task_states':dict(counts),
-               'runtime_hours':(time.monotonic()-started)/3600,'seconds_since_task_progress':time.time()-last_progress,
+               'runtime_hours':(datetime.now(timezone.utc)-datetime.fromisoformat(started_utc)).total_seconds()/3600,'seconds_since_task_progress':time.time()-last_progress,
                'free_disk_gib':shutil.disk_usage(root).free/2**30,'services':units,'expected_transform_partitions':378,
                'active_tasks':[{'task':t.task_id,'map_index':t.map_index,'state':t.state} for t in tasks if t.state in ('running','queued','up_for_retry')],
                'failed_tasks':[{'task':t.task_id,'map_index':t.map_index,'state':t.state} for t in tasks if t.state in ('failed','upstream_failed')]}
@@ -91,7 +99,7 @@ def main():
             publish(value)
             print('All378 Silver commits and final audits verified; stopping worker.',flush=True)
             return
-        if time.monotonic()-started>30*3600:raise TimeoutError('Full-run30-hour runtime guard')
+        if value['runtime_hours']>30:raise TimeoutError('Full-run30-hour runtime guard')
         time.sleep(60)
 
 if __name__=='__main__':main()
