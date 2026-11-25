@@ -61,7 +61,7 @@ python -m unittest discover -s tests -p test_dashboard.py -v
 | Verify AWS execution | [Evidence](docs/evidence/README.md) · [Verification tools](scripts/README.md) |
 | Understand transformations | [Column contracts](docs/data/COLUMN_CONTRACTS.md) · [Gold design](docs/design/GOLD_TRANSFORMATION_PLAN.md) |
 | Reproduce processing | [Runbooks](docs/runbooks/README.md) · [Infrastructure](infra/README.md) |
-| Continue development | [Current handoff](HANDOFF.md) · [Documentation map](docs/README.md) |
+| Explore the code and documentation | [Documentation map](docs/README.md) |
 
 Dashboard dependencies: `app/requirements.txt`. Processing dependencies: `pipelines/requirements.txt`.
 
@@ -77,6 +77,6 @@ Dashboard dependencies: `app/requirements.txt`. Processing dependencies: `pipeli
 | [examples/](examples/README.md), `tests/` | Synthetic fixtures, experiments and regression tests |
 | [data/](data/README.md) | Gitignored local production bundle |
 
-Earlier pilot: `pipelines/pipeline.py` and files marked pilot in the directory guides. Superseded documentation lives in `docs/archive/`. CI is configured; saved local results do not establish hosted CI success.
+Earlier pilot: `pipelines/pipeline.py` and files marked pilot in the directory guides. CI is configured; saved local results do not establish hosted CI success.
 
 Source: [Alibaba GPU Cluster Trace v2026](https://github.com/alibaba/clusterdata/tree/master/cluster-trace-gpu-v2026). Released labels are preserved; XPU cohorts are anonymized and not assumed interchangeable.

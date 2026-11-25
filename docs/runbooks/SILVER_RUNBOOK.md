@@ -20,7 +20,7 @@ The pre-repair benchmark forecast was16–25hours and ~$7–$11 before credits i
 
 The current operation above overrides older paused/unapproved/setup-pending statements below. Earlier measurements and proposed Gold designs remain historical evidence.
 
-As of November 19, 2026: local implementation, synthetic validation and the authorized bounded AWS benchmark completed. EC2 is verified stopped; no full backfill has occurred. Full-run machine topology remains the user's decision after benchmark evidence. The old `pipelines/pipeline.py`, `gpu_trace_day`, and `gpu_medallion_backfill` are legacy pilot entry points that also create Gold; do not use them for this Silver phase.
+Completed run: `silver_full_20261119_r2`, 378 transformation partitions, 192 audit bindings and 6,759,480,015 accepted rows. See the [saved AWS evidence](../evidence/README.md). Benchmark sections below are dated historical measurements. `pipelines/pipeline.py`, `gpu_trace_day` and `gpu_medallion_backfill` are legacy pilot entry points that also create pilot Gold; use the Silver DAG for full-width processing.
 
 ## What is implemented
 

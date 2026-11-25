@@ -1,9 +1,11 @@
 # Runbooks
 
-[Silver runbook](SILVER_RUNBOOK.md) contains contracts, local validation and publication rules. Its historical benchmark sections are explicitly dated.
+| Task | Instructions |
+|---|---|
+| Serve and deploy the saved-data dashboard | [Dashboard](DASHBOARD.md) |
+| Reproduce Bronze → Silver processing | [Silver](SILVER_RUNBOOK.md) |
+| Reproduce Silver → Gold and export the bundle | [Gold](GOLD_RUNBOOK.md) |
 
-For the current AWS run, read [HANDOFF](../../HANDOFF.md) first. Use `dags/gpu_silver.py` and `ops/silver_supervisor.py`; do not invoke the legacy Gold-producing pilot DAGs. Scripts under `infra/scripts/` are deployment-specific records, not a turnkey deployment. The original CloudFormation template predates the approved CPU/disk resize; review drift before applying it.
+Silver and Gold completed on AWS; see the [execution evidence](../evidence/README.md). The [infrastructure notes](../../infra/README.md) record the environment and deployment limits. The offline dashboard requires no running EC2 worker.
 
-[Gold runbook](GOLD_RUNBOOK.md): deployed Gold DAG, verified-Silver handoff, pilot budget gate, publication and portable export. The Gold design also identifies dashboard features still pending.
-
-[Offline dashboard](DASHBOARD.md): local snapshot setup, verification, six views, metric rules and hosting boundaries.
+Production workflows are `dags/gpu_silver.py` and `dags/gpu_gold.py`. Earlier pilot DAGs produce different, narrower outputs. Historical benchmark sections and scripts describe their dated execution environment; inspect run IDs, placeholders and template drift before reuse.

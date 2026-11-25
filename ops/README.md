@@ -11,4 +11,4 @@ These programs ran on EC2. Local dashboard use does not require them.
 
 [Silver runbook](../docs/runbooks/SILVER_RUNBOOK.md) · [Gold runbook](../docs/runbooks/GOLD_RUNBOOK.md) · [Execution evidence](../docs/evidence/README.md)
 
-Historical deployment paths are retained for reproducibility. Read the current [handoff](../HANDOFF.md) before operating AWS resources.
+Historical deployment paths are retained for reproducibility. Read the [runbooks](../docs/runbooks/README.md) and [infrastructure notes](../infra/README.md) before operating AWS resources.
