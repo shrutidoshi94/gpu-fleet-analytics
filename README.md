@@ -1,5 +1,16 @@
 # GPU Fleet Analytics
 
+![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
+![Apache Spark](https://img.shields.io/badge/Apache_Spark-E25A1C?logo=apachespark&logoColor=white)
+![Apache Airflow](https://img.shields.io/badge/Apache_Airflow-017CEE?logo=apacheairflow&logoColor=white)
+![Amazon S3](https://img.shields.io/badge/Amazon_S3-569A31)
+![Amazon EC2](https://img.shields.io/badge/Amazon_EC2-FF9900)
+![AWS CloudFormation](https://img.shields.io/badge/AWS_CloudFormation-FF4F8B)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=white)
+![Apache Parquet](https://img.shields.io/badge/Apache_Parquet-50ABF1?logo=apacheparquet&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?logo=githubactions&logoColor=white)
+
 A capacity-planning dashboard backed by an AWS data engineering pipeline on Alibaba GPU Cluster Trace v2026.
 
 **Scale:** 9,049 source files · 6.76 billion Silver rows · 185 Gold days · seven dashboard tables.
