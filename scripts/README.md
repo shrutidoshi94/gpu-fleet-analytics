@@ -6,6 +6,7 @@ Run commands from the repository root.
 |---|---|---|
 | `download_gold.py` | Download a release once, verify staging, then install locally | Yes, setup only |
 | `verify_gold_bundle.py` | Recheck saved files, schemas and reconciled totals | No |
+| `package_gold.py` | Package a verified local bundle for a GitHub Release | No |
 | `verify_evidence.py` | Check committed AWS records and processing-code identities | No |
 
 ```bash

@@ -2,8 +2,10 @@
 from pathlib import Path
 import os
 import runpy
+import json
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import numpy as np
 import pandas as pd
 import altair as alt
@@ -71,8 +73,14 @@ def choose_gpu():
         st.session_state['focus']=picks[0]['GPU cohort']
 
 
+@st.cache_resource(show_spinner='Preparing the saved Gold data…')
+def hosted_bundle(spec_json, destination):
+    from app.bundle_setup import install_bundle
+    return install_bundle(json.loads(spec_json), destination)
+
+
 def main():
-    folder=Path(os.environ.get('GOLD_BUNDLE_DIR',str(Path.cwd()/'data/gold/gold_20261120'))).expanduser().resolve()
+    folder=Path(os.environ.get('GOLD_BUNDLE_DIR',str(ROOT/'data/gold/gold_20261120'))).expanduser().resolve()
     if not (folder/'bundle.json').exists() and list(Path('output/gold').glob('*/*/summary.json')):
         runpy.run_path(str(ROOT/'examples/pilot_dashboard.py'),run_name='__main__');return
     st.set_page_config(page_title='GPU capacity review',page_icon='◈',layout='wide',initial_sidebar_state='auto')
@@ -95,7 +103,14 @@ def main():
     </style>''',unsafe_allow_html=True)
     st.title('GPU capacity review')
     if not (folder/'bundle.json').exists():
-        st.info('Add the verified Gold bundle or set GOLD_BUNDLE_DIR.');return
+        if 'GOLD_BUNDLE_DIR' in os.environ:
+            st.error('GOLD_BUNDLE_DIR does not contain a verified Gold bundle.');return
+        try:
+            spec_json=(ROOT/'app/gold_release.json').read_text()
+            folder=hosted_bundle(spec_json,str(folder))
+        except (OSError,ValueError,KeyError) as error:
+            st.error('The saved dataset could not be prepared. Reboot the app to retry.')
+            st.exception(error);return
     try:m=catalog(str(folder),(folder/'bundle.json').stat().st_mtime_ns)
     except (ValueError,OSError,KeyError) as error:
         st.error(f'Snapshot verification failed: {error}');return

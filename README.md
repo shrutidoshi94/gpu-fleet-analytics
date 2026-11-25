@@ -15,7 +15,7 @@ A capacity-planning dashboard backed by an AWS data engineering pipeline on Alib
 
 **Scale:** 9,049 source files · 6.76 billion Silver rows · 185 Gold days · seven dashboard tables.
 
-**Status — November 24, 2026:** AWS processing complete; 47.4-MB Gold bundle downloaded and verified. Streamlit works offline. EC2 is stopped. Public deployment is pending.
+**Status — November 24, 2026:** AWS processing complete; 47.4-MB Gold bundle verified and packaged for hosted startup. Streamlit reads the saved snapshot locally after setup. EC2 was stopped at the last verified checkpoint. Hosted deployment verification is pending.
 
 ```mermaid
 flowchart LR
@@ -44,7 +44,7 @@ pip install -r app/requirements.txt
 streamlit run app/dashboard.py
 ```
 
-Place the verified bundle in `data/gold/gold_20261120/`, or set `GOLD_BUNDLE_DIR`. Data is gitignored; source-only clones must supply the bundle. For a clearly labeled synthetic demo, use a new empty directory:
+On first startup, a missing default bundle is downloaded from the [Gold data release](https://github.com/shrutidoshi94/gpu-fleet-analytics/releases/tag/gold-data-20261120), verified and saved locally. Subsequent interactions read local files; AWS credentials are unnecessary. You can also provide a local bundle with `GOLD_BUNDLE_DIR`. Data files remain outside Git history. For a clearly labeled synthetic demo, use a new empty directory:
 
 ```bash
 python examples/make_dashboard_sample.py /tmp/gpu-dashboard-demo
