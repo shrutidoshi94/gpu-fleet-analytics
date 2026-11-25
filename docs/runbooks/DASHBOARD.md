@@ -56,3 +56,7 @@ Use Python **3.11** in deployment Advanced settings. Streamlit 1.48.1 / Altair 5
 Community Cloud reads `app/requirements.txt` beside the `app/dashboard.py` entrypoint. Changing Python requires deleting and redeploying the hosted app; save the repository/branch/entrypoint, custom URL and any secrets first. Select Python 3.11 in Advanced settings before deploying. See [Streamlit runtime instructions](https://docs.streamlit.io/deploy/streamlit-community-cloud/manage-your-app/upgrade-python).
 
 Set entrypoint to `app/dashboard.py`. No Gold environment setting is needed for the default GitHub release setup. If `GOLD_BUNDLE_DIR` is explicitly set, that folder must already contain a verified bundle; the app will not silently substitute another dataset. On a transient download failure, reboot the app to retry. `tests/test_bundle_setup.py` covers first installation, reuse without another download and rejection of corrupted archives.
+
+## Imports after a source update
+
+If hosted startup reports a missing helper that exists in the current source, use Manage app → Reboot app to clear the old process. A source rerun may retain an older imported module during a structural update. Dashboard dependencies are pinned to the tested versions; changing the dependency file also triggers a fresh Community Cloud deployment. See [Streamlit reboot instructions](https://docs.streamlit.io/deploy/streamlit-community-cloud/manage-your-app/reboot-your-app).
