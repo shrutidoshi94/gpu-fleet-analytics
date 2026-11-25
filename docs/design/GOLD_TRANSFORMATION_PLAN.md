@@ -1,8 +1,8 @@
 # Gold transformation plan — capacity planning
 
-Design updated November20,2026. The user authorized Gold execution. `gold.py`, `dags/gpu_gold.py` and guarded operators are implemented, locally tested and deployed. The same-worker handoff completed after verified Silver success; Gold and the cloud export are verified complete. Local bundle download/validation remain deferred. Legacy pilot Gold is a separate product.
+Design updated November20,2026. The user authorized Gold execution. `gold.py`, `dags/gpu_gold.py` and guarded operators are implemented, locally tested and deployed. The same-worker handoff completed after verified Silver success; Gold and the cloud export are verified complete. Local bundle download/validation and the offline dashboard were completed November23. Legacy pilot Gold is a separate product.
 
-Implementation checkpoint: the first release produces hourly capacity/activity/mix/quality evidence, daily placement bins, aligned network context, global execution aggregates and a checksummed offline Parquet bundle. Server-hour intermediates are cached within each Spark application rather than written to S3. Historical-window scenario UI, ranked opportunity rules, additional telemetry histograms and expanded distribution metrics remain follow-up work; do not claim those dashboard features already exist. See the [Gold runbook](../runbooks/GOLD_RUNBOOK.md).
+Implementation checkpoint: the first release produces hourly capacity/activity/mix/quality evidence, daily placement bins, aligned network context, global execution aggregates and a checksummed offline Parquet bundle. Server-hour intermediates are cached within each Spark application rather than written to S3. The local Streamlit dashboard now implements historical-window filters, configurable activity review, placement evidence and exploratory growth/reserve scenarios. Additional telemetry histograms, expanded distributions and device/server drill-down remain unavailable in this Gold release; do not infer them from aggregated means. See the [Gold runbook](../runbooks/GOLD_RUNBOOK.md).
 
 ## Decision and scope
 

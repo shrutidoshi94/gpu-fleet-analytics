@@ -1,0 +1,7 @@
+2026-11-23 13:43:13.631 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+Three-step story rendered; no competing tabs.
+Default cohort: XPU-D
+Selected cohort follows through pressure, review and sizing.
+All five supporting details and acknowledged scenario passed.
+Fully flagged request window remains unknown; no crash.
+Real-data story smoke passed with network blocked.

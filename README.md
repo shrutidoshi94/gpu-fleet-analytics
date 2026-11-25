@@ -1,71 +1,69 @@
 # GPU Fleet Analytics
 
-An AWS data engineering project for GPU infrastructure capacity planning, using Alibaba GPU Cluster Trace v2026.
+A capacity-planning dashboard backed by an AWS data engineering pipeline on Alibaba GPU Cluster Trace v2026.
 
-**Scale:** four source tables · 9,049 Parquet files · 6.76 billion rows · 356.28 GB of downloaded archives.
+**Scale:** 9,049 source files · 6.76 billion Silver rows · 185 Gold days · seven dashboard tables.
 
-**Status — November 21, 2026:** Silver and Gold verified complete. Gold: 185 days, seven tables, 47.4-MB export, 8h52m runtime. EC2 stopped. Local bundle download and the final capacity dashboard remain pending.
+**Status — November 23, 2026:** AWS processing complete; 47.4-MB Gold bundle downloaded and verified. Streamlit works offline. EC2 is stopped. Public deployment is pending.
 
 ```mermaid
 flowchart LR
     A[Alibaba archives] --> B[S3 Bronze]
     B --> C[Spark on EC2: Silver]
     D[Airflow + PostgreSQL] --> C
-    C --> E[Spark: Gold aggregates]
-    E --> F[Portable Parquet bundle]
-    F -. planned .-> G[Streamlit: no AWS dependency]
+    C --> E[Gold aggregates]
+    E --> F[Verified local snapshot]
+    F --> G[Streamlit: no AWS requests]
 ```
 
-## Verify the AWS work
+## Dashboard
 
-Start with the [evidence index](docs/evidence/README.md): saved S3 manifests, Spark application IDs, source/code fingerprints, EC2 configuration, benchmark results, and validation reports. No AWS account is needed to inspect them.
+One page: **find pressure → review existing capacity → test a requirement**. One selected cohort carries through all three steps. Supporting data and definitions stay collapsed below.
 
-```bash
-python3 examples/verify_evidence.py
-```
+Requests are not verified running demand. Missing telemetry remains unknown. Flagged evidence is excluded by default; scenarios are exploratory, not purchase or reclaim recommendations.
 
-Evidence records actual runs; planned features are labeled. GitHub Actions is configured, but a successful hosted CI run is not claimed.
+## Run locally
 
-## Engineering decisions
-
-- Preserve original Bronze Parquet; verify ZIP-member CRCs and S3 inventories.
-- Process one dataset/day per Airflow task on one CPU EC2 worker; Spark local[6], 12-GiB heap.
-- Retain unknowns and fractional requests; quarantine conflicting inventory keys; record column-level quality.
-- Publish immutable Silver attempts, then replace current manifests: retries do not duplicate visible partitions.
-- Guard disk/runtime, checkpoint metadata, and stop compute after completion/failure.
-- Keep network days109–115 and global execution context separate from the185-day workload/inventory window.
-
-## Run the local pilot
-
-Requires Python3.11 and Java17. Synthetic data; no AWS credentials.
+Python3.11; no Java, Spark or AWS credentials needed at dashboard runtime.
 
 ```bash
 python3.11 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
-unset SPARK_HOME TRACE_BUCKET
-export SPARK_LOCAL_IP=127.0.0.1
-export PYSPARK_PYTHON="$(command -v python)"
-python examples/make_sample.py
-TRACE_DIR=sample python pipeline.py network 109
+pip install -r requirements-dashboard.txt
 streamlit run dashboard.py
 ```
 
-For the full-width Silver implementation and Airflow setup, use the [Silver runbook](docs/runbooks/SILVER_RUNBOOK.md). The pilot does not reproduce the full AWS backfill.
+Place the verified bundle in `data/gold/gold_20261120/`, or set `GOLD_BUNDLE_DIR`. Data is gitignored; source-only clones must supply the bundle. For a clearly labeled synthetic demo, use a new empty directory:
 
-## Repository guide
+```bash
+python examples/make_dashboard_sample.py /tmp/gpu-dashboard-demo
+GOLD_BUNDLE_DIR=/tmp/gpu-dashboard-demo streamlit run dashboard.py
+```
+
+[Dashboard setup and metric rules](docs/runbooks/DASHBOARD.md) · [one-time download](examples/download_gold.py)
+
+## Verify the work
+
+[Saved AWS evidence](docs/evidence/README.md) includes S3 manifests, Spark application IDs, fingerprints, measured benchmarks, final Airflow results and stopped EC2 state. [Local validation](docs/evidence/local-gold-verification.json) covers file hashes, schemas,185 inventory reconciliations and five workload populations. UI tests block network access.
+
+```bash
+python3 examples/verify_evidence.py
+python examples/verify_gold_bundle.py data/gold/gold_20261120
+python -m unittest discover -s tests -p test_dashboard.py -v
+```
+
+## Repository
 
 | Location | Purpose |
 |---|---|
-| `ingest_bronze.py`, `silver.py`, `gold.py` | Verified ingestion, full-width Silver and capacity Gold |
-| `dags/gpu_{silver,gold}.py`, `ops/` | Serial Airflow orchestration, safeguards and offline export |
-| `infra/` | CloudFormation templates and operator scripts |
-| `tests/`, `examples/` | Regression tests, synthetic demos and evidence verification |
-| [Data](docs/data/BRONZE_PROFILE.md) · [contracts](docs/data/COLUMN_CONTRACTS.md) | Dataset profile and edge-case handling |
-| [Gold design](docs/design/GOLD_TRANSFORMATION_PLAN.md) · [runbook](docs/runbooks/GOLD_RUNBOOK.md) | Metrics, quality gates and offline delivery |
-| [AWS evidence](docs/evidence/README.md) · [runbooks](docs/runbooks/README.md) | Execution records and reproduction instructions |
-| [HANDOFF.md](HANDOFF.md) | Current operations and continuation instructions |
+| `dashboard.py`, `dashboard_data.py` | Offline interface and tested metric calculations |
+| `ingest_bronze.py`, `silver.py`, `gold.py` | Verified ingestion and versioned medallion processing |
+| `dags/`, `ops/`, `infra/` | Airflow, guards, exports and AWS infrastructure |
+| `tests/`, `examples/` | Regressions, synthetic demos and verification tools |
+| [Gold dictionary](docs/data/GOLD_DATA_DICTIONARY.md) · [source profile](docs/data/BRONZE_PROFILE.md) | Every Gold column, table grain, units and limits |
+| [Design](docs/design/GOLD_TRANSFORMATION_PLAN.md) · [runbooks](docs/runbooks/README.md) | Metric definitions and reproduction |
+| [HANDOFF](HANDOFF.md) | Current state and continuation instructions |
 
-`pipeline.py`, `dashboard.py`, and the two older DAGs are pilot code; they do not implement the planned capacity dashboard. Historical decisions are under `docs/archive/`.
+Legacy pilot: `pipeline.py`, `examples/pilot_dashboard.py`, and the two older DAGs. Historical checkpoints: `docs/archive/`. CI is configured; saved local test results are separate from hosted CI status.
 
-Source: [Alibaba GPU Cluster Trace v2026](https://github.com/alibaba/clusterdata/tree/master/cluster-trace-gpu-v2026). GPU labels are anonymized; observations support investigations and explicit scenarios, not automatic purchase or reclaim recommendations.
+Source: [Alibaba GPU Cluster Trace v2026](https://github.com/alibaba/clusterdata/tree/master/cluster-trace-gpu-v2026). Released labels are preserved; XPU cohorts are anonymized and not assumed interchangeable.

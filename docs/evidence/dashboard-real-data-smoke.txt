@@ -1,0 +1,11 @@
+2026-11-23 13:06:30.765 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+Capacity: [('Latest inventory slots', '155,410'), ('p95 observed request slots', '176,097'), ('Hours above review line', '100.0%'), ('Server-hour coverage', '98.8%')]
+Activity passed
+Placement passed
+Scenarios passed
+Scenarios acknowledged: [('Observed anchor · slots', '56,172.8'), ('Capacity comparison · slots', '45,264'), ('Screened request hours', '3,167'), ('Modeled required slots', '84,260'), ('Modeled additional slots', '38,996')]
+Trace context passed
+Evidence passed
+Network scope exclusion passed
+Filtered capacity passed
+All Streamlit views work with network access blocked.

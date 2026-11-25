@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "release": "gold_20261120",
+  "verified_files": 9,
+  "verified_tables": 7,
+  "daily_inventory_checks": 185,
+  "reconciled_pod_observations": 6570124684,
+  "mix_dimension_checks": 5,
+  "table_rows": {
+    "capacity_hourly": 240846,
+    "activity_evidence_hourly": 186884,
+    "workload_mix_hourly": 2789881,
+    "placement_daily": 26918,
+    "planning_quality": 191951,
+    "network_context_hourly": 7595,
+    "execution_context_global": 162
+  },
+  "expected_file_bytes": 47379950,
+  "aws_required_for_dashboard": false,
+  "method": "SHA256, Arrow footer/schema checks, Arrow sums vs pinned daily reports and five mix populations",
+  "verified_utc": "2026-11-23T21:18:34.250586+00:00",
+  "independent_raw_trace_reprocessing": false,
+  "scope": "Local snapshot integrity and Gold consolidation against pinned daily reports; not a fresh raw-trace reprocessing."
+}

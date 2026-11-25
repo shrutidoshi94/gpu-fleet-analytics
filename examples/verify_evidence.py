@@ -57,7 +57,14 @@ def main():
     require(stop['service_result'] == 'success' and stop['exit_status'] == '0', 'successful finalizer')
     require(worker['State'] == 'stopped', 'stopped EC2 checkpoint')
     print('PASS: Gold cloud completion, export metadata and stopped EC2 checkpoint.')
-    print('Local data download/hash/metric verification remains deferred.')
+    local_path = EVIDENCE / 'local-gold-verification.json'
+    if local_path.exists():
+        local = json.loads(local_path.read_text())
+        require(local['status'] == 'passed' and local['daily_inventory_checks'] == 185 and local['mix_dimension_checks'] == 5, 'local Gold verification record')
+        print('PASS: local Gold integrity/consolidation verification is recorded.')
+        print('Use examples/verify_gold_bundle.py to recheck the local data itself.')
+    else:
+        print('Local data download/hash/metric verification remains deferred.')
     print('PASS: Gold deployed-code identity.')
     print('PASS: evidence hashes, 9,049 Bronze files, four real-source Silver samples,')
     print('      row reconciliation and Silver code identity.')

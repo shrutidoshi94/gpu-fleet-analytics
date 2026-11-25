@@ -1,6 +1,18 @@
 # Agent handoff
 
-Snapshot: November21,2026. Gold completed at12:56AM Pacific; EC2 confirmed stopped. Refresh AWS state before acting.
+Snapshot: November23,2026. Verified local Gold and offline Streamlit dashboard implemented. EC2 confirmed stopped.
+
+## Gold dictionary
+
+Read docs/data/GOLD_DATA_DICTIONARY.md for every column and docs/data/GOLD_METADATA_PROFILE.json for measured metadata. Seven tables/86 field occurrences; all grouping grains verified unique. Requests are hourly observations, not proven simultaneous running demand. Unknown lifecycle covers99.001% of raw observed request weight; avoid calling this confirmed running demand.
+
+## Local dashboard
+
+- Production bundle: `data/gold/gold_20261120/` (gitignored). Second downloaded copy: `/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/gold-download-20261123/`. Both are on this laptop.
+- Streamlit: `dashboard.py`, pure data/math helpers `dashboard_data.py`; server127.0.0.1:8501. Minimal runtime `requirements-dashboard.txt`; no AWS/Java/Spark needed to serve the saved data.
+- Dashboard redesigned at user request: one three-step story (Find the pressure / Review existing capacity / Test the requirement), short single-line headings, one selected cohort throughout. Optional quality/mix/network/execution/AWS details are collapsed. Real-data story smoke and offline tests passed; original synthetic Spark/JSON pilot is preserved.
+- Local validation:9 hashes, seven schemas/row counts,185 inventory totals and five mix populations matching6,570,124,684 pod observations. Saved under docs/evidence/. No raw-trace reprocessing was done during local validation.
+- Sidebar screens flagged request evidence by default;53 days have unproven duplicate candidates. Preserve source anomaly and unknown semantics. Scenario calculations remain exploratory and single-cohort.
 
 ## Current operation
 
@@ -23,11 +35,10 @@ Day5/hour06 has zero requests but positive GPU activity: preserve/flag, do not i
 
 ## Next actions
 
-1. **User deferred the data download.** Do not download the Gold bundle now. Only small completion/export metadata has been saved under docs/evidence/aws/2026-11-21/.
-2. When requested, download `gold_exports/gold_20261120/` directly from S3 to a local bundle directory; EC2 can remain stopped. Verify file hashes/row counts and independent sample metrics before claiming local readiness. Keep a second backup. Do not confuse the saved export manifest with locally verified data.
-3. Build/test the capacity-planning Streamlit dashboard using local Gold; no AWS requests during dashboard use. Ranked opportunities/scenario UI remain follow-up work.
-4. Keep S3 and60-GiB root until verified local backups and explicit teardown instruction. Storage charges continue while retained. No AWS resources were deleted in this completion update.
-5. User authorized commit/push through this checkpoint. Branch is gpu-fleet-analytics; main was not merged. Final completion evidence and the deferred-download boundary are included in this update.
+1. Download and dashboard build were authorized November23 and completed locally. Do not overwrite the verified bundle with fixtures. Use examples/download_gold.py / verify_gold_bundle.py for reproducible setup.
+2. Review dashboard locally; public deployment and a portable hosting/data-package strategy remain pending. Bundle is gitignored, so source-only deployment will not contain real data. Do not reintroduce AWS reads on visitor interactions.
+3. Keep EC2 stopped and retain S3/root until verified independent backup and explicit teardown. The user has not authorized deleting these resources in this phase.
+4. Latest published checkpoint before this work: ac56831 on gpu-fleet-analytics. Dashboard changes are local/uncommitted in this turn; do not imply they were pushed or main merged.
 
 ## Navigation
 
