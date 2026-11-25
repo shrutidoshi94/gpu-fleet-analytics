@@ -90,4 +90,10 @@ Dashboard dependencies: `app/requirements.txt`. Processing dependencies: `pipeli
 
 Earlier pilot: `pipelines/pipeline.py` and files marked pilot in the directory guides. CI is configured; saved local results do not establish hosted CI success.
 
-Source: [Alibaba GPU Cluster Trace v2026](https://github.com/alibaba/clusterdata/tree/master/cluster-trace-gpu-v2026). Released labels are preserved; XPU cohorts are anonymized and not assumed interchangeable.
+## Dataset attribution and usage
+
+Data: [Alibaba GPU Cluster Trace v2026](https://github.com/alibaba/clusterdata/tree/master/cluster-trace-gpu-v2026), published by Alibaba Group. Released labels are preserved; anonymized XPU groups are not assumed interchangeable.
+
+**License / usage terms:** Alibaba permits research and study use in its [Cluster Trace Program terms](https://github.com/alibaba/clusterdata#our-motivation). No separate named license is provided for the v2026 release; consult the upstream terms for permitted use.
+
+The release requests citation of Suyi Li et al., *Heterogeneity at Hyperscale: Characterization and Scheduling of Large Production AI Clusters at Alibaba*, OSDI 2026. [Paper and citation](https://github.com/alibaba/clusterdata/tree/master/cluster-trace-gpu-v2026#introduction).
