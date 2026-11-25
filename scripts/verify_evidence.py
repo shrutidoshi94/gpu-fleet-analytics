@@ -62,7 +62,7 @@ def main():
         local = json.loads(local_path.read_text())
         require(local['status'] == 'passed' and local['daily_inventory_checks'] == 185 and local['mix_dimension_checks'] == 5, 'local Gold verification record')
         print('PASS: local Gold integrity/consolidation verification is recorded.')
-        print('Use examples/verify_gold_bundle.py to recheck the local data itself.')
+        print('Use scripts/verify_gold_bundle.py to recheck the local data itself.')
     else:
         print('Local data download/hash/metric verification remains deferred.')
     print('PASS: Gold deployed-code identity.')

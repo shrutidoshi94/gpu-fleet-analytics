@@ -1,13 +1,16 @@
-# Documentation
+# Documentation map
 
-- [Gold data dictionary](data/GOLD_DATA_DICTIONARY.md): every column, actual metadata, valid aggregations and joins.
+| Read to… | Document |
+|---|---|
+| Run the saved-data dashboard | [Dashboard](runbooks/DASHBOARD.md) |
+| Understand each Gold field | [Gold dictionary](data/GOLD_DATA_DICTIONARY.md) · [Measured metadata](data/GOLD_METADATA_PROFILE.json) |
+| Understand raw inputs and edge cases | [Bronze profile](data/BRONZE_PROFILE.md) · [Column contracts](data/COLUMN_CONTRACTS.md) · [Source examples](bronze_samples/README.md) |
+| Review metric design | [Gold design](design/GOLD_TRANSFORMATION_PLAN.md) |
+| Inspect AWS execution proof | [Evidence index](evidence/README.md) |
+| Reproduce cloud processing | [Runbooks](runbooks/README.md) |
+| Review earlier planning | [Processing strategy](design/PROCESSING_STRATEGY.md) |
+| Continue development | [Current handoff](../HANDOFF.md) |
 
-- [Offline dashboard](runbooks/DASHBOARD.md): setup, views, metric rules and local verification.
+Directory guides: [scripts](../scripts/README.md), [examples](../examples/README.md), [Airflow DAGs](../dags/README.md), [worker operations](../ops/README.md), [infrastructure](../infra/README.md), [local data](../data/README.md).
 
-- [AWS execution evidence](evidence/README.md): verify the work.
-- [Data profile](data/BRONZE_PROFILE.md) and [column contracts](data/COLUMN_CONTRACTS.md): understand the inputs.
-- [Gold design](design/GOLD_TRANSFORMATION_PLAN.md): planned decision metrics and offline delivery.
-- [Processing strategy](design/PROCESSING_STRATEGY.md): detailed design history; current state lives in HANDOFF.
-- [Runbooks](runbooks/README.md): reproduce and operate.
-- [Real source examples](bronze_samples/README.md): inspect ten rows per table.
-- `archive/`: superseded chronological documents, not current instructions.
+`archive/` contains superseded checkpoints. Evidence files are historical captures; the current README and handoff describe today's workflow.

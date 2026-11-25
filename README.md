@@ -4,7 +4,7 @@ A capacity-planning dashboard backed by an AWS data engineering pipeline on Alib
 
 **Scale:** 9,049 source files · 6.76 billion Silver rows · 185 Gold days · seven dashboard tables.
 
-**Status — November 23, 2026:** AWS processing complete; 47.4-MB Gold bundle downloaded and verified. Streamlit works offline. EC2 is stopped. Public deployment is pending.
+**Status — November 24, 2026:** AWS processing complete; 47.4-MB Gold bundle downloaded and verified. Streamlit works offline. EC2 is stopped. Public deployment is pending.
 
 ```mermaid
 flowchart LR
@@ -18,7 +18,7 @@ flowchart LR
 
 ## Dashboard
 
-One page: **find pressure → review existing capacity → test a requirement**. One selected cohort carries through all three steps. Supporting data and definitions stay collapsed below.
+Three tabs: **Demand pressure → Existing GPUs → Plan for growth**. Click a GPU bar to carry that selection through the journey. Supporting definitions stay collapsed below.
 
 Requests are not verified running demand. Missing telemetry remains unknown. Flagged evidence is excluded by default; scenarios are exploratory, not purchase or reclaim recommendations.
 
@@ -40,30 +40,41 @@ python examples/make_dashboard_sample.py /tmp/gpu-dashboard-demo
 GOLD_BUNDLE_DIR=/tmp/gpu-dashboard-demo streamlit run dashboard.py
 ```
 
-[Dashboard setup and metric rules](docs/runbooks/DASHBOARD.md) · [one-time download](examples/download_gold.py)
+[Dashboard setup and metric rules](docs/runbooks/DASHBOARD.md) · [one-time download](scripts/download_gold.py)
 
 ## Verify the work
 
 [Saved AWS evidence](docs/evidence/README.md) includes S3 manifests, Spark application IDs, fingerprints, measured benchmarks, final Airflow results and stopped EC2 state. [Local validation](docs/evidence/local-gold-verification.json) covers file hashes, schemas,185 inventory reconciliations and five workload populations. UI tests block network access.
 
 ```bash
-python3 examples/verify_evidence.py
-python examples/verify_gold_bundle.py data/gold/gold_20261120
+python3 scripts/verify_evidence.py
+python scripts/verify_gold_bundle.py data/gold/gold_20261120
 python -m unittest discover -s tests -p test_dashboard.py -v
 ```
 
-## Repository
+## Navigate
 
-| Location | Purpose |
+| Goal | Start here |
 |---|---|
-| `dashboard.py`, `dashboard_data.py` | Offline interface and tested metric calculations |
-| `ingest_bronze.py`, `silver.py`, `gold.py` | Verified ingestion and versioned medallion processing |
-| `dags/`, `ops/`, `infra/` | Airflow, guards, exports and AWS infrastructure |
-| `tests/`, `examples/` | Regressions, synthetic demos and verification tools |
-| [Gold dictionary](docs/data/GOLD_DATA_DICTIONARY.md) · [source profile](docs/data/BRONZE_PROFILE.md) | Every Gold column, table grain, units and limits |
-| [Design](docs/design/GOLD_TRANSFORMATION_PLAN.md) · [runbooks](docs/runbooks/README.md) | Metric definitions and reproduction |
-| [HANDOFF](HANDOFF.md) | Current state and continuation instructions |
+| Use the dashboard | [Setup and metric rules](docs/runbooks/DASHBOARD.md) |
+| Understand the data | [Gold dictionary](docs/data/GOLD_DATA_DICTIONARY.md) · [Bronze profile](docs/data/BRONZE_PROFILE.md) |
+| Verify AWS execution | [Evidence](docs/evidence/README.md) · [Verification tools](scripts/README.md) |
+| Understand transformations | [Column contracts](docs/data/COLUMN_CONTRACTS.md) · [Gold design](docs/design/GOLD_TRANSFORMATION_PLAN.md) |
+| Reproduce processing | [Runbooks](docs/runbooks/README.md) · [Infrastructure](infra/README.md) |
+| Continue development | [Current handoff](HANDOFF.md) · [Documentation map](docs/README.md) |
 
-Legacy pilot: `pipeline.py`, `examples/pilot_dashboard.py`, and the two older DAGs. Historical checkpoints: `docs/archive/`. CI is configured; saved local test results are separate from hosted CI status.
+## Code map
+
+| Location | Responsibility |
+|---|---|
+| `dashboard.py`, `dashboard_data.py` | Streamlit interface and local metric calculations |
+| `ingest_bronze.py`, `silver.py`, `gold.py` | Production processing; paths retained to reproduce AWS runs |
+| [dags/](dags/README.md) | Airflow scheduling |
+| [ops/](ops/README.md), `infra/` | Worker tasks, run guards and AWS setup |
+| [scripts/](scripts/README.md) | One-time download and offline verification |
+| [examples/](examples/README.md), `tests/` | Synthetic fixtures, experiments and regression tests |
+| [data/](data/README.md) | Gitignored local production bundle |
+
+Earlier pilot: `pipeline.py` and files marked pilot in the directory guides. Superseded documentation lives in `docs/archive/`. CI is configured; saved local results do not establish hosted CI success.
 
 Source: [Alibaba GPU Cluster Trace v2026](https://github.com/alibaba/clusterdata/tree/master/cluster-trace-gpu-v2026). Released labels are preserved; XPU cohorts are anonymized and not assumed interchangeable.

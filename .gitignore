@@ -21,3 +21,6 @@ airflow-production/
 
 # Local verified historical dashboard snapshot
 data/gold/
+
+# OS metadata
+.DS_Store

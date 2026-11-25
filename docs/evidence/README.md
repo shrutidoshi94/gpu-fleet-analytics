@@ -33,7 +33,7 @@ Airflow finished all Silver transformations/audits at2:19PM. Its separate final 
 
 ## Verify without AWS
 
-Run `python3 examples/verify_evidence.py` from the repository root. It checks the saved file hashes, Bronze file totals, sampled row reconciliation, real-source indicators, and correspondence between current Silver code and saved production manifest hashes. It also reports the checkpoint state. No credentials or third-party Python packages are needed.
+Run `python3 scripts/verify_evidence.py` from the repository root. It checks the saved file hashes, Bronze file totals, sampled row reconciliation, real-source indicators, and correspondence between current Silver code and saved production manifest hashes. It also reports the checkpoint state. No credentials or third-party Python packages are needed.
 
 The benchmark predates the recovery code: its hash and stopped-worker state are historical, not current. Do not compare its `full_backfill_started:false` flag to the later full-run snapshot as though they were simultaneous. Saved task totals include Airflow's planning task.
 
