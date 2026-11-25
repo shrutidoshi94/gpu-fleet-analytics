@@ -1,0 +1,62 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Optional temporary archive volume for full trace ingestion; separate from the processing root.",
+  "Parameters": {
+    "InstanceId": {
+      "Type": "AWS::EC2::Instance::Id"
+    },
+    "AvailabilityZone": {
+      "Type": "AWS::EC2::AvailabilityZone::Name"
+    },
+    "SizeGiB": {
+      "Type": "Number",
+      "Default": 500,
+      "MinValue": 400,
+      "MaxValue": 1000
+    }
+  },
+  "Resources": {
+    "DataVolume": {
+      "Type": "AWS::EC2::Volume",
+      "Properties": {
+        "AvailabilityZone": {
+          "Ref": "AvailabilityZone"
+        },
+        "Size": {
+          "Ref": "SizeGiB"
+        },
+        "VolumeType": "gp3",
+        "Encrypted": true,
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "gpu-fleet-analytics"
+          },
+          {
+            "Key": "Name",
+            "Value": "gpu-fleet-data"
+          }
+        ]
+      }
+    },
+    "Attachment": {
+      "Type": "AWS::EC2::VolumeAttachment",
+      "Properties": {
+        "InstanceId": {
+          "Ref": "InstanceId"
+        },
+        "VolumeId": {
+          "Ref": "DataVolume"
+        },
+        "Device": "/dev/sdf"
+      }
+    }
+  },
+  "Outputs": {
+    "VolumeId": {
+      "Value": {
+        "Ref": "DataVolume"
+      }
+    }
+  }
+}

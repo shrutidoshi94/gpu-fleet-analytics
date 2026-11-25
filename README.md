@@ -1,5 +1,9 @@
 # GPU Fleet Analytics
 
+Review GPU request pressure, investigate existing capacity, and test growth assumptions using Alibaba’s six-month cluster trace.
+
+**[Live dashboard](https://gpu-fleet-analytics.streamlit.app/) · [AWS execution evidence](docs/evidence/README.md) · [Data dictionary](docs/data/GOLD_DATA_DICTIONARY.md)**
+
 ![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
 ![Apache Spark](https://img.shields.io/badge/Apache_Spark-E25A1C?logo=apachespark&logoColor=white)
 ![Apache Airflow](https://img.shields.io/badge/Apache_Airflow-017CEE?logo=apacheairflow&logoColor=white)
@@ -11,31 +15,38 @@
 ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white)
 ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?logo=githubactions&logoColor=white)
 
-A capacity-planning dashboard backed by an AWS data engineering pipeline on Alibaba GPU Cluster Trace v2026.
+**Processed on AWS:** 9,049 source files → 6.76 billion Silver rows → seven Gold tables across 185 trace days. Airflow orchestrated Spark on one 8-vCPU / 32-GiB EC2 worker. Gold completed in 8h52m; its 47.4-MB export serves the dashboard without S3 requests.
 
-**Scale:** 9,049 source files · 6.76 billion Silver rows · 185 Gold days · seven dashboard tables.
+<img src="docs/assets/dashboard.jpg" alt="GPU request-pressure chart with inventory metrics and quality-screening controls" width="640">
 
-**Status — November 24, 2026:** AWS processing complete; 47.4-MB Gold bundle verified and packaged for hosted startup. Streamlit reads the saved snapshot locally after setup. EC2 was stopped at the last verified checkpoint. Hosted deployment verification is pending.
+## Findings
+
+- **Pressure varies by GPU type.** XPU-D has the highest screened p95 request/inventory ratio at **1.75×** across the full trace. This measures observed requests; it does not establish waiting workloads or a buying quantity.
+- **Screening removes substantial coverage.** Repeated candidate keys flag **53 of 185 days**. For A100, screening changes p95 pressure from **1.51× to 1.50×**, with **4,440 → 3,167** evidenced hours. The dashboard exposes both estimates for the same selection.
+- **Lifecycle data limits purchase conclusions.** `Unknown` state accounts for **99.0% of raw GPU request weight**. The growth calculator is an explicit assumption-based scenario, not a demand forecast.
+
+[Recorded calculations](docs/evidence/portfolio-findings.json) use the saved `gold_20261120` release, all clusters and days 0–184. Request-weighted state shares include flagged records; pressure figures are labeled by screening policy.
+
+## Architecture and decisions
 
 ```mermaid
 flowchart LR
     A[Alibaba archives] --> B[S3 Bronze]
-    B --> C[Spark on EC2: Silver]
-    D[Airflow + PostgreSQL] --> C
+    B --> C[Spark: Silver]
+    D[Airflow + PostgreSQL on EC2] --> C
     C --> E[Gold aggregates]
-    E --> F[Verified local snapshot]
-    F --> G[Streamlit: no AWS requests]
+    E --> F[GitHub data release]
+    F --> G[Streamlit local snapshot]
 ```
 
-## Dashboard
-
-Three tabs: **Demand pressure → Existing GPUs → Plan for growth**. Click a GPU bar to carry that selection through the journey. Supporting definitions stay collapsed below.
-
-Requests are not verified running demand. Missing telemetry remains unknown. Flagged evidence is excluded by default; scenarios are exploratory, not purchase or reclaim recommendations.
+- **One CPU worker:** representative-day benchmarks supported a bounded single-machine run; Spark parallelized locally with six threads.
+- **Safe reruns:** immutable attempts and a final manifest pointer prevent failed retries from replacing accepted outputs. Consumers resolve one accepted version per partition.
+- **Schema drift:** read native Parquet types before safe normalization; preserve uncertain values with quality flags rather than silently deduplicating them.
+- **Portable delivery:** a checksum-pinned GitHub asset is installed once per host; visitor interactions read local Parquet files.
 
 ## Run locally
 
-Python3.11; no Java, Spark or AWS credentials needed at dashboard runtime.
+Python 3.11; dashboard runtime needs no Spark, Java or AWS credentials.
 
 ```bash
 python3.11 -m venv .venv
@@ -44,56 +55,31 @@ pip install -r app/requirements.txt
 streamlit run app/dashboard.py
 ```
 
-On first startup, a missing default bundle is downloaded from the [Gold data release](https://github.com/shrutidoshi94/gpu-fleet-analytics/releases/tag/gold-data-20261120), verified and saved locally. Subsequent interactions read local files; AWS credentials are unnecessary. You can also provide a local bundle with `GOLD_BUNDLE_DIR`. Data files remain outside Git history. For a clearly labeled synthetic demo, use a new empty directory:
+Missing default data downloads from the [Gold release](https://github.com/shrutidoshi94/gpu-fleet-analytics/releases/tag/gold-data-20261120). For a supplied local bundle, set `GOLD_BUNDLE_DIR`. [Deployment and metric rules](docs/runbooks/DASHBOARD.md).
+
+## Verify and explore
 
 ```bash
-python examples/make_dashboard_sample.py /tmp/gpu-dashboard-demo
-GOLD_BUNDLE_DIR=/tmp/gpu-dashboard-demo streamlit run app/dashboard.py
-```
-
-[Dashboard setup and metric rules](docs/runbooks/DASHBOARD.md) · [one-time download](scripts/download_gold.py)
-
-## Verify the work
-
-[Saved AWS evidence](docs/evidence/README.md) includes S3 manifests, Spark application IDs, fingerprints, measured benchmarks, final Airflow results and stopped EC2 state. [Local validation](docs/evidence/local-gold-verification.json) covers file hashes, schemas,185 inventory reconciliations and five workload populations. UI tests block network access.
-
-```bash
-python3 scripts/verify_evidence.py
-python scripts/verify_gold_bundle.py data/gold/gold_20261120
+python -m scripts.verify_evidence
+python -m scripts.verify_gold_bundle data/gold/gold_20261120
 python -m unittest discover -s tests -p test_dashboard.py -v
 ```
 
-## Navigate
-
-| Goal | Start here |
+| Location | Purpose |
 |---|---|
-| Use the dashboard | [Setup and metric rules](docs/runbooks/DASHBOARD.md) |
-| Understand the data | [Gold dictionary](docs/data/GOLD_DATA_DICTIONARY.md) · [Bronze profile](docs/data/BRONZE_PROFILE.md) |
-| Verify AWS execution | [Evidence](docs/evidence/README.md) · [Verification tools](scripts/README.md) |
-| Understand transformations | [Column contracts](docs/data/COLUMN_CONTRACTS.md) · [Gold design](docs/design/GOLD_TRANSFORMATION_PLAN.md) |
-| Reproduce processing | [Runbooks](docs/runbooks/README.md) · [Infrastructure](infra/README.md) |
-| Explore the code and documentation | [Documentation map](docs/README.md) |
+| `app/` | Dashboard tabs, metric calculations and verified startup data |
+| `pipelines/`, `dags/` | Spark transformations and Airflow ordering/retries |
+| `infra/`, `ops/` | Current deployment path, worker tasks and run controls |
+| `tests/`, `examples/` | Regression tests and explicit synthetic fixtures |
+| `scripts/` | Packaging, download and verification tools |
+| `docs/` | [Data contracts](docs/data/COLUMN_CONTRACTS.md), [design](docs/design/GOLD_TRANSFORMATION_PLAN.md), [runbooks](docs/runbooks/README.md) and execution evidence |
 
-Dashboard dependencies: `app/requirements.txt`. Processing dependencies: `pipelines/requirements.txt`.
-
-## Code map
-
-| Location | Responsibility |
-|---|---|
-| [app/](app/README.md) | Streamlit interface and local metric calculations |
-| [pipelines/](pipelines/README.md) | Bronze, Silver and Gold processing; source bytes preserved from AWS runs |
-| [dags/](dags/README.md) | Airflow scheduling |
-| [ops/](ops/README.md), `infra/` | Worker tasks, run guards and AWS setup |
-| [scripts/](scripts/README.md) | One-time download and offline verification |
-| [examples/](examples/README.md), `tests/` | Synthetic fixtures, experiments and regression tests |
-| [data/](data/README.md) | Gitignored local production bundle |
-
-Earlier pilot: `pipelines/pipeline.py` and files marked pilot in the directory guides. CI is configured; saved local results do not establish hosted CI success.
+[CI runs](https://github.com/shrutidoshi94/gpu-fleet-analytics/actions) test the dashboard and synthetic Spark/Airflow workflows. [AWS setup](infra/README.md) documents the revised deployment path and its validation boundary. Recorded deployed sources remain with the evidence; current refactored code has a new source identity. Earlier pilot code is labeled in `examples/` and `pipelines/`.
 
 ## Dataset attribution and usage
 
-Data: [Alibaba GPU Cluster Trace v2026](https://github.com/alibaba/clusterdata/tree/master/cluster-trace-gpu-v2026), published by Alibaba Group. Released labels are preserved; anonymized XPU groups are not assumed interchangeable.
+Data: [Alibaba GPU Cluster Trace v2026](https://github.com/alibaba/clusterdata/tree/master/cluster-trace-gpu-v2026), published by Alibaba Group. Network covers only days 109–115; execution summaries have no daily mapping. GPU types are not assumed interchangeable.
 
-**License / usage terms:** Alibaba permits research and study use in its [Cluster Trace Program terms](https://github.com/alibaba/clusterdata#our-motivation). No separate named license is provided for the v2026 release; consult the upstream terms for permitted use.
+**Usage terms:** Alibaba permits research and study use in its [Cluster Trace Program terms](https://github.com/alibaba/clusterdata#our-motivation). The v2026 release provides no separate named license; consult upstream terms for permitted use.
 
-The release requests citation of Suyi Li et al., *Heterogeneity at Hyperscale: Characterization and Scheduling of Large Production AI Clusters at Alibaba*, OSDI 2026. [Paper and citation](https://github.com/alibaba/clusterdata/tree/master/cluster-trace-gpu-v2026#introduction).
+Requested citation: Suyi Li et al., *Heterogeneity at Hyperscale: Characterization and Scheduling of Large Production AI Clusters at Alibaba*, OSDI 2026. [Paper and citation](https://github.com/alibaba/clusterdata/tree/master/cluster-trace-gpu-v2026#introduction).

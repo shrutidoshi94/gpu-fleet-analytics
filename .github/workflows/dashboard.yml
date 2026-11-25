@@ -9,6 +9,11 @@ jobs:
         with:
           python-version: '3.11'
       - run: pip install -r app/requirements.txt
+      - run: pip install --no-deps -e .
       - run: pip check
+      - run: pip install ruff==0.14.6
+      - run: ruff check app pipelines ops dags scripts examples tests
+      - run: ruff format --check app pipelines ops dags scripts examples tests
       - run: python -m unittest discover -s tests -p test_dashboard.py -v
       - run: python -m unittest discover -s tests -p test_bundle_setup.py -v
+      - run: python -m scripts.verify_evidence

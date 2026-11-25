@@ -1,6 +1,6 @@
 # Worker operations
 
-These programs ran on EC2. Local dashboard use does not require them.
+These worker programs implement the recorded EC2 workflow; current files have since been refactored. Local dashboard use does not require them.
 
 | Files | Responsibility |
 |---|---|

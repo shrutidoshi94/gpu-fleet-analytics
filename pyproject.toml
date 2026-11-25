@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gpu-fleet-analytics"
+version = "0.2.0"
+description = "Trace-based GPU capacity review with Airflow, Spark and a portable Gold dashboard"
+requires-python = ">=3.11,<3.14"
+
+[tool.setuptools.packages.find]
+include = ["app*", "pipelines*", "ops*", "examples*", "scripts*"]
+
+[tool.ruff]
+line-length = 100
+extend-exclude = ["docs/evidence/deployed-source", "infra/history"]
+
+[tool.ruff.lint]
+select = ["F", "I"]

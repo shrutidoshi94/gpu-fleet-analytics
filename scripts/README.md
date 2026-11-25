@@ -10,9 +10,9 @@ Run commands from the repository root.
 | `verify_evidence.py` | Check committed AWS records and processing-code identities | No |
 
 ```bash
-python scripts/verify_evidence.py
-python scripts/verify_gold_bundle.py data/gold/gold_20261120
-python scripts/download_gold.py --bucket YOUR_BUCKET --profile gpu-fleet
+python -m scripts.verify_evidence
+python -m scripts.verify_gold_bundle data/gold/gold_20261120
+python -m scripts.download_gold --bucket YOUR_BUCKET --profile gpu-fleet
 ```
 
 Synthetic fixtures and the earlier pilot live in [examples](../examples/README.md). Worker-side operations live in [ops](../ops/README.md).

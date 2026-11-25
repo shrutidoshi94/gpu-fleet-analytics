@@ -36,6 +36,9 @@
     "docs/evidence/silver-benchmark-results.json": "0a78c6b1d68cebd52c424971fb4f951f2c7f1763b5fd9c98cd18342daec7fe96",
     "docs/evidence/silver-benchmark-validation.json": "5c779202065e0a5d99fba94f1ed6d3bcd3f6392652faeb93c8515cc94eb09ec6",
     "docs/evidence/supervisor-import-test.txt": "179b995d246f84a3e56be06b728ffba66204e33075933b797cd2d2540b928b95",
-    "docs/data/whole-bronze-preflight.json": "530c1d34522461403e7146a63ef52944d0d4fcf192697f041a6fe600e9447b83"
+    "docs/data/whole-bronze-preflight.json": "530c1d34522461403e7146a63ef52944d0d4fcf192697f041a6fe600e9447b83",
+    "docs/evidence/deployed-source/silver.py": "99a4033d88e95eed80ff20dcf6ec87cdd149ce316a05ccaaf3d44ab7b639b2a0",
+    "docs/evidence/deployed-source/gold.py": "696889ab64f87f59468f6c9a4f9cc64b78832fe48c9701ba7d81ea26e5d44ec2",
+    "docs/evidence/portfolio-findings.json": "e406c69ba6036e5671dd4d03d29a308926ed81b5be36483197e5989f73c9df5a"
   }
 }

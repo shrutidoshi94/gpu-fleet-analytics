@@ -14,10 +14,11 @@ jobs:
           java-version: '17'
       - run: pip install -r app/requirements.txt -r pipelines/requirements.txt
       - run: pip install 'apache-airflow==3.0.6' --constraint https://raw.githubusercontent.com/apache/airflow/constraints-3.0.6/constraints-3.11.txt
+      - run: pip install --no-deps -e .
       - run: pip check
       - run: python -m unittest discover -s tests -v
-      - run: python examples/make_sample.py
-      - run: TRACE_DIR=sample python pipelines/pipeline.py network 109
+      - run: python -m examples.make_sample
+      - run: TRACE_DIR=sample python -m pipelines.pipeline network 109
       - name: Verify Airflow orchestration
         env:
           TRACE_PROJECT: ${{ github.workspace }}
@@ -36,9 +37,31 @@ jobs:
           AIRFLOW__CORE__DAGS_FOLDER: ${{ github.workspace }}/dags
           SPARK_LOCAL_IP: 127.0.0.1
         run: |
-          python examples/make_silver_sample.py silver-sample
-          airflow dags test gpu_silver_backfill 2026-01-02 -c '{"datasets":["server","pod","network","execution"],"days":[109]}'
+          python -m examples.make_silver_sample silver-sample --days 0,109
+          airflow dags test gpu_silver_backfill 2026-01-02 -c '{"datasets":["server","pod","network","execution"],"days":[0,109]}'
+      - name: Verify single-day and pilot-only Gold orchestration
+        env:
+          TRACE_PROJECT: ${{ github.workspace }}
+          TRACE_SILVER_ROOT: ${{ github.workspace }}/silver-sample
+          AIRFLOW_HOME: ${{ github.workspace }}/airflow-home
+          AIRFLOW__CORE__DAGS_FOLDER: ${{ github.workspace }}/dags
+          SPARK_LOCAL_IP: 127.0.0.1
+          TRACE_SPARK_MASTER: local[2]
+        run: |
+          airflow dags test gpu_gold_backfill 2026-01-03 -c '{"release":"ci-day-zero","days":[0],"synthetic":true}'
+          airflow dags test gpu_gold_backfill 2026-01-04 -c '{"release":"ci-pilot-only","days":[109],"synthetic":true}'
       - uses: actions/upload-artifact@v4
         with:
           name: synthetic-network-summary
           path: output/gold/network/day=109/summary.json
+  infrastructure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install cfn-lint==1.46.0
+      - run: cfn-lint infra/worker.json infra/archive-volume.json
+      - run: for script in infra/*.sh; do bash -n "$script"; done
+      - run: python -m scripts.verify_evidence

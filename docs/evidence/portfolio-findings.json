@@ -1,0 +1,98 @@
+{
+  "release": "gold_20261120",
+  "plan_identity": "660b90b3bf0f1815d509b61035604c714ee7b81cfe33708eb9e54534db8518d1",
+  "source_code_sha256": "696889ab64f87f59468f6c9a4f9cc64b78832fe48c9701ba7d81ea26e5d44ec2",
+  "scope": {
+    "relative_days": [
+      0,
+      184
+    ],
+    "clusters": "all"
+  },
+  "screening_policy": "Exclude source_anomaly hours and all days containing repeated unproven pod candidate keys. Requests are observed evidence, not verified simultaneous running demand.",
+  "flagged_days": 53,
+  "ranked_screened_pressure": [
+    {
+      "GPU cohort": "XPU-D",
+      "p95 request / inventory": 1.7471874999999992,
+      "Hours with request evidence": 3167
+    },
+    {
+      "GPU cohort": "H800",
+      "p95 request / inventory": 1.65695652173913,
+      "Hours with request evidence": 3167
+    },
+    {
+      "GPU cohort": "A800",
+      "p95 request / inventory": 1.604383771929824,
+      "Hours with request evidence": 3167
+    },
+    {
+      "GPU cohort": "XPU-C",
+      "p95 request / inventory": 1.5490580188801155,
+      "Hours with request evidence": 3167
+    },
+    {
+      "GPU cohort": "A100",
+      "p95 request / inventory": 1.4992700846757536,
+      "Hours with request evidence": 3167
+    },
+    {
+      "GPU cohort": "H20-141GB",
+      "p95 request / inventory": 1.4264376996805108,
+      "Hours with request evidence": 707
+    },
+    {
+      "GPU cohort": "XPU-A",
+      "p95 request / inventory": 1.327042180137731,
+      "Hours with request evidence": 3167
+    },
+    {
+      "GPU cohort": "H20",
+      "p95 request / inventory": 1.2877565698941726,
+      "Hours with request evidence": 3167
+    },
+    {
+      "GPU cohort": "A10",
+      "p95 request / inventory": 1.2828558338423945,
+      "Hours with request evidence": 3167
+    },
+    {
+      "GPU cohort": "A30",
+      "p95 request / inventory": 1.26,
+      "Hours with request evidence": 3167
+    },
+    {
+      "GPU cohort": "L20",
+      "p95 request / inventory": 1.2574782322160354,
+      "Hours with request evidence": 3167
+    },
+    {
+      "GPU cohort": "XPU-E",
+      "p95 request / inventory": 1.244018568453196,
+      "Hours with request evidence": 3167
+    },
+    {
+      "GPU cohort": "XPU-B",
+      "p95 request / inventory": 1.2158358736286847,
+      "Hours with request evidence": 3167
+    }
+  ],
+  "a100_sensitivity": [
+    {
+      "Evidence": "All observations",
+      "Hours with requests": 4440,
+      "p95 requests / inventory": 1.5062962962962965
+    },
+    {
+      "Evidence": "Screened observations",
+      "Hours with requests": 3167,
+      "p95 requests / inventory": 1.4992700846757536
+    }
+  ],
+  "raw_state_request_weights": {
+    "Unknown": 649084756.2900003,
+    "Standby": 6547222.079999995
+  },
+  "unknown_state_request_share": 0.9900138762354493
+}

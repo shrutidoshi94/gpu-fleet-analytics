@@ -24,3 +24,12 @@ data/gold/
 
 # OS metadata
 .DS_Store
+
+# Packaging and local lint cache
+*.egg-info/
+build/
+dist/
+.ruff_cache/
+
+# Local worker run logs
+logs/

@@ -4,19 +4,19 @@ Implemented November23,2026. Production release: gold_20261120. No AWS clients o
 
 ## Install and run
 
-Use Python3.11 and `pip install -r app/requirements.txt`, then `streamlit run app/dashboard.py`. Default data directory: `data/gold/gold_20261120/`, relative to the launch directory. `GOLD_BUNDLE_DIR` can point to another local folder. Start from the repo root. The existing synthetic JSON pilot is retained when no production bundle is found and `output/gold/*/*/summary.json` exists.
+Use Python3.11 and `pip install -r app/requirements.txt`, then `streamlit run app/dashboard.py`. Default data directory: `data/gold/gold_20261120/`, relative to the launch directory. `GOLD_BUNDLE_DIR` can point to another local folder. Start from the repo root. The old JSON pilot is separate: run `streamlit run examples/pilot_dashboard.py` explicitly.
 
-For a clean synthetic Gold demo, run `python examples/make_dashboard_sample.py /tmp/your-empty-demo-folder`, then launch with `GOLD_BUNDLE_DIR=/tmp/your-empty-demo-folder`. The UI labels synthetic fixtures explicitly; they are not AWS execution evidence.
+For a clean synthetic Gold demo, run `python -m examples.make_dashboard_sample /tmp/your-empty-demo-folder`, then launch with `GOLD_BUNDLE_DIR=/tmp/your-empty-demo-folder`. The UI labels synthetic fixtures explicitly; they are not AWS execution evidence.
 
 ## One-time download
 
 ```bash
 aws login --profile gpu-fleet --region us-east-2
-python scripts/download_gold.py --bucket YOUR_BUCKET --profile gpu-fleet
-python scripts/verify_gold_bundle.py data/gold/gold_20261120
+python -m scripts.download_gold --bucket YOUR_BUCKET --profile gpu-fleet
+python -m scripts.verify_gold_bundle data/gold/gold_20261120
 ```
 
-The downloader uses AWS CLI only during setup, verifies a staging directory, then publishes the local folder. An existing bundle is verified/reused, not overwritten. No EC2 restart is required. The47.4-MB production bundle is installed locally; a second downloaded copy remains in this chat workspace. Those copies share a laptop and are not an independent disaster-recovery backup.
+The downloader uses AWS CLI only during setup, verifies a staging directory, then publishes the local folder. An existing bundle is verified/reused, not overwritten. No EC2 restart is required. The production archive is also published as the pinned GitHub data release; local and hosted installs verify its hashes.
 
 Checks:9 exported file SHA256 hashes; seven Parquet schemas/row counts; Arrow sums for185 days against pinned Gold inventory totals;6,570,124,684 workload observations reconciled against source acceptance reports; all five mix dimensions reconcile to that population. This independently checks Gold consolidation, not a fresh reprocessing of raw Bronze/Silver. See `docs/evidence/local-gold-verification.json`.
 
@@ -47,7 +47,7 @@ The local app is served on127.0.0.1:8501. It requires the laptop while used loca
 
 ## Remaining work
 
-The user approved public release of the derived Gold bundle on November 24. Verify the hosted deployment after pushing the startup fix. Expanded telemetry distributions or server-level drill-down require additional Gold products; existing aggregates cannot establish those results. Do not delete AWS data until a verified independent backup and explicit teardown instruction.
+The public Gold data release supports hosted startup. Changes to dashboard code require a normal Streamlit redeploy. Expanded telemetry distributions or server-level drill-down require additional Gold products; existing aggregates cannot establish those results. Do not delete AWS data until a verified independent backup and explicit teardown instruction.
 
 ## Community Cloud runtime
 

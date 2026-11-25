@@ -33,7 +33,7 @@ Airflow finished all Silver transformations/audits at2:19PM. Its separate final 
 
 ## Verify without AWS
 
-Run `python3 scripts/verify_evidence.py` from the repository root. It checks the saved file hashes, Bronze file totals, sampled row reconciliation, real-source indicators, and correspondence between current Silver code and saved production manifest hashes. It also reports the checkpoint state. No credentials or third-party Python packages are needed.
+Run `python3 scripts/verify_evidence.py` from the repository root. It checks the saved file hashes, Bronze file totals, sampled row reconciliation, real-source indicators, and correspondence between recorded deployed source and saved production manifest hashes. It also reports the checkpoint state. No credentials or third-party Python packages are needed.
 
 The benchmark predates the recovery code: its hash and stopped-worker state are historical, not current. Do not compare its `full_backfill_started:false` flag to the later full-run snapshot as though they were simultaneous. Saved task totals include Airflow's planning task.
 
@@ -44,3 +44,7 @@ AWS JSON exports were downloaded via AWS CLI using the project profile; [sources
 [checksums.json](checksums.json) detects accidental changes against this checked-in snapshot; it does not independently prove AWS origin. Recruiters can cross-check infrastructure, DAGs, Spark code and matching execution metadata without live account access. Silver completion evidence is saved. Gold completion/export metadata and the stopped-worker snapshot are saved. Full lineage is saved with the downloaded local bundle; local integrity/consolidation verification and offline dashboard smoke results are now saved. Public deployment and an independent backup remain pending. Hosted GitHub Actions success is not claimed until a real run is available.
 
 No credentials, signed URLs, Airflow passwords, database dumps, billing screenshots or bulk trace data belong here. Bucket names, application IDs and instance IDs are identifiers, not authentication secrets. Original source data remains subject to its upstream terms.
+
+## Deployed source and current code
+
+`deployed-source/silver.py` and `deployed-source/gold.py` are the exact source snapshots whose SHA256 values appear in the recorded AWS manifests. Current modules under `pipelines/` were subsequently packaged and formatted. Evidence verification checks the snapshots, not an assertion that refactored code ran on AWS. New processing runs must record their own source identity.
