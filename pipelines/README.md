@@ -14,3 +14,5 @@ Run scripts directly from the repository root, e.g. `python pipelines/gold.py --
 Captured AWS logs describe the historical root-level paths. Current commands use `pipelines/`. Moving code does not modify past run evidence or require reprocessing.
 
 `infra/scripts/` preserves historical deployment recipes that download archived source bundles using the old root-level layout. Do not apply those archived bundles as deployments of the reorganized checkout; use the current Python task entrypoints and reviewed deployment packaging.
+
+Install processing dependencies from the repository root with `pip install -r pipelines/requirements.txt`. To run the complete regression suite (including the dashboard), also install `app/requirements.txt`. Airflow installation remains a separate orchestration setup; see the runbooks.

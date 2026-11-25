@@ -4,7 +4,7 @@ Implemented November23,2026. Production release: gold_20261120. No AWS clients, 
 
 ## Install and run
 
-Use Python3.11 and `pip install -r requirements-dashboard.txt`, then `streamlit run app/dashboard.py`. Default data directory: `data/gold/gold_20261120/`, relative to the launch directory. `GOLD_BUNDLE_DIR` can point to another local folder. Start from the repo root. The existing synthetic JSON pilot is retained when no production bundle is found and `output/gold/*/*/summary.json` exists.
+Use Python3.11 and `pip install -r app/requirements.txt`, then `streamlit run app/dashboard.py`. Default data directory: `data/gold/gold_20261120/`, relative to the launch directory. `GOLD_BUNDLE_DIR` can point to another local folder. Start from the repo root. The existing synthetic JSON pilot is retained when no production bundle is found and `output/gold/*/*/summary.json` exists.
 
 For a clean synthetic Gold demo, run `python examples/make_dashboard_sample.py /tmp/your-empty-demo-folder`, then launch with `GOLD_BUNDLE_DIR=/tmp/your-empty-demo-folder`. The UI labels synthetic fixtures explicitly; they are not AWS execution evidence.
 
@@ -53,6 +53,6 @@ Review the local dashboard, select a hosting/data-package strategy, then publish
 
 Use Python **3.11** in deployment Advanced settings. Streamlit 1.48.1 / Altair 5.5.0 are locally tested on that runtime. The Altair 5 import path can raise `TypeError: _TypedDictMeta.__new__() got an unexpected keyword argument 'closed'` on Python 3.14; the subsequent script-health-check 503 reports that startup failure.
 
-Community Cloud reads the root `requirements.txt`, which includes the shared dashboard requirements. Changing Python requires deleting and redeploying the hosted app; save the repository/branch/entrypoint, custom URL and any secrets first. Select Python 3.11 in Advanced settings before deploying. See [Streamlit runtime instructions](https://docs.streamlit.io/deploy/streamlit-community-cloud/manage-your-app/upgrade-python).
+Community Cloud reads `app/requirements.txt` beside the `app/dashboard.py` entrypoint. Changing Python requires deleting and redeploying the hosted app; save the repository/branch/entrypoint, custom URL and any secrets first. Select Python 3.11 in Advanced settings before deploying. See [Streamlit runtime instructions](https://docs.streamlit.io/deploy/streamlit-community-cloud/manage-your-app/upgrade-python).
 
 The production bundle remains gitignored. A source-only deployment needs a separately provisioned local Gold bundle; fixing imports alone does not install the real data. Do not fetch from AWS on each visitor interaction.

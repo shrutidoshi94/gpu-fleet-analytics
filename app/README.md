@@ -1,7 +1,7 @@
 # Offline dashboard
 
 ```bash
-pip install -r requirements-dashboard.txt
+pip install -r app/requirements.txt
 streamlit run app/dashboard.py
 ```
 

@@ -29,7 +29,7 @@ Python3.11; no Java, Spark or AWS credentials needed at dashboard runtime.
 ```bash
 python3.11 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements-dashboard.txt
+pip install -r app/requirements.txt
 streamlit run app/dashboard.py
 ```
 
@@ -62,6 +62,8 @@ python -m unittest discover -s tests -p test_dashboard.py -v
 | Understand transformations | [Column contracts](docs/data/COLUMN_CONTRACTS.md) · [Gold design](docs/design/GOLD_TRANSFORMATION_PLAN.md) |
 | Reproduce processing | [Runbooks](docs/runbooks/README.md) · [Infrastructure](infra/README.md) |
 | Continue development | [Current handoff](HANDOFF.md) · [Documentation map](docs/README.md) |
+
+Dashboard dependencies: `app/requirements.txt`. Processing dependencies: `pipelines/requirements.txt`.
 
 ## Code map
 

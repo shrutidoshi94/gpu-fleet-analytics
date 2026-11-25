@@ -12,7 +12,7 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - run: pip install -r requirements.txt
+      - run: pip install -r app/requirements.txt -r pipelines/requirements.txt
       - run: pip install 'apache-airflow==3.0.6' --constraint https://raw.githubusercontent.com/apache/airflow/constraints-3.0.6/constraints-3.11.txt
       - run: pip check
       - run: python -m unittest discover -s tests -v
