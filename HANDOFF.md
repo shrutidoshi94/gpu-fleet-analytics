@@ -53,3 +53,7 @@ Three numbered tabs now share GPU selection from a clickable pressure bar chart.
 
 ### Repository navigation — November 24
 Download and verification tools moved from examples/ to scripts/; use the current README commands. Directory guides distinguish production tasks, pilot code, fixtures and local data. Processing source files and captured evidence retain their original paths and bytes. Existing dashboard edits were preserved. These organization changes have not been committed or pushed in this task.
+
+
+### Hosted import failure — November 24
+User reported the TypedDict closed error on Community Cloud Python 3.14. The tested runtime is Python 3.11 with Streamlit 1.48.1, Altair 5.5.0 and typing_extensions 4.14.1. Root requirements now include dashboard requirements; dedicated dashboard CI installs only the dashboard stack. User must redeploy using Python 3.11; hosted recovery is not yet verified. Production data still requires a hosting package because it is gitignored.

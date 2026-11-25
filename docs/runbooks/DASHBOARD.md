@@ -48,3 +48,11 @@ The local app is served on127.0.0.1:8501. It requires the laptop while used loca
 ## Remaining work
 
 Review the local dashboard, select a hosting/data-package strategy, then publish when requested. Expanded telemetry distributions or server-level drill-down require additional Gold products; existing aggregates cannot establish those results. Do not delete AWS data until a verified independent backup and explicit teardown instruction.
+
+## Community Cloud runtime
+
+Use Python **3.11** in deployment Advanced settings. Streamlit 1.48.1 / Altair 5.5.0 are locally tested on that runtime. The Altair 5 import path can raise `TypeError: _TypedDictMeta.__new__() got an unexpected keyword argument 'closed'` on Python 3.14; the subsequent script-health-check 503 reports that startup failure.
+
+Community Cloud reads the root `requirements.txt`, which includes the shared dashboard requirements. Changing Python requires deleting and redeploying the hosted app; save the repository/branch/entrypoint, custom URL and any secrets first. Select Python 3.11 in Advanced settings before deploying. See [Streamlit runtime instructions](https://docs.streamlit.io/deploy/streamlit-community-cloud/manage-your-app/upgrade-python).
+
+The production bundle remains gitignored. A source-only deployment needs a separately provisioned local Gold bundle; fixing imports alone does not install the real data. Do not fetch from AWS on each visitor interaction.
