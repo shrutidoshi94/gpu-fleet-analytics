@@ -1,4 +1,7 @@
 """Run-scoped Gold controller: Airflow trigger, health checks and shutdown outcome."""
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / 'pipelines'))
 from collections import Counter
 from datetime import datetime,timezone
 import json

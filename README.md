@@ -30,14 +30,14 @@ Python3.11; no Java, Spark or AWS credentials needed at dashboard runtime.
 python3.11 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements-dashboard.txt
-streamlit run dashboard.py
+streamlit run app/dashboard.py
 ```
 
 Place the verified bundle in `data/gold/gold_20261120/`, or set `GOLD_BUNDLE_DIR`. Data is gitignored; source-only clones must supply the bundle. For a clearly labeled synthetic demo, use a new empty directory:
 
 ```bash
 python examples/make_dashboard_sample.py /tmp/gpu-dashboard-demo
-GOLD_BUNDLE_DIR=/tmp/gpu-dashboard-demo streamlit run dashboard.py
+GOLD_BUNDLE_DIR=/tmp/gpu-dashboard-demo streamlit run app/dashboard.py
 ```
 
 [Dashboard setup and metric rules](docs/runbooks/DASHBOARD.md) · [one-time download](scripts/download_gold.py)
@@ -67,14 +67,14 @@ python -m unittest discover -s tests -p test_dashboard.py -v
 
 | Location | Responsibility |
 |---|---|
-| `dashboard.py`, `dashboard_data.py` | Streamlit interface and local metric calculations |
-| `ingest_bronze.py`, `silver.py`, `gold.py` | Production processing; paths retained to reproduce AWS runs |
+| [app/](app/README.md) | Streamlit interface and local metric calculations |
+| [pipelines/](pipelines/README.md) | Bronze, Silver and Gold processing; source bytes preserved from AWS runs |
 | [dags/](dags/README.md) | Airflow scheduling |
 | [ops/](ops/README.md), `infra/` | Worker tasks, run guards and AWS setup |
 | [scripts/](scripts/README.md) | One-time download and offline verification |
 | [examples/](examples/README.md), `tests/` | Synthetic fixtures, experiments and regression tests |
 | [data/](data/README.md) | Gitignored local production bundle |
 
-Earlier pilot: `pipeline.py` and files marked pilot in the directory guides. Superseded documentation lives in `docs/archive/`. CI is configured; saved local results do not establish hosted CI success.
+Earlier pilot: `pipelines/pipeline.py` and files marked pilot in the directory guides. Superseded documentation lives in `docs/archive/`. CI is configured; saved local results do not establish hosted CI success.
 
 Source: [Alibaba GPU Cluster Trace v2026](https://github.com/alibaba/clusterdata/tree/master/cluster-trace-gpu-v2026). Released labels are preserved; XPU cohorts are anonymized and not assumed interchangeable.

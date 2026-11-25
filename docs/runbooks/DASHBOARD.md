@@ -4,7 +4,7 @@ Implemented November23,2026. Production release: gold_20261120. No AWS clients, 
 
 ## Install and run
 
-Use Python3.11 and `pip install -r requirements-dashboard.txt`, then `streamlit run dashboard.py`. Default data directory: `data/gold/gold_20261120/`, relative to the launch directory. `GOLD_BUNDLE_DIR` can point to another local folder. Start from the repo root. The existing synthetic JSON pilot is retained when no production bundle is found and `output/gold/*/*/summary.json` exists.
+Use Python3.11 and `pip install -r requirements-dashboard.txt`, then `streamlit run app/dashboard.py`. Default data directory: `data/gold/gold_20261120/`, relative to the launch directory. `GOLD_BUNDLE_DIR` can point to another local folder. Start from the repo root. The existing synthetic JSON pilot is retained when no production bundle is found and `output/gold/*/*/summary.json` exists.
 
 For a clean synthetic Gold demo, run `python examples/make_dashboard_sample.py /tmp/your-empty-demo-folder`, then launch with `GOLD_BUNDLE_DIR=/tmp/your-empty-demo-folder`. The UI labels synthetic fixtures explicitly; they are not AWS execution evidence.
 

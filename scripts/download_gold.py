@@ -2,7 +2,7 @@
 import argparse,json,shutil,subprocess,sys,tempfile,re
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from dashboard_data import independent_checks
+from app.dashboard_data import independent_checks
 p=argparse.ArgumentParser(description=__doc__)
 p.add_argument('--bucket',required=True);p.add_argument('--release',default='gold_20261120')
 p.add_argument('--profile',default='gpu-fleet');p.add_argument('--region',default='us-east-2')

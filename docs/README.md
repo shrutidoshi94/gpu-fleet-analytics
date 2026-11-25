@@ -11,6 +11,6 @@
 | Review earlier planning | [Processing strategy](design/PROCESSING_STRATEGY.md) |
 | Continue development | [Current handoff](../HANDOFF.md) |
 
-Directory guides: [scripts](../scripts/README.md), [examples](../examples/README.md), [Airflow DAGs](../dags/README.md), [worker operations](../ops/README.md), [infrastructure](../infra/README.md), [local data](../data/README.md).
+Directory guides: [dashboard](../app/README.md), [transformations](../pipelines/README.md), [scripts](../scripts/README.md), [examples](../examples/README.md), [Airflow DAGs](../dags/README.md), [worker operations](../ops/README.md), [infrastructure](../infra/README.md), [local data](../data/README.md).
 
 `archive/` contains superseded checkpoints. Evidence files are historical captures; the current README and handoff describe today's workflow.

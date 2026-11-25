@@ -4,7 +4,7 @@ import tempfile,unittest,os
 from unittest.mock import patch
 import pandas as pd
 from streamlit.testing.v1 import AppTest
-from dashboard_data import hourly,scenario,activity_review,independent_checks,verify_bundle
+from app.dashboard_data import hourly,scenario,activity_review,independent_checks,verify_bundle
 from examples.make_dashboard_sample import make
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -39,7 +39,7 @@ class DashboardOffline(unittest.TestCase):
    bundle=make(Path(folder)/'bundle')
    self.assertEqual(independent_checks(bundle)['daily_inventory_checks'],3)
    with patch.dict(os.environ,{'GOLD_BUNDLE_DIR':str(bundle),'AWS_PROFILE':'does-not-exist','AWS_EC2_METADATA_DISABLED':'true'}),patch('socket.create_connection',side_effect=AssertionError('Network forbidden')):
-    a=AppTest.from_file(str(ROOT/'dashboard.py')).run(timeout=60)
+    a=AppTest.from_file(str(ROOT/'app/dashboard.py')).run(timeout=60)
     self.assertFalse(a.exception,str(a.exception))
     self.assertEqual([h.value for h in a.header],['Where is demand highest?','Could existing GPUs work harder?','What would growth require?'])
     self.assertEqual([t.label for t in a.tabs],['1 · Demand pressure','2 · Existing GPUs','3 · Plan for growth'])

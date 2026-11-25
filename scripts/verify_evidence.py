@@ -24,7 +24,7 @@ def main():
     require({x['dataset'] for x in bronze} == {'pod', 'server', 'network', 'execution'},
             'four Bronze datasets required')
     require(sum(x['file_count'] for x in bronze) == 9049, 'Bronze file total')
-    code_hash = hashlib.sha256((ROOT / 'silver.py').read_bytes()).hexdigest()
+    code_hash = hashlib.sha256((ROOT / 'pipelines/silver.py').read_bytes()).hexdigest()
     sample_names = ['silver-pod-day109.json', 'silver-server-day109.json',
                     'silver-network-day109.json', 'silver-execution-global.json']
     silver = [json.loads((exports / name).read_text()) for name in sample_names]
@@ -42,7 +42,7 @@ def main():
     require(status['expected_transform_partitions'] == 378, 'partition plan')
     deployed = json.loads((exports / 'gold-deployment-verification.json').read_text())
     require(deployed['Status'] == 'Success', 'Gold deployment verification')
-    gold_hash = hashlib.sha256((ROOT / 'gold.py').read_bytes()).hexdigest()
+    gold_hash = hashlib.sha256((ROOT / 'pipelines/gold.py').read_bytes()).hexdigest()
     require(gold_hash in deployed['StandardOutputContent'], 'Gold code differs from deployment checkpoint')
     final = EVIDENCE / 'aws/2026-11-21'
     result = json.loads((final / 'gold-run-status.json').read_text())

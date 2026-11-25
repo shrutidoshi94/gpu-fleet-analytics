@@ -1,4 +1,7 @@
 """Whole-trace footer/schema preflight. Does not claim row-level semantic validation."""
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / 'pipelines'))
 import argparse
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor,as_completed

@@ -2,7 +2,7 @@
 import argparse,json,sys
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from dashboard_data import independent_checks
+from app.dashboard_data import independent_checks
 p=argparse.ArgumentParser();p.add_argument('folder');p.add_argument('--report')
 a=p.parse_args();report=independent_checks(a.folder)
 if a.report:Path(a.report).write_text(json.dumps(report,indent=2)+'\n')

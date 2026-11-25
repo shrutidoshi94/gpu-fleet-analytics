@@ -1,4 +1,7 @@
 """Guard a Silver subprocess; preserve the core transformation's code identity."""
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / 'pipelines'))
 import argparse
 import json
 import os
@@ -57,7 +60,7 @@ def main():
     record={'dataset':args.dataset,'day':None if args.dataset=='execution' else args.day,'phase':phase,
             'started_epoch':time.time(),'status':'running','log':log_path.name}
     record_path.write_text(json.dumps(record,indent=2))
-    command=[sys.executable,str(Path(__file__).resolve().parents[1]/'silver.py'),args.dataset,str(args.day),
+    command=[sys.executable,str(Path(__file__).resolve().parents[1]/'pipelines/silver.py'),args.dataset,str(args.day),
              '--root',args.root,'--master',args.master,'--output-partitions',args.output_partitions]
     if args.audit_only:command.append('--audit-only')
     if args.event_log_dir:command+=['--event-log-dir',args.event_log_dir]

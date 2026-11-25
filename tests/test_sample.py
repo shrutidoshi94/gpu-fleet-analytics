@@ -32,7 +32,7 @@ class SampleEndToEnd(unittest.TestCase):
                     self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
                 return result
             run(PROJECT / 'examples/make_sample.py')
-            run(PROJECT / 'pipeline.py', 'network', 109)
+            run(PROJECT / 'pipelines/pipeline.py', 'network', 109)
             paths = [root / f'output/{layer}/network/day=109'
                      for layer in ('bronze', 'silver', 'gold')]
             summary = paths[2] / 'summary.json'
@@ -49,7 +49,7 @@ class SampleEndToEnd(unittest.TestCase):
             neighbor = root / 'output/gold/network/day=110/summary.json'
             neighbor.parent.mkdir(parents=True)
             neighbor.write_text('preserve other days')
-            run(PROJECT / 'pipeline.py', 'network', 109)
+            run(PROJECT / 'pipelines/pipeline.py', 'network', 109)
             self.assertEqual(summary.read_bytes(), original)
             self.assertEqual(neighbor.read_text(), 'preserve other days')
             for path in paths:
@@ -64,7 +64,7 @@ class SampleEndToEnd(unittest.TestCase):
             with ZipFile(archive, 'w') as target:
                 for name, data in entries:
                     target.writestr(name, data)
-            failed = run(PROJECT / 'pipeline.py', 'network', 109, success=False)
+            failed = run(PROJECT / 'pipelines/pipeline.py', 'network', 109, success=False)
             self.assertNotEqual(failed.returncode, 0)
             self.assertIn('Expected 24 hours', failed.stderr)
             self.assertEqual(summary.read_bytes(), original)
@@ -75,7 +75,7 @@ class SampleEndToEnd(unittest.TestCase):
             previous = Path.cwd()
             try:
                 os.chdir(root / 'offline')
-                app = AppTest.from_file(str(PROJECT / 'dashboard.py')).run(timeout=30)
+                app = AppTest.from_file(str(PROJECT / 'app/dashboard.py')).run(timeout=30)
                 self.assertEqual(len(app.exception), 0, str(app.exception))
                 self.assertEqual(len(app.dataframe[0].value), 24)
                 self.assertIn('109', app.subheader[0].value)

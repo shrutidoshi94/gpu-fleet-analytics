@@ -4,7 +4,7 @@ Authorized November20,2026. Release/run ID: `gold_20261120`. Source: pinned prod
 
 ## Readiness and orchestration
 
-`gold.py pin` requires `verified_complete:true` and successful Silver DAG state in the production S3 status. It pins378 current Silver manifests and the exact source/code identities. Production cannot use the local synthetic bypass.
+`pipelines/gold.py pin` requires `verified_complete:true` and successful Silver DAG state in the production S3 status. It pins378 current Silver manifests and the exact source/code identities. Production cannot use the local synthetic bypass.
 
 The existing Silver service finalizer has an authorized success-only handoff: queue Gold, preserve Silver evidence, and return without stopping the worker. On Silver failure its original shutdown path remains. Gold explicitly waits for Silver finalization to end before triggering `gpu_gold_backfill`; systemd After= alone was found insufficient and is not relied upon. A harmless predecessor/successor probe passed after that correction.
 
@@ -29,11 +29,11 @@ Reuse the tested Silver subprocess guard: one-hour child limit,10-GiB disk floor
 On the configured worker, source private `production.env.sh` and keep the tested Spark six-thread/12-GiB settings. These are individual reproduction commands; production orchestration uses the guarded DAG.
 
 ```bash
-python gold.py pin --root s3://YOUR_BUCKET --release YOUR_RELEASE
-python gold.py day --root s3://YOUR_BUCKET --release YOUR_RELEASE --day 109
-python gold.py context --root s3://YOUR_BUCKET --release YOUR_RELEASE
+python pipelines/gold.py pin --root s3://YOUR_BUCKET --release YOUR_RELEASE
+python pipelines/gold.py day --root s3://YOUR_BUCKET --release YOUR_RELEASE --day 109
+python pipelines/gold.py context --root s3://YOUR_BUCKET --release YOUR_RELEASE
 # Run every pinned day before publication.
-python gold.py publish --root s3://YOUR_BUCKET --release YOUR_RELEASE
+python pipelines/gold.py publish --root s3://YOUR_BUCKET --release YOUR_RELEASE
 python ops/export_gold.py --root s3://YOUR_BUCKET --release YOUR_RELEASE --destination /path/to/offline-bundle
 ```
 

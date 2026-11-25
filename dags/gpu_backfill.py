@@ -32,7 +32,7 @@ with DAG('gpu_medallion_backfill', schedule=None,
     @task(retries=1, pool='default_pool')
     def process_day(dataset, day):
         project = Path(os.environ['TRACE_PROJECT'])
-        subprocess.run([sys.executable, str(project / 'pipeline.py'), dataset, str(day),
+        subprocess.run([sys.executable, str(project / 'pipelines/pipeline.py'), dataset, str(day),
                         '--from-bronze'], cwd=project, check=True)
 
     process_day.expand_kwargs(plan())

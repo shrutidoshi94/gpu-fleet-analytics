@@ -1,4 +1,7 @@
 """Bounded Gold subprocesses, reuse validated outputs and pilot budget gate."""
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / 'pipelines'))
 import argparse
 import json
 import os
@@ -45,7 +48,7 @@ def main():
     if args.action=='export':
         cmd=[sys.executable,'ops/export_gold.py','--root',args.root,'--release',args.release,'--destination',str(folder/'offline-bundle')]
     else:
-        cmd=[sys.executable,'gold.py',args.action,'--root',args.root,'--release',args.release,'--master',os.environ.get('TRACE_SPARK_MASTER','local[6]')]
+        cmd=[sys.executable,'pipelines/gold.py',args.action,'--root',args.root,'--release',args.release,'--master',os.environ.get('TRACE_SPARK_MASTER','local[6]')]
         if args.day is not None:cmd+=['--day',str(args.day)]
         if args.days:cmd+=['--days',args.days]
     started=time.monotonic()

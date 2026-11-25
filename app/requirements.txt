@@ -1,0 +1,2 @@
+# Dashboard-only deployment; no Spark or AWS runtime.
+-r ../requirements-dashboard.txt

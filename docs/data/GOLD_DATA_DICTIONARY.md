@@ -12,7 +12,7 @@ The bundle contains **seven tables and86 physical column occurrences**, includin
 - A count is usually observations, not unique pods, jobs, servers or devices. Never average pre-aggregated means when their denominators differ.
 - SM denotes streaming multiprocessor activity. Its released normalization is not established as a0–100percentage here; memory utilization normalization is also unspecified. CPU-request utilization is normalized by requested CPU.
 
-The upstream meanings of raw fields and labels are documented in [Alibaba’s schema](https://github.com/alibaba/clusterdata/blob/master/cluster-trace-gpu-v2026/docs/schema.md). Gold grouping, filtering and calculation rules are taken from `gold.py`; storage/export rules come from `ops/export_gold.py`. The implementation is authoritative for these derived columns.
+The upstream meanings of raw fields and labels are documented in [Alibaba’s schema](https://github.com/alibaba/clusterdata/blob/master/cluster-trace-gpu-v2026/docs/schema.md). Gold grouping, filtering and calculation rules are taken from `pipelines/gold.py`; storage/export rules come from `ops/export_gold.py`. The implementation is authoritative for these derived columns.
 
 ## Release metadata
 
@@ -301,8 +301,8 @@ GPU-request sums and GPU-hour attribution answer different questions. An illustr
 |---|---|
 | bundle.json | Local export catalog: release, relative_days, metric policy, table rows/columns, file bytes/SHA256 and total_bytes. It is not itself included in its own file-hash list |
 | plan_identity / identity | SHA256 of the canonical pinned release plan subset: version, release, days, code hash and full source manifests. Binds one output release to one source/code selection |
-| code_sha256 | Hash of gold.py used for this release—not every helper, UI file or Git commit |
-| silver_code_sha256 | Hash of silver.py for the pinned Silver manifests |
+| code_sha256 | Hash of pipelines/gold.py used for this release—not every helper, UI file or Git commit |
+| silver_code_sha256 | Hash of pipelines/silver.py for the pinned Silver manifests |
 | lineage.json → plan | version, release, days, synthetic flag, code identities,378 source manifests, creation UTC timestamp, metric policy and identity |
 | lineage.json → release | Published version/release identity, code hash,186 unit manifests, source days, scope and publish UTC timestamp |
 | Unit manifest | unit (day=N or global), plan identity, code hash, created UTC, per-table paths/inventories/row counts/schema and quality report |

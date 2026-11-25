@@ -1,4 +1,7 @@
 """Generate all four full-width synthetic Bronze tables and source inventories."""
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / 'pipelines'))
 import argparse
 import sys
 from pathlib import Path

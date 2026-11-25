@@ -13,7 +13,7 @@ with DAG("gpu_trace_day", schedule=None, start_date=datetime(2026, 1, 1, tzinfo=
     @task(retries=1)
     def process_day(params):
         project = Path(os.environ["TRACE_PROJECT"])
-        command = [sys.executable, str(project / "pipeline.py"), params["dataset"], str(params["day"])]
+        command = [sys.executable, str(project / "pipelines/pipeline.py"), params["dataset"], str(params["day"])]
         if params["from_bronze"]:
             command.append("--from-bronze")
         subprocess.run(command, cwd=project, check=True)

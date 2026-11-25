@@ -1,4 +1,7 @@
 """Gold joins, quality semantics and atomic publication on real local Spark."""
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / 'pipelines'))
 import json
 from pathlib import Path
 import tempfile

@@ -2,6 +2,8 @@
 from pathlib import Path
 import os
 import runpy
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 import numpy as np
 import pandas as pd
 import altair as alt
@@ -9,7 +11,7 @@ import streamlit as st
 from dashboard_data import (verify_bundle,read_table,select,hourly,cohort_summary,
                             safe_divide,eligible_activity,scenario)
 
-ROOT=Path(__file__).resolve().parent
+ROOT=Path(__file__).resolve().parents[1]
 COLORS=['#118a7e','#4f70d6','#e6a13d','#da6b59','#8d99ae']
 
 

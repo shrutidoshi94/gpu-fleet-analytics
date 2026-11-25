@@ -9,7 +9,7 @@ Read docs/data/GOLD_DATA_DICTIONARY.md for every column and docs/data/GOLD_METAD
 ## Local dashboard
 
 - Production bundle: `data/gold/gold_20261120/` (gitignored). Second downloaded copy: `/Users/shrutidoshi/Documents/Codex/2026-11-18/are/work/gold-download-20261123/`. Both are on this laptop.
-- Streamlit: `dashboard.py`, pure data/math helpers `dashboard_data.py`; server127.0.0.1:8501. Minimal runtime `requirements-dashboard.txt`; no AWS/Java/Spark needed to serve the saved data.
+- Streamlit: `app/dashboard.py`, pure data/math helpers `app/dashboard_data.py`; server127.0.0.1:8501. Minimal runtime `requirements-dashboard.txt`; no AWS/Java/Spark needed to serve the saved data.
 - Dashboard redesigned at user request: one three-step story (Find the pressure / Review existing capacity / Test the requirement), short single-line headings, one selected cohort throughout. Optional quality/mix/network/execution/AWS details are collapsed. Real-data story smoke and offline tests passed; original synthetic Spark/JSON pilot is preserved.
 - Local validation:9 hashes, seven schemas/row counts,185 inventory totals and five mix populations matching6,570,124,684 pod observations. Saved under docs/evidence/. No raw-trace reprocessing was done during local validation.
 - Sidebar screens flagged request evidence by default;53 days have unproven duplicate candidates. Preserve source anomaly and unknown semantics. Scenario calculations remain exploratory and single-cohort.
@@ -57,3 +57,9 @@ Download and verification tools moved from examples/ to scripts/; use the curren
 
 ### Hosted import failure — November 24
 User reported the TypedDict closed error on Community Cloud Python 3.14. The tested runtime is Python 3.11 with Streamlit 1.48.1, Altair 5.5.0 and typing_extensions 4.14.1. Root requirements now include dashboard requirements; dedicated dashboard CI installs only the dashboard stack. User must redeploy using Python 3.11; hosted recovery is not yet verified. Production data still requires a hosting package because it is gitignored.
+
+
+### Source folders — November 24
+Dashboard entrypoint is now app/dashboard.py; Community Cloud must use that path and Python 3.11. Four processing scripts moved byte-for-byte to pipelines/. Worker imports, subprocess paths, CI, tests and verification tools use the new layout. Captured evidence retains historical paths. No AWS processing or resource changes are required for this reorganization.
+
+Reorganization validation: all 18 regression tests passed (Spark, dashboard, guards, inventory and isolated supervisor import); production Gold loads through app/dashboard.py; evidence and all 185 local inventory checks pass. Local server restarted on 127.0.0.1:8501. Folder changes remain uncommitted/unpushed.

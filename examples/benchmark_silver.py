@@ -2,6 +2,9 @@
 Writes nine immutable Silver attempts (four pod pilots, three server pilots,
 network, execution), plus one inventory audit per daily supporting table. Retains logs.
 """
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[1] / 'pipelines'))
 import argparse
 import json
 import os
@@ -80,7 +83,7 @@ def main():
             reports.append(prior); resumed+=1
             print(json.dumps({'case':name,'reused_validated_measurement':True}),flush=True)
             continue
-        command=[sys.executable,str(Path(__file__).resolve().parents[1]/'silver.py'),dataset,str(day),
+        command=[sys.executable,str(Path(__file__).resolve().parents[1]/'pipelines/silver.py'),dataset,str(day),
                  '--root',args.root,'--master',f'local[{threads}]','--force',
                  '--event-log-dir',events.as_uri()]
         began=time.monotonic()
@@ -111,7 +114,7 @@ def main():
         print(json.dumps({'case':name,'wall_seconds':report['wall_seconds'],'source_bytes':report['source_bytes']}),flush=True)
     # The previous pod109 audit may refer to a prior inventory; resolve again.
     for dataset,day in [('pod',3),('pod',109),('pod',173),('network',109)]:
-        command=[sys.executable,str(Path(__file__).resolve().parents[1]/'silver.py'),dataset,str(day),
+        command=[sys.executable,str(Path(__file__).resolve().parents[1]/'pipelines/silver.py'),dataset,str(day),
                  '--root',args.root,'--audit-only','--master',f'local[{args.threads}]']
         began=time.monotonic()
         with (args.results/f'audit-{dataset}-{day}.log').open('w') as log:
