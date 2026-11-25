@@ -1,0 +1,6 @@
+test_project_import_from_isolated_interpreter (test_supervisor_import.SupervisorImports.test_project_import_from_isolated_interpreter) ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 0.051s
+
+OK

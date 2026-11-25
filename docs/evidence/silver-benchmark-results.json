@@ -1,0 +1,1159 @@
+{
+  "date": "2026-11-19",
+  "timezone": "America/Los_Angeles",
+  "status": "complete",
+  "instance": {
+    "State": "stopped",
+    "Type": "m6a.2xlarge",
+    "StateTransitionReason": "User initiated"
+  },
+  "volume": {
+    "SizeGiB": 60,
+    "Type": "gp3",
+    "IOPS": 3000,
+    "ThroughputMiBs": 125
+  },
+  "rates_usd": {
+    "m6a.2xlarge_hour": 0.3456,
+    "m6a.xlarge_hour": 0.1728,
+    "m6a.4xlarge_hour": 0.6912,
+    "public_ipv4_hour": 0.005,
+    "gp3_gib_month": 0.08,
+    "s3_standard_gib_month_first_50tib": 0.023
+  },
+  "forecast": {
+    "single_worker_hours_scenario": [
+      16.246456791985988,
+      24.917361025176906
+    ],
+    "final_audits": {
+      "pod": {
+        "hours_scenario": [
+          1.4449467022750064,
+          2.1931985330277683
+        ]
+      },
+      "network": {
+        "hours_scenario": [
+          0.031235544042500327,
+          0.039044430053125405
+        ]
+      }
+    },
+    "by_dataset": {
+      "pod": {
+        "hours_scenario": [
+          13.462506533595867,
+          20.204148102766336
+        ],
+        "pilot_cases": 3
+      },
+      "server": {
+        "hours_scenario": [
+          1.1852915614929094,
+          2.327874396105044
+        ],
+        "pilot_cases": 3
+      },
+      "network": {
+        "hours_scenario": [
+          0.058869285397204874,
+          0.07358660674650609
+        ],
+        "pilot_cases": 1
+      },
+      "execution": {
+        "hours_scenario": [
+          0.06360716518250001,
+          0.07950895647812502
+        ],
+        "pilot_cases": 1
+      }
+    },
+    "two_identical_workers_ideal_only_hours": [
+      8.123228395992994,
+      12.458680512588453
+    ],
+    "caveat": "Two-worker figures ignore startup, skew, coordination and shared bottlenecks. Benchmark concurrency before adopting."
+  },
+  "compute_usd_scenario": [
+    5.614775467310357,
+    8.61143997030114
+  ],
+  "projected_silver_gib": [
+    282.51533905571654,
+    349.83116455672314
+  ],
+  "projected_total_bucket_gib": [
+    618.9763452705588,
+    686.2921707715653
+  ],
+  "two_day_storage_and_root_usd": [
+    1.2690970627481901,
+    1.3723146618497335
+  ],
+  "planning_total_before_credits_usd": [
+    7,
+    11
+  ],
+  "current_bucket_bytes": 368515432668,
+  "observed_six_thread_wall_time_reduction_fraction": 0.23656859547622722,
+  "validated_unique_silver_partitions": 8,
+  "remaining_unique_silver_partitions": 370,
+  "final_audits": [
+    {
+      "status": "complete",
+      "inventory_source_fingerprint": "6af343ca6c26f606eb403aa07f7d1c190a5077167318acd7438daefca04a1f11",
+      "inventory_manifest": "manifests/silver/server/day=3.current.json",
+      "matched_observations": 25777119,
+      "unmatched_observations": 0,
+      "inventory_server_hours_without_observations": 12442,
+      "inventory_quarantined_rows": 0,
+      "interpretation": "Unmatched/missing observations are unknown, not zero demand.",
+      "silver_attempt": "silver_versions/pod/day=3/silver-v1/cc529b4b99e94aac943c72c0509c29eb/accepted",
+      "dataset": "pod",
+      "day": 3
+    },
+    {
+      "status": "complete",
+      "inventory_source_fingerprint": "1d3bfeb030493d1a036d1d1f59dfa79f25e119252eab3e25e3643a9b8cae3670",
+      "inventory_manifest": "manifests/silver/server/day=109.current.json",
+      "matched_observations": 36264315,
+      "unmatched_observations": 0,
+      "inventory_server_hours_without_observations": 8903,
+      "inventory_quarantined_rows": 0,
+      "interpretation": "Unmatched/missing observations are unknown, not zero demand.",
+      "silver_attempt": "silver_versions/pod/day=109/silver-v1/a9260c684da04adcb04528deae270c71/accepted",
+      "dataset": "pod",
+      "day": 109
+    },
+    {
+      "status": "complete",
+      "inventory_source_fingerprint": "930a0e7b9bc33ad7a2e7a45738607382644ae068564a00ebdc81dfd7a076654a",
+      "inventory_manifest": "manifests/silver/server/day=173.current.json",
+      "matched_observations": 43216910,
+      "unmatched_observations": 0,
+      "inventory_server_hours_without_observations": 5886,
+      "inventory_quarantined_rows": 0,
+      "interpretation": "Unmatched/missing observations are unknown, not zero demand.",
+      "silver_attempt": "silver_versions/pod/day=173/silver-v1/8aadbd732f7d4e02b12a4a1b64fc9947/accepted",
+      "dataset": "pod",
+      "day": 173
+    },
+    {
+      "status": "complete",
+      "inventory_source_fingerprint": "1d3bfeb030493d1a036d1d1f59dfa79f25e119252eab3e25e3643a9b8cae3670",
+      "inventory_manifest": "manifests/silver/server/day=109.current.json",
+      "matched_observations": 766017,
+      "unmatched_observations": 190,
+      "inventory_server_hours_without_observations": 9087,
+      "inventory_quarantined_rows": 0,
+      "interpretation": "Unmatched/missing observations are unknown, not zero demand.",
+      "silver_attempt": "silver_versions/network/day=109/silver-v1/dbf04d73e9614d57a62edd49b0ee2556/accepted",
+      "dataset": "network",
+      "day": 109
+    }
+  ],
+  "full_backfill_started": false,
+  "new_gold_generated": false,
+  "production_airflow_postgres_configured": false,
+  "benchmark": {
+    "status": "complete",
+    "reports": [
+      {
+        "dataset": "server",
+        "day": 3,
+        "synthetic_source": false,
+        "version": "silver-v1",
+        "code_sha256": "605b476e5f47d43652729925878d45e205994a6f6ff65cf23adc6c083f387d4a",
+        "source_fingerprint": "6af343ca6c26f606eb403aa07f7d1c190a5077167318acd7438daefca04a1f11",
+        "source_bytes": 13850168,
+        "accepted": "silver_versions/server/day=3/silver-v1/d195e9c85f564f4fb71db81e1d0cbe67/accepted",
+        "quarantine": "silver_versions/server/day=3/silver-v1/d195e9c85f564f4fb71db81e1d0cbe67/quarantine",
+        "quality": {
+          "input_rows": 676080,
+          "accepted_rows": 676080,
+          "quarantined_rows": 0,
+          "null_counts": {
+            "server_id": 0,
+            "cluster_id": 0,
+            "asw_id": 676080,
+            "gpu_spec_public": 0,
+            "gpu_count": 0,
+            "cpu_capacity_cores": 0
+          },
+          "quality_flags": {},
+          "quarantine_reasons": {},
+          "candidate_key_audit": {
+            "keys": [
+              "day",
+              "hour",
+              "server_id"
+            ],
+            "duplicate_groups": 0,
+            "rows_in_duplicate_groups": 0,
+            "policy": "quarantine_all_duplicate_keys"
+          },
+          "inventory_join_audit": {
+            "status": "not_applicable"
+          }
+        },
+        "output_files": {
+          "accepted": [
+            {
+              "path": "silver_versions/server/day=3/silver-v1/d195e9c85f564f4fb71db81e1d0cbe67/accepted/part-00000-41149c2e-7682-4f76-9f14-0b2938ee9af7-c000.zstd.parquet",
+              "bytes": 1251660,
+              "identity": "\"2db994eff7614af92271717a4618b694\""
+            },
+            {
+              "path": "silver_versions/server/day=3/silver-v1/d195e9c85f564f4fb71db81e1d0cbe67/accepted/part-00001-41149c2e-7682-4f76-9f14-0b2938ee9af7-c000.zstd.parquet",
+              "bytes": 1250854,
+              "identity": "\"9b1d79876a54bd42e9f880daf402a006\""
+            },
+            {
+              "path": "silver_versions/server/day=3/silver-v1/d195e9c85f564f4fb71db81e1d0cbe67/accepted/part-00002-41149c2e-7682-4f76-9f14-0b2938ee9af7-c000.zstd.parquet",
+              "bytes": 1250936,
+              "identity": "\"f4545c7c5c4c6e48281f8a08de84eb65\""
+            },
+            {
+              "path": "silver_versions/server/day=3/silver-v1/d195e9c85f564f4fb71db81e1d0cbe67/accepted/part-00003-41149c2e-7682-4f76-9f14-0b2938ee9af7-c000.zstd.parquet",
+              "bytes": 1250938,
+              "identity": "\"aec3719b82bad7feae1dbe7c8c7a1819\""
+            }
+          ],
+          "quarantine": [
+            {
+              "path": "silver_versions/server/day=3/silver-v1/d195e9c85f564f4fb71db81e1d0cbe67/quarantine/part-00000-ca8c32fc-7289-46a6-b194-245e68588c44-c000.zstd.parquet",
+              "bytes": 1646,
+              "identity": "\"b78ab37360f57867051e9180c2033a21\""
+            }
+          ]
+        },
+        "elapsed_seconds": 24.705772630000013,
+        "spark_application_id": "local-1795135221424",
+        "spark_master": "local[6]",
+        "output_partitions": 4,
+        "gpu_view_filter": null,
+        "benchmark_case": "server-3-6threads",
+        "wall_seconds": 30.155397317999984,
+        "threads": 6,
+        "driver_memory": "12g",
+        "remaining_disk_bytes": 27035332608,
+        "peak_process_group_rss_kib": 2892800,
+        "min_free_disk_bytes": 26646204416,
+        "output_bytes": 5006034,
+        "spark_task_metrics": {
+          "executor_cpu_ns": 22417841828,
+          "executor_run_ms": 42920,
+          "gc_ms": 556,
+          "memory_spilled_bytes": 0,
+          "disk_spilled_bytes": 0,
+          "peak_execution_memory_bytes": 136576992
+        }
+      },
+      {
+        "dataset": "server",
+        "day": 109,
+        "synthetic_source": false,
+        "version": "silver-v1",
+        "code_sha256": "605b476e5f47d43652729925878d45e205994a6f6ff65cf23adc6c083f387d4a",
+        "source_fingerprint": "1d3bfeb030493d1a036d1d1f59dfa79f25e119252eab3e25e3643a9b8cae3670",
+        "source_bytes": 17478905,
+        "accepted": "silver_versions/server/day=109/silver-v1/e95ddac93f23414c969ded0fba4ad836/accepted",
+        "quarantine": "silver_versions/server/day=109/silver-v1/e95ddac93f23414c969ded0fba4ad836/quarantine",
+        "quality": {
+          "input_rows": 775104,
+          "accepted_rows": 775104,
+          "quarantined_rows": 0,
+          "null_counts": {
+            "server_id": 0,
+            "cluster_id": 0,
+            "asw_id": 7536,
+            "gpu_spec_public": 0,
+            "gpu_count": 0,
+            "cpu_capacity_cores": 0
+          },
+          "quality_flags": {},
+          "quarantine_reasons": {},
+          "candidate_key_audit": {
+            "keys": [
+              "day",
+              "hour",
+              "server_id"
+            ],
+            "duplicate_groups": 0,
+            "rows_in_duplicate_groups": 0,
+            "policy": "quarantine_all_duplicate_keys"
+          },
+          "inventory_join_audit": {
+            "status": "not_applicable"
+          }
+        },
+        "output_files": {
+          "accepted": [
+            {
+              "path": "silver_versions/server/day=109/silver-v1/e95ddac93f23414c969ded0fba4ad836/accepted/part-00000-f6733dfc-ee47-472c-8d78-979557959039-c000.zstd.parquet",
+              "bytes": 3407858,
+              "identity": "\"2cd514a53a5bc5e332aa8f9c80948932\""
+            },
+            {
+              "path": "silver_versions/server/day=109/silver-v1/e95ddac93f23414c969ded0fba4ad836/accepted/part-00001-f6733dfc-ee47-472c-8d78-979557959039-c000.zstd.parquet",
+              "bytes": 3411195,
+              "identity": "\"0e36ccc6c56f97ba82a5d1f3d1f8fd82\""
+            },
+            {
+              "path": "silver_versions/server/day=109/silver-v1/e95ddac93f23414c969ded0fba4ad836/accepted/part-00002-f6733dfc-ee47-472c-8d78-979557959039-c000.zstd.parquet",
+              "bytes": 3408491,
+              "identity": "\"00c6dd88d5040c3bea68a5c3c9e261be\""
+            },
+            {
+              "path": "silver_versions/server/day=109/silver-v1/e95ddac93f23414c969ded0fba4ad836/accepted/part-00003-f6733dfc-ee47-472c-8d78-979557959039-c000.zstd.parquet",
+              "bytes": 3408617,
+              "identity": "\"c20dc254ddfb990025008674497820f3\""
+            }
+          ],
+          "quarantine": [
+            {
+              "path": "silver_versions/server/day=109/silver-v1/e95ddac93f23414c969ded0fba4ad836/quarantine/part-00000-b44952fe-1949-4985-b461-8a4bee813477-c000.zstd.parquet",
+              "bytes": 1646,
+              "identity": "\"e7b1ea5b8250fdb6d12f6e964eb3fda8\""
+            }
+          ]
+        },
+        "elapsed_seconds": 21.905318780000016,
+        "spark_application_id": "local-1795135251682",
+        "spark_master": "local[6]",
+        "output_partitions": 4,
+        "gpu_view_filter": null,
+        "benchmark_case": "server-109-6threads",
+        "wall_seconds": 28.158806706999997,
+        "threads": 6,
+        "driver_memory": "12g",
+        "remaining_disk_bytes": 27033456640,
+        "peak_process_group_rss_kib": 3272080,
+        "min_free_disk_bytes": 26575613952,
+        "output_bytes": 13637807,
+        "spark_task_metrics": {
+          "executor_cpu_ns": 25405013950,
+          "executor_run_ms": 41370,
+          "gc_ms": 816,
+          "memory_spilled_bytes": 0,
+          "disk_spilled_bytes": 0,
+          "peak_execution_memory_bytes": 136576992
+        }
+      },
+      {
+        "dataset": "server",
+        "day": 173,
+        "synthetic_source": false,
+        "version": "silver-v1",
+        "code_sha256": "605b476e5f47d43652729925878d45e205994a6f6ff65cf23adc6c083f387d4a",
+        "source_fingerprint": "930a0e7b9bc33ad7a2e7a45738607382644ae068564a00ebdc81dfd7a076654a",
+        "source_bytes": 20323502,
+        "accepted": "silver_versions/server/day=173/silver-v1/cf7ab4e436e64854a30ab23ac097fb35/accepted",
+        "quarantine": "silver_versions/server/day=173/silver-v1/cf7ab4e436e64854a30ab23ac097fb35/quarantine",
+        "quality": {
+          "input_rows": 888024,
+          "accepted_rows": 888024,
+          "quarantined_rows": 0,
+          "null_counts": {
+            "server_id": 0,
+            "cluster_id": 0,
+            "asw_id": 4848,
+            "gpu_spec_public": 0,
+            "gpu_count": 0,
+            "cpu_capacity_cores": 0
+          },
+          "quality_flags": {},
+          "quarantine_reasons": {},
+          "candidate_key_audit": {
+            "keys": [
+              "day",
+              "hour",
+              "server_id"
+            ],
+            "duplicate_groups": 0,
+            "rows_in_duplicate_groups": 0,
+            "policy": "quarantine_all_duplicate_keys"
+          },
+          "inventory_join_audit": {
+            "status": "not_applicable"
+          }
+        },
+        "output_files": {
+          "accepted": [
+            {
+              "path": "silver_versions/server/day=173/silver-v1/cf7ab4e436e64854a30ab23ac097fb35/accepted/part-00000-a4665eed-3cc5-413d-a104-398eb9a02682-c000.zstd.parquet",
+              "bytes": 4278986,
+              "identity": "\"af2fda3d4cd1ff7bce7cde685b1828bd\""
+            },
+            {
+              "path": "silver_versions/server/day=173/silver-v1/cf7ab4e436e64854a30ab23ac097fb35/accepted/part-00001-a4665eed-3cc5-413d-a104-398eb9a02682-c000.zstd.parquet",
+              "bytes": 4282403,
+              "identity": "\"ea0ecd175b55ff4ffa50037de4b6e3ed\""
+            },
+            {
+              "path": "silver_versions/server/day=173/silver-v1/cf7ab4e436e64854a30ab23ac097fb35/accepted/part-00002-a4665eed-3cc5-413d-a104-398eb9a02682-c000.zstd.parquet",
+              "bytes": 4280797,
+              "identity": "\"06e250099a65f275a43bd09c2806f4d7\""
+            },
+            {
+              "path": "silver_versions/server/day=173/silver-v1/cf7ab4e436e64854a30ab23ac097fb35/accepted/part-00003-a4665eed-3cc5-413d-a104-398eb9a02682-c000.zstd.parquet",
+              "bytes": 4280835,
+              "identity": "\"df2a3801372baed917920cce5e60172d\""
+            }
+          ],
+          "quarantine": [
+            {
+              "path": "silver_versions/server/day=173/silver-v1/cf7ab4e436e64854a30ab23ac097fb35/quarantine/part-00000-a9753b88-aa6c-4e24-b2e1-212993d5c5fc-c000.zstd.parquet",
+              "bytes": 1646,
+              "identity": "\"e7b1ea5b8250fdb6d12f6e964eb3fda8\""
+            }
+          ]
+        },
+        "elapsed_seconds": 22.61187928999999,
+        "spark_application_id": "local-1795135279770",
+        "spark_master": "local[6]",
+        "output_partitions": 4,
+        "gpu_view_filter": null,
+        "benchmark_case": "server-173-6threads",
+        "wall_seconds": 28.163344015000007,
+        "threads": 6,
+        "driver_memory": "12g",
+        "remaining_disk_bytes": 27031601152,
+        "peak_process_group_rss_kib": 3019088,
+        "min_free_disk_bytes": 26545152000,
+        "output_bytes": 17124667,
+        "spark_task_metrics": {
+          "executor_cpu_ns": 27326727331,
+          "executor_run_ms": 44133,
+          "gc_ms": 709,
+          "memory_spilled_bytes": 0,
+          "disk_spilled_bytes": 0,
+          "peak_execution_memory_bytes": 136576992
+        }
+      },
+      {
+        "dataset": "pod",
+        "day": 3,
+        "synthetic_source": false,
+        "version": "silver-v1",
+        "code_sha256": "605b476e5f47d43652729925878d45e205994a6f6ff65cf23adc6c083f387d4a",
+        "source_fingerprint": "d951e51d395ccaafba071887d60c2598c79a20cadc984562ef58ab1d22cad9e5",
+        "source_bytes": 1385278793,
+        "accepted": "silver_versions/pod/day=3/silver-v1/cc529b4b99e94aac943c72c0509c29eb/accepted",
+        "quarantine": "silver_versions/pod/day=3/silver-v1/cc529b4b99e94aac943c72c0509c29eb/quarantine",
+        "quality": {
+          "input_rows": 25777119,
+          "accepted_rows": 25777119,
+          "quarantined_rows": 0,
+          "null_counts": {
+            "pod_id": 0,
+            "workload_id": 6843222,
+            "server_id": 0,
+            "cluster_id": 0,
+            "state_public": 0,
+            "gpu_spec_public": 0,
+            "server_gpu_count": 0,
+            "server_cpu_capacity_cores": 0,
+            "priority_class": 0,
+            "job_type_public": 0,
+            "model_type_public": 0,
+            "is_genai_request": 0,
+            "gpu_request": 0,
+            "gpu_mem_request": 0,
+            "cpu_request_cores": 0,
+            "used_gpu_hours": 0,
+            "avg_gpu_sm_util": 24161137,
+            "avg_gpu_mem_gib": 23767184,
+            "avg_cpu_request_util": 809406,
+            "avg_memory_util": 380669,
+            "ready_status": 1018869,
+            "schedule_delay_sec": 1018869,
+            "ready_delay_sec": 1018869
+          },
+          "quality_flags": {
+            "ready_delay_sec:negative": 6355388,
+            "job_type_public:unknown": 23678080,
+            "model_type_public:unknown": 23772700,
+            "schedule_delay_sec:negative": 6523,
+            "state_public:unknown": 25777119,
+            "avg_memory_util:negative": 164712
+          },
+          "quarantine_reasons": {},
+          "candidate_key_audit": {
+            "keys": [
+              "day",
+              "hour",
+              "pod_id",
+              "server_id"
+            ],
+            "duplicate_groups": 0,
+            "rows_in_duplicate_groups": 0,
+            "policy": "retain_and_report_unproven_key"
+          },
+          "inventory_join_audit": {
+            "status": "complete",
+            "inventory_source_fingerprint": "6af343ca6c26f606eb403aa07f7d1c190a5077167318acd7438daefca04a1f11",
+            "inventory_manifest": "manifests/silver/server/day=3.current.json",
+            "matched_observations": 25777119,
+            "unmatched_observations": 0,
+            "inventory_server_hours_without_observations": 12442,
+            "inventory_quarantined_rows": 0,
+            "interpretation": "Unmatched/missing observations are unknown, not zero demand."
+          }
+        },
+        "output_files": {
+          "accepted": [
+            {
+              "path": "silver_versions/pod/day=3/silver-v1/cc529b4b99e94aac943c72c0509c29eb/accepted/part-00000-cda49c73-e129-4f66-be5c-2d94f5118c1c-c000.zstd.parquet",
+              "bytes": 295817140,
+              "identity": "\"76e3cbf1426f57bfd82fe39824b575fe-5\""
+            },
+            {
+              "path": "silver_versions/pod/day=3/silver-v1/cc529b4b99e94aac943c72c0509c29eb/accepted/part-00001-cda49c73-e129-4f66-be5c-2d94f5118c1c-c000.zstd.parquet",
+              "bytes": 296078059,
+              "identity": "\"b5dbf21385c548d9101a414b1da8d9c6-5\""
+            },
+            {
+              "path": "silver_versions/pod/day=3/silver-v1/cc529b4b99e94aac943c72c0509c29eb/accepted/part-00002-cda49c73-e129-4f66-be5c-2d94f5118c1c-c000.zstd.parquet",
+              "bytes": 295807445,
+              "identity": "\"76fd970bf0f348f1005432172e558a80-5\""
+            },
+            {
+              "path": "silver_versions/pod/day=3/silver-v1/cc529b4b99e94aac943c72c0509c29eb/accepted/part-00003-cda49c73-e129-4f66-be5c-2d94f5118c1c-c000.zstd.parquet",
+              "bytes": 296062002,
+              "identity": "\"a87f7e1412086bf246f472a19ea47355-5\""
+            }
+          ],
+          "quarantine": [
+            {
+              "path": "silver_versions/pod/day=3/silver-v1/cc529b4b99e94aac943c72c0509c29eb/quarantine/part-00000-a723e56b-b11d-46a3-a3c8-50111124b1fd-c000.zstd.parquet",
+              "bytes": 3823,
+              "identity": "\"820d9f228712a830d30fa12f90eacf75\""
+            }
+          ]
+        },
+        "elapsed_seconds": 222.476509877,
+        "spark_application_id": "local-1795135308034",
+        "spark_master": "local[6]",
+        "output_partitions": 4,
+        "gpu_view_filter": "is_gpu_requesting = true",
+        "benchmark_case": "pod-3-6threads",
+        "wall_seconds": 229.12430237899991,
+        "threads": 6,
+        "driver_memory": "12g",
+        "remaining_disk_bytes": 27028332544,
+        "peak_process_group_rss_kib": 13790932,
+        "min_free_disk_bytes": 15603027968,
+        "output_bytes": 1183768469,
+        "spark_task_metrics": {
+          "executor_cpu_ns": 814085335891,
+          "executor_run_ms": 1071979,
+          "gc_ms": 36008,
+          "memory_spilled_bytes": 13690204992,
+          "disk_spilled_bytes": 3422055295,
+          "peak_execution_memory_bytes": 469761968
+        }
+      },
+      {
+        "dataset": "pod",
+        "day": 109,
+        "synthetic_source": false,
+        "version": "silver-v1",
+        "code_sha256": "605b476e5f47d43652729925878d45e205994a6f6ff65cf23adc6c083f387d4a",
+        "source_fingerprint": "20c92fad844470d082cc0ab687f01ee2480eee309fd8fc7ea3e750bf8e87da6d",
+        "source_bytes": 2013347052,
+        "accepted": "silver_versions/pod/day=109/silver-v1/0ed875a4e8eb4728b07d7c6cd510c4de/accepted",
+        "quarantine": "silver_versions/pod/day=109/silver-v1/0ed875a4e8eb4728b07d7c6cd510c4de/quarantine",
+        "quality": {
+          "input_rows": 36264315,
+          "accepted_rows": 36264315,
+          "quarantined_rows": 0,
+          "null_counts": {
+            "pod_id": 0,
+            "workload_id": 11097764,
+            "server_id": 0,
+            "cluster_id": 0,
+            "state_public": 0,
+            "gpu_spec_public": 0,
+            "server_gpu_count": 0,
+            "server_cpu_capacity_cores": 0,
+            "priority_class": 0,
+            "job_type_public": 0,
+            "model_type_public": 0,
+            "is_genai_request": 0,
+            "gpu_request": 0,
+            "gpu_mem_request": 0,
+            "cpu_request_cores": 0,
+            "used_gpu_hours": 0,
+            "avg_gpu_sm_util": 34205115,
+            "avg_gpu_mem_gib": 33573735,
+            "avg_cpu_request_util": 640909,
+            "avg_memory_util": 317217,
+            "ready_status": 4098003,
+            "schedule_delay_sec": 4098003,
+            "ready_delay_sec": 4098003
+          },
+          "quality_flags": {
+            "ready_delay_sec:negative": 8981744,
+            "job_type_public:unknown": 33458673,
+            "model_type_public:unknown": 33562158,
+            "schedule_delay_sec:negative": 7909,
+            "state_public:unknown": 36174656,
+            "avg_memory_util:negative": 68036
+          },
+          "quarantine_reasons": {},
+          "candidate_key_audit": {
+            "keys": [
+              "day",
+              "hour",
+              "pod_id",
+              "server_id"
+            ],
+            "duplicate_groups": 0,
+            "rows_in_duplicate_groups": 0,
+            "policy": "retain_and_report_unproven_key"
+          },
+          "inventory_join_audit": {
+            "status": "complete",
+            "inventory_source_fingerprint": "1d3bfeb030493d1a036d1d1f59dfa79f25e119252eab3e25e3643a9b8cae3670",
+            "inventory_manifest": "manifests/silver/server/day=109.current.json",
+            "matched_observations": 36264315,
+            "unmatched_observations": 0,
+            "inventory_server_hours_without_observations": 8903,
+            "inventory_quarantined_rows": 0,
+            "interpretation": "Unmatched/missing observations are unknown, not zero demand."
+          }
+        },
+        "output_files": {
+          "accepted": [
+            {
+              "path": "silver_versions/pod/day=109/silver-v1/0ed875a4e8eb4728b07d7c6cd510c4de/accepted/part-00000-1a34bfc9-0868-4c42-ba97-94784c219ea1-c000.zstd.parquet",
+              "bytes": 531656970,
+              "identity": "\"24121172a04168e9901609e52aa56bc6-8\""
+            },
+            {
+              "path": "silver_versions/pod/day=109/silver-v1/0ed875a4e8eb4728b07d7c6cd510c4de/accepted/part-00001-1a34bfc9-0868-4c42-ba97-94784c219ea1-c000.zstd.parquet",
+              "bytes": 531672260,
+              "identity": "\"357c250405afc904ed4305ee187eca9e-8\""
+            },
+            {
+              "path": "silver_versions/pod/day=109/silver-v1/0ed875a4e8eb4728b07d7c6cd510c4de/accepted/part-00002-1a34bfc9-0868-4c42-ba97-94784c219ea1-c000.zstd.parquet",
+              "bytes": 531263451,
+              "identity": "\"603521e549e2356c8e9dca5e276aaa9a-8\""
+            },
+            {
+              "path": "silver_versions/pod/day=109/silver-v1/0ed875a4e8eb4728b07d7c6cd510c4de/accepted/part-00003-1a34bfc9-0868-4c42-ba97-94784c219ea1-c000.zstd.parquet",
+              "bytes": 531052203,
+              "identity": "\"db0cc7f9828609a553b69c383d35e0d9-8\""
+            }
+          ],
+          "quarantine": [
+            {
+              "path": "silver_versions/pod/day=109/silver-v1/0ed875a4e8eb4728b07d7c6cd510c4de/quarantine/part-00000-bc6afc21-db0e-4a21-9196-9424384f39e0-c000.zstd.parquet",
+              "bytes": 3823,
+              "identity": "\"820d9f228712a830d30fa12f90eacf75\""
+            }
+          ]
+        },
+        "elapsed_seconds": 270.654505419,
+        "spark_application_id": "local-1795135537153",
+        "spark_master": "local[6]",
+        "output_partitions": 4,
+        "gpu_view_filter": "is_gpu_requesting = true",
+        "benchmark_case": "pod-109-6threads",
+        "wall_seconds": 277.362670275,
+        "threads": 6,
+        "driver_memory": "12g",
+        "remaining_disk_bytes": 27024060416,
+        "peak_process_group_rss_kib": 13805948,
+        "min_free_disk_bytes": 13441732608,
+        "output_bytes": 2125648707,
+        "spark_task_metrics": {
+          "executor_cpu_ns": 1142533679049,
+          "executor_run_ms": 1346765,
+          "gc_ms": 43881,
+          "memory_spilled_bytes": 15971905824,
+          "disk_spilled_bytes": 3885808222,
+          "peak_execution_memory_bytes": 469761968
+        }
+      },
+      {
+        "dataset": "pod",
+        "day": 173,
+        "synthetic_source": false,
+        "version": "silver-v1",
+        "code_sha256": "605b476e5f47d43652729925878d45e205994a6f6ff65cf23adc6c083f387d4a",
+        "source_fingerprint": "b2b10b6210f8db03074eaa8d8daa4cbb06916f9e8c164c27764ea7dbfeca9dba",
+        "source_bytes": 2336955011,
+        "accepted": "silver_versions/pod/day=173/silver-v1/8aadbd732f7d4e02b12a4a1b64fc9947/accepted",
+        "quarantine": "silver_versions/pod/day=173/silver-v1/8aadbd732f7d4e02b12a4a1b64fc9947/quarantine",
+        "quality": {
+          "input_rows": 43216910,
+          "accepted_rows": 43216910,
+          "quarantined_rows": 0,
+          "null_counts": {
+            "pod_id": 0,
+            "workload_id": 20708493,
+            "server_id": 0,
+            "cluster_id": 0,
+            "state_public": 0,
+            "gpu_spec_public": 0,
+            "server_gpu_count": 0,
+            "server_cpu_capacity_cores": 0,
+            "priority_class": 0,
+            "job_type_public": 0,
+            "model_type_public": 0,
+            "is_genai_request": 0,
+            "gpu_request": 0,
+            "gpu_mem_request": 0,
+            "cpu_request_cores": 0,
+            "used_gpu_hours": 0,
+            "avg_gpu_sm_util": 40756406,
+            "avg_gpu_mem_gib": 39902497,
+            "avg_cpu_request_util": 1482841,
+            "avg_memory_util": 601555,
+            "ready_status": 5732277,
+            "schedule_delay_sec": 5732277,
+            "ready_delay_sec": 5732277
+          },
+          "quality_flags": {
+            "ready_delay_sec:negative": 9376077,
+            "job_type_public:unknown": 39722758,
+            "model_type_public:unknown": 39559031,
+            "schedule_delay_sec:negative": 2902,
+            "state_public:unknown": 42973570,
+            "avg_memory_util:negative": 96681
+          },
+          "quarantine_reasons": {},
+          "candidate_key_audit": {
+            "keys": [
+              "day",
+              "hour",
+              "pod_id",
+              "server_id"
+            ],
+            "duplicate_groups": 0,
+            "rows_in_duplicate_groups": 0,
+            "policy": "retain_and_report_unproven_key"
+          },
+          "inventory_join_audit": {
+            "status": "complete",
+            "inventory_source_fingerprint": "930a0e7b9bc33ad7a2e7a45738607382644ae068564a00ebdc81dfd7a076654a",
+            "inventory_manifest": "manifests/silver/server/day=173.current.json",
+            "matched_observations": 43216910,
+            "unmatched_observations": 0,
+            "inventory_server_hours_without_observations": 5886,
+            "inventory_quarantined_rows": 0,
+            "interpretation": "Unmatched/missing observations are unknown, not zero demand."
+          }
+        },
+        "output_files": {
+          "accepted": [
+            {
+              "path": "silver_versions/pod/day=173/silver-v1/8aadbd732f7d4e02b12a4a1b64fc9947/accepted/part-00000-12bd2616-7d90-4c21-9599-aeab4dd5ae0b-c000.zstd.parquet",
+              "bytes": 606862842,
+              "identity": "\"3648fd369cf103098755aa6143772c09-10\""
+            },
+            {
+              "path": "silver_versions/pod/day=173/silver-v1/8aadbd732f7d4e02b12a4a1b64fc9947/accepted/part-00001-12bd2616-7d90-4c21-9599-aeab4dd5ae0b-c000.zstd.parquet",
+              "bytes": 607059237,
+              "identity": "\"a766fc573f723ae04240a44673c7d867-10\""
+            },
+            {
+              "path": "silver_versions/pod/day=173/silver-v1/8aadbd732f7d4e02b12a4a1b64fc9947/accepted/part-00002-12bd2616-7d90-4c21-9599-aeab4dd5ae0b-c000.zstd.parquet",
+              "bytes": 606993295,
+              "identity": "\"d60fee7f7a972f11afb1be0115239054-10\""
+            },
+            {
+              "path": "silver_versions/pod/day=173/silver-v1/8aadbd732f7d4e02b12a4a1b64fc9947/accepted/part-00003-12bd2616-7d90-4c21-9599-aeab4dd5ae0b-c000.zstd.parquet",
+              "bytes": 607072562,
+              "identity": "\"32009528b0c1188a015774cd8299575d-10\""
+            }
+          ],
+          "quarantine": [
+            {
+              "path": "silver_versions/pod/day=173/silver-v1/8aadbd732f7d4e02b12a4a1b64fc9947/quarantine/part-00000-89ad0d4b-83a1-4c0a-98cb-172e5002b479-c000.zstd.parquet",
+              "bytes": 3823,
+              "identity": "\"820d9f228712a830d30fa12f90eacf75\""
+            }
+          ]
+        },
+        "elapsed_seconds": 315.478576962,
+        "spark_application_id": "local-1795136617504",
+        "spark_master": "local[6]",
+        "output_partitions": 4,
+        "gpu_view_filter": "is_gpu_requesting = true",
+        "benchmark_case": "pod-173-6threads",
+        "wall_seconds": 323.61888338000006,
+        "threads": 6,
+        "driver_memory": "12g",
+        "remaining_disk_bytes": 58723303424,
+        "peak_process_group_rss_kib": 13767644,
+        "min_free_disk_bytes": 41430544384,
+        "output_bytes": 2427991759,
+        "spark_task_metrics": {
+          "executor_cpu_ns": 1336974445636,
+          "executor_run_ms": 1592193,
+          "gc_ms": 48887,
+          "memory_spilled_bytes": 27380409984,
+          "disk_spilled_bytes": 6600304341,
+          "peak_execution_memory_bytes": 536870816
+        }
+      },
+      {
+        "dataset": "pod",
+        "day": 109,
+        "synthetic_source": false,
+        "version": "silver-v1",
+        "code_sha256": "605b476e5f47d43652729925878d45e205994a6f6ff65cf23adc6c083f387d4a",
+        "source_fingerprint": "20c92fad844470d082cc0ab687f01ee2480eee309fd8fc7ea3e750bf8e87da6d",
+        "source_bytes": 2013347052,
+        "accepted": "silver_versions/pod/day=109/silver-v1/a9260c684da04adcb04528deae270c71/accepted",
+        "quarantine": "silver_versions/pod/day=109/silver-v1/a9260c684da04adcb04528deae270c71/quarantine",
+        "quality": {
+          "input_rows": 36264315,
+          "accepted_rows": 36264315,
+          "quarantined_rows": 0,
+          "null_counts": {
+            "pod_id": 0,
+            "workload_id": 11097764,
+            "server_id": 0,
+            "cluster_id": 0,
+            "state_public": 0,
+            "gpu_spec_public": 0,
+            "server_gpu_count": 0,
+            "server_cpu_capacity_cores": 0,
+            "priority_class": 0,
+            "job_type_public": 0,
+            "model_type_public": 0,
+            "is_genai_request": 0,
+            "gpu_request": 0,
+            "gpu_mem_request": 0,
+            "cpu_request_cores": 0,
+            "used_gpu_hours": 0,
+            "avg_gpu_sm_util": 34205115,
+            "avg_gpu_mem_gib": 33573735,
+            "avg_cpu_request_util": 640909,
+            "avg_memory_util": 317217,
+            "ready_status": 4098003,
+            "schedule_delay_sec": 4098003,
+            "ready_delay_sec": 4098003
+          },
+          "quality_flags": {
+            "ready_delay_sec:negative": 8981744,
+            "job_type_public:unknown": 33458673,
+            "model_type_public:unknown": 33562158,
+            "schedule_delay_sec:negative": 7909,
+            "state_public:unknown": 36174656,
+            "avg_memory_util:negative": 68036
+          },
+          "quarantine_reasons": {},
+          "candidate_key_audit": {
+            "keys": [
+              "day",
+              "hour",
+              "pod_id",
+              "server_id"
+            ],
+            "duplicate_groups": 0,
+            "rows_in_duplicate_groups": 0,
+            "policy": "retain_and_report_unproven_key"
+          },
+          "inventory_join_audit": {
+            "status": "complete",
+            "inventory_source_fingerprint": "1d3bfeb030493d1a036d1d1f59dfa79f25e119252eab3e25e3643a9b8cae3670",
+            "inventory_manifest": "manifests/silver/server/day=109.current.json",
+            "matched_observations": 36264315,
+            "unmatched_observations": 0,
+            "inventory_server_hours_without_observations": 8903,
+            "inventory_quarantined_rows": 0,
+            "interpretation": "Unmatched/missing observations are unknown, not zero demand."
+          }
+        },
+        "output_files": {
+          "accepted": [
+            {
+              "path": "silver_versions/pod/day=109/silver-v1/a9260c684da04adcb04528deae270c71/accepted/part-00000-8658219d-2b32-48ae-a85e-7f91fb1efb92-c000.zstd.parquet",
+              "bytes": 531656970,
+              "identity": "\"d7a1694d501a61535890915e58ec297d-8\""
+            },
+            {
+              "path": "silver_versions/pod/day=109/silver-v1/a9260c684da04adcb04528deae270c71/accepted/part-00001-8658219d-2b32-48ae-a85e-7f91fb1efb92-c000.zstd.parquet",
+              "bytes": 531672260,
+              "identity": "\"c969c51f857a9644bda774d4da9c5a3d-8\""
+            },
+            {
+              "path": "silver_versions/pod/day=109/silver-v1/a9260c684da04adcb04528deae270c71/accepted/part-00002-8658219d-2b32-48ae-a85e-7f91fb1efb92-c000.zstd.parquet",
+              "bytes": 531263451,
+              "identity": "\"e51983fa2a8e7ec35f859083e659036a-8\""
+            },
+            {
+              "path": "silver_versions/pod/day=109/silver-v1/a9260c684da04adcb04528deae270c71/accepted/part-00003-8658219d-2b32-48ae-a85e-7f91fb1efb92-c000.zstd.parquet",
+              "bytes": 531052203,
+              "identity": "\"9fc902cc0bfc5468a805c5a51e860842-8\""
+            }
+          ],
+          "quarantine": [
+            {
+              "path": "silver_versions/pod/day=109/silver-v1/a9260c684da04adcb04528deae270c71/quarantine/part-00000-18d3adda-83fd-4a37-9347-9e29b9fdb588-c000.zstd.parquet",
+              "bytes": 3823,
+              "identity": "\"820d9f228712a830d30fa12f90eacf75\""
+            }
+          ]
+        },
+        "elapsed_seconds": 357.61200190700004,
+        "spark_application_id": "local-1795136938251",
+        "spark_master": "local[3]",
+        "output_partitions": 4,
+        "gpu_view_filter": "is_gpu_requesting = true",
+        "benchmark_case": "pod-109-3threads",
+        "wall_seconds": 363.31053272300005,
+        "threads": 3,
+        "driver_memory": "12g",
+        "remaining_disk_bytes": 58719526912,
+        "peak_process_group_rss_kib": 8907448,
+        "min_free_disk_bytes": 45570977792,
+        "output_bytes": 2125648707,
+        "spark_task_metrics": {
+          "executor_cpu_ns": 858639856103,
+          "executor_run_ms": 917439,
+          "gc_ms": 21183,
+          "memory_spilled_bytes": 0,
+          "disk_spilled_bytes": 0,
+          "peak_execution_memory_bytes": 469761968
+        }
+      },
+      {
+        "dataset": "network",
+        "day": 109,
+        "synthetic_source": false,
+        "version": "silver-v1",
+        "code_sha256": "605b476e5f47d43652729925878d45e205994a6f6ff65cf23adc6c083f387d4a",
+        "source_fingerprint": "876adb734f317f190619ab21df372187ed29d9457c5bffb55674feec3026f6e9",
+        "source_bytes": 29010782,
+        "accepted": "silver_versions/network/day=109/silver-v1/dbf04d73e9614d57a62edd49b0ee2556/accepted",
+        "quarantine": "silver_versions/network/day=109/silver-v1/dbf04d73e9614d57a62edd49b0ee2556/quarantine",
+        "quality": {
+          "input_rows": 766207,
+          "accepted_rows": 766207,
+          "quarantined_rows": 0,
+          "null_counts": {
+            "server_id": 0,
+            "rx_gibps_avg": 0,
+            "tx_gibps_avg": 0
+          },
+          "quality_flags": {},
+          "quarantine_reasons": {},
+          "candidate_key_audit": {
+            "keys": [
+              "day",
+              "hour",
+              "server_id"
+            ],
+            "duplicate_groups": 0,
+            "rows_in_duplicate_groups": 0,
+            "policy": "quarantine_all_duplicate_keys"
+          },
+          "inventory_join_audit": {
+            "status": "complete",
+            "inventory_source_fingerprint": "1d3bfeb030493d1a036d1d1f59dfa79f25e119252eab3e25e3643a9b8cae3670",
+            "inventory_manifest": "manifests/silver/server/day=109.current.json",
+            "matched_observations": 766017,
+            "unmatched_observations": 190,
+            "inventory_server_hours_without_observations": 9087,
+            "inventory_quarantined_rows": 0,
+            "interpretation": "Unmatched/missing observations are unknown, not zero demand."
+          }
+        },
+        "output_files": {
+          "accepted": [
+            {
+              "path": "silver_versions/network/day=109/silver-v1/dbf04d73e9614d57a62edd49b0ee2556/accepted/part-00000-3f8c167f-2746-4176-b65a-6acd05155464-c000.zstd.parquet",
+              "bytes": 5725115,
+              "identity": "\"42626f2ac5367562385884204798d7fb\""
+            },
+            {
+              "path": "silver_versions/network/day=109/silver-v1/dbf04d73e9614d57a62edd49b0ee2556/accepted/part-00001-3f8c167f-2746-4176-b65a-6acd05155464-c000.zstd.parquet",
+              "bytes": 5731345,
+              "identity": "\"7039d0bdeffc91ded40be2ccd89db6d0\""
+            },
+            {
+              "path": "silver_versions/network/day=109/silver-v1/dbf04d73e9614d57a62edd49b0ee2556/accepted/part-00002-3f8c167f-2746-4176-b65a-6acd05155464-c000.zstd.parquet",
+              "bytes": 5728608,
+              "identity": "\"5bab8ef9f767fc67c67b7cb11f0ee281\""
+            },
+            {
+              "path": "silver_versions/network/day=109/silver-v1/dbf04d73e9614d57a62edd49b0ee2556/accepted/part-00003-3f8c167f-2746-4176-b65a-6acd05155464-c000.zstd.parquet",
+              "bytes": 5728005,
+              "identity": "\"0183a0426802f038aacef68f3ff256af\""
+            }
+          ],
+          "quarantine": [
+            {
+              "path": "silver_versions/network/day=109/silver-v1/dbf04d73e9614d57a62edd49b0ee2556/quarantine/part-00000-400ffa99-d67a-4fee-aea5-4982a0df9294-c000.zstd.parquet",
+              "bytes": 1360,
+              "identity": "\"4a590f868ca7a964118d8325e2839e5f\""
+            }
+          ]
+        },
+        "elapsed_seconds": 25.760440687000028,
+        "spark_application_id": "local-1795137301495",
+        "spark_master": "local[6]",
+        "output_partitions": 4,
+        "gpu_view_filter": null,
+        "benchmark_case": "network-109-6threads",
+        "wall_seconds": 30.15757101700001,
+        "threads": 6,
+        "driver_memory": "12g",
+        "remaining_disk_bytes": 58716655616,
+        "peak_process_group_rss_kib": 3167108,
+        "min_free_disk_bytes": 58583568384,
+        "output_bytes": 22914433,
+        "spark_task_metrics": {
+          "executor_cpu_ns": 28564357563,
+          "executor_run_ms": 49172,
+          "gc_ms": 762,
+          "memory_spilled_bytes": 0,
+          "disk_spilled_bytes": 0,
+          "peak_execution_memory_bytes": 273153984
+        }
+      },
+      {
+        "dataset": "execution",
+        "day": null,
+        "synthetic_source": false,
+        "version": "silver-v1",
+        "code_sha256": "605b476e5f47d43652729925878d45e205994a6f6ff65cf23adc6c083f387d4a",
+        "source_fingerprint": "115f46721bae61583447bbd483aa3533e6c2e6050a773b7912c1ae1aef25ffc3",
+        "source_bytes": 1188294827,
+        "accepted": "silver_versions/execution/all/silver-v1/688915b9c34e487687e3f7482c86bcbd/accepted",
+        "quarantine": "silver_versions/execution/all/silver-v1/688915b9c34e487687e3f7482c86bcbd/quarantine",
+        "quality": {
+          "input_rows": 40522321,
+          "accepted_rows": 40522321,
+          "quarantined_rows": 0,
+          "null_counts": {
+            "pod_id": 0,
+            "workload_id": 35729919,
+            "server_id": 0,
+            "gpu_spec_public": 0,
+            "priority_class": 0,
+            "job_type_public": 0,
+            "model_type_public": 0,
+            "is_genai_request": 0,
+            "gpu_request": 0,
+            "duration_hours": 0,
+            "schedule_delay_sec": 392427,
+            "ready_delay_sec": 392427,
+            "ready_status": 392427,
+            "schedule_status": 392427
+          },
+          "quality_flags": {
+            "ready_delay_sec:negative": 22502335,
+            "model_type_public:unknown": 1393920,
+            "job_type_public:unknown": 170977,
+            "schedule_delay_sec:negative": 232953
+          },
+          "quarantine_reasons": {},
+          "candidate_key_audit": {
+            "keys": [
+              "pod_id"
+            ],
+            "duplicate_groups": 2184460,
+            "rows_in_duplicate_groups": 6021763,
+            "policy": "retain_and_report_unproven_key"
+          },
+          "inventory_join_audit": {
+            "status": "not_applicable"
+          }
+        },
+        "output_files": {
+          "accepted": [
+            {
+              "path": "silver_versions/execution/all/silver-v1/688915b9c34e487687e3f7482c86bcbd/accepted/part-00000-187ec0da-363b-4e55-9c38-cd6d8329609c-c000.zstd.parquet",
+              "bytes": 361744007,
+              "identity": "\"545b4a2930bd04ffa9544ca84bfc8c15-6\""
+            },
+            {
+              "path": "silver_versions/execution/all/silver-v1/688915b9c34e487687e3f7482c86bcbd/accepted/part-00001-187ec0da-363b-4e55-9c38-cd6d8329609c-c000.zstd.parquet",
+              "bytes": 362132222,
+              "identity": "\"400b74700690b1d5a8375d1a965e9ae7-6\""
+            },
+            {
+              "path": "silver_versions/execution/all/silver-v1/688915b9c34e487687e3f7482c86bcbd/accepted/part-00002-187ec0da-363b-4e55-9c38-cd6d8329609c-c000.zstd.parquet",
+              "bytes": 361907994,
+              "identity": "\"d78881c2d955f33ca667b076c519a6ea-6\""
+            },
+            {
+              "path": "silver_versions/execution/all/silver-v1/688915b9c34e487687e3f7482c86bcbd/accepted/part-00003-187ec0da-363b-4e55-9c38-cd6d8329609c-c000.zstd.parquet",
+              "bytes": 361299393,
+              "identity": "\"36629bac22b0125cfd807cf10a7c9a31-6\""
+            }
+          ],
+          "quarantine": [
+            {
+              "path": "silver_versions/execution/all/silver-v1/688915b9c34e487687e3f7482c86bcbd/quarantine/part-00000-0b8a390a-fc1f-4520-b7b1-dc83a3108487-c000.zstd.parquet",
+              "bytes": 2658,
+              "identity": "\"d3f46abe2444f7dc639585d65be4b79f\""
+            }
+          ]
+        },
+        "elapsed_seconds": 221.78790348500002,
+        "spark_application_id": "local-1795137331853",
+        "spark_master": "local[6]",
+        "output_partitions": 4,
+        "gpu_view_filter": null,
+        "benchmark_case": "execution-0-6threads",
+        "wall_seconds": 228.98579465700004,
+        "threads": 6,
+        "driver_memory": "12g",
+        "remaining_disk_bytes": 58996178944,
+        "peak_process_group_rss_kib": 13735428,
+        "min_free_disk_bytes": 47253573632,
+        "output_bytes": 1447086274,
+        "spark_task_metrics": {
+          "executor_cpu_ns": 714775580435,
+          "executor_run_ms": 976880,
+          "gc_ms": 24283,
+          "memory_spilled_bytes": 18387824352,
+          "disk_spilled_bytes": 4678656679,
+          "peak_execution_memory_bytes": 671088544
+        }
+      }
+    ],
+    "session_wall_seconds": 1055.2432628380002,
+    "resumed_cases": 5,
+    "audit_reports": [
+      {
+        "dataset": "pod",
+        "day": 3,
+        "wall_seconds": 28.117881774000125,
+        "peak_process_group_rss_kib": 2799924,
+        "min_free_disk_bytes": 58591600640
+      },
+      {
+        "dataset": "pod",
+        "day": 109,
+        "wall_seconds": 30.133231244999934,
+        "peak_process_group_rss_kib": 4632588,
+        "min_free_disk_bytes": 58566803456
+      },
+      {
+        "dataset": "pod",
+        "day": 173,
+        "wall_seconds": 34.14276635199985,
+        "peak_process_group_rss_kib": 3397100,
+        "min_free_disk_bytes": 58543996928
+      },
+      {
+        "dataset": "network",
+        "day": 109,
+        "wall_seconds": 16.063994079000167,
+        "peak_process_group_rss_kib": 2776376,
+        "min_free_disk_bytes": 58684100608
+      }
+    ]
+  }
+}

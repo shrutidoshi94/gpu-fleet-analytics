@@ -1,0 +1,10 @@
+{"updated_utc": "2026-11-20T22:17:21.621705+00:00", "dag_state": "running", "task_states": {"success": 379, "running": 1}, "free_disk_gib": 53.34298324584961}
+{"updated_utc": "2026-11-20T22:18:21.710314+00:00", "dag_state": "running", "task_states": {"success": 379, "running": 1}, "free_disk_gib": 53.08135986328125}
+{"updated_utc": "2026-11-20T22:19:21.897967+00:00", "dag_state": "success", "task_states": {"success": 380}, "free_disk_gib": 53.607635498046875}
+Traceback (most recent call last):
+  File "/opt/gpu-fleet/ops/silver_supervisor.py", line 97, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/opt/gpu-fleet/ops/silver_supervisor.py", line 71, in main
+    from silver import Store,CODE_SHA256,partition,source_inventory
+ModuleNotFoundError: No module named 'silver'

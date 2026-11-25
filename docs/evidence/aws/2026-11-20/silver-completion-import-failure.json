@@ -1,0 +1,23 @@
+{
+  "started_utc": "2026-11-20T03:50:54.594530+00:00",
+  "updated_utc": "2026-11-20T22:19:22.351784+00:00",
+  "run_id": "silver_full_20261119_r2",
+  "dag_state": "success",
+  "task_states": {
+    "success": 380
+  },
+  "runtime_hours": 18.474250959530277,
+  "seconds_since_task_progress": 0.11461973190307617,
+  "free_disk_gib": 53.607635498046875,
+  "services": {
+    "api": "active",
+    "scheduler": "active",
+    "dag-processor": "active"
+  },
+  "expected_transform_partitions": 378,
+  "active_tasks": [],
+  "failed_tasks": [],
+  "supervisor_service_result": "exit-code",
+  "worker_shutdown_requested": true,
+  "run_outcome": "failed"
+}

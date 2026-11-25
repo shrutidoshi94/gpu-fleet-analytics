@@ -1,0 +1,68 @@
+{
+  "method": "All original Bronze Parquet footers, not a sample; statistics are metadata only",
+  "observations": [
+    {
+      "dataset": "pod",
+      "source_key": "bronze/pod/day=5/hour=06/part-000.parquet",
+      "rows": 1123104,
+      "code": "zero_requests_with_positive_gpu_activity",
+      "interpretation": "Review source snapshot consistency; do not treat this hour as proven zero demand or idle capacity.",
+      "evidence": {
+        "gpu_request": {
+          "physical_type": "bigint",
+          "known_null_rows": 0,
+          "row_groups_missing_statistics": 0,
+          "min": 0,
+          "max": 0,
+          "unsafe_integer_range_groups": 0,
+          "integer_range_requires_row_check_groups": 0
+        },
+        "cpu_request_cores": {
+          "physical_type": "bigint",
+          "known_null_rows": 0,
+          "row_groups_missing_statistics": 0,
+          "min": 0,
+          "max": 0,
+          "unsafe_integer_range_groups": 0,
+          "integer_range_requires_row_check_groups": 0
+        },
+        "used_gpu_hours": {
+          "physical_type": "bigint",
+          "known_null_rows": 0,
+          "row_groups_missing_statistics": 0,
+          "min": 0,
+          "max": 0,
+          "unsafe_integer_range_groups": 0,
+          "integer_range_requires_row_check_groups": 0
+        },
+        "avg_gpu_sm_util": {
+          "physical_type": "double",
+          "known_null_rows": 1056037,
+          "row_groups_missing_statistics": 0,
+          "min": -0.0,
+          "max": 1193.911642707912,
+          "unsafe_integer_range_groups": 0,
+          "integer_range_requires_row_check_groups": 0
+        },
+        "avg_cpu_request_util": {
+          "physical_type": "null",
+          "known_null_rows": 1123104,
+          "row_groups_missing_statistics": 0,
+          "min": null,
+          "max": null,
+          "unsafe_integer_range_groups": 0,
+          "integer_range_requires_row_check_groups": 0
+        },
+        "avg_memory_util": {
+          "physical_type": "null",
+          "known_null_rows": 1123104,
+          "row_groups_missing_statistics": 0,
+          "min": null,
+          "max": null,
+          "unsafe_integer_range_groups": 0,
+          "integer_range_requires_row_check_groups": 0
+        }
+      }
+    }
+  ]
+}

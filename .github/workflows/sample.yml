@@ -1,0 +1,44 @@
+name: Sample pipeline
+on: [push, pull_request]
+jobs:
+  sample:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - run: pip install -r requirements.txt
+      - run: pip install 'apache-airflow==3.0.6' --constraint https://raw.githubusercontent.com/apache/airflow/constraints-3.0.6/constraints-3.11.txt
+      - run: pip check
+      - run: python -m unittest discover -s tests -v
+      - run: python examples/make_sample.py
+      - run: TRACE_DIR=sample python pipeline.py network 109
+      - name: Verify Airflow orchestration
+        env:
+          TRACE_PROJECT: ${{ github.workspace }}
+          TRACE_DIR: ${{ github.workspace }}/sample
+          AIRFLOW_HOME: ${{ github.workspace }}/airflow-home
+          AIRFLOW__CORE__DAGS_FOLDER: ${{ github.workspace }}/dags
+          SPARK_LOCAL_IP: 127.0.0.1
+        run: |
+          airflow db migrate
+          airflow dags test gpu_trace_day 2026-01-01
+      - name: Verify Silver-only orchestration
+        env:
+          TRACE_PROJECT: ${{ github.workspace }}
+          TRACE_SILVER_ROOT: ${{ github.workspace }}/silver-sample
+          AIRFLOW_HOME: ${{ github.workspace }}/airflow-home
+          AIRFLOW__CORE__DAGS_FOLDER: ${{ github.workspace }}/dags
+          SPARK_LOCAL_IP: 127.0.0.1
+        run: |
+          python examples/make_silver_sample.py silver-sample
+          airflow dags test gpu_silver_backfill 2026-01-02 -c '{"datasets":["server","pod","network","execution"],"days":[109]}'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: synthetic-network-summary
+          path: output/gold/network/day=109/summary.json

@@ -1,0 +1,9 @@
+test_concurrent_percentile_and_unknowns (test_dashboard.DashboardMath.test_concurrent_percentile_and_unknowns) ... ok
+test_weighted_measurements (test_dashboard.DashboardMath.test_weighted_measurements) ... ok
+test_views_and_integrity_without_network (test_dashboard.DashboardOffline.test_views_and_integrity_without_network) ... 2026-11-23 13:44:02.827 WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 1.942s
+
+OK

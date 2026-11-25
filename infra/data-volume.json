@@ -1,0 +1,54 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Temporary 500 GiB GPU fleet data disk; delete after preserving results.",
+  "Parameters": {
+    "InstanceId": {
+      "Type": "AWS::EC2::Instance::Id"
+    },
+    "AvailabilityZone": {
+      "Type": "AWS::EC2::AvailabilityZone::Name"
+    }
+  },
+  "Resources": {
+    "DataVolume": {
+      "Type": "AWS::EC2::Volume",
+      "Properties": {
+        "AvailabilityZone": {
+          "Ref": "AvailabilityZone"
+        },
+        "Size": 500,
+        "VolumeType": "gp3",
+        "Encrypted": true,
+        "Tags": [
+          {
+            "Key": "Project",
+            "Value": "gpu-fleet-analytics"
+          },
+          {
+            "Key": "Name",
+            "Value": "gpu-fleet-data"
+          }
+        ]
+      }
+    },
+    "Attachment": {
+      "Type": "AWS::EC2::VolumeAttachment",
+      "Properties": {
+        "InstanceId": {
+          "Ref": "InstanceId"
+        },
+        "VolumeId": {
+          "Ref": "DataVolume"
+        },
+        "Device": "/dev/sdf"
+      }
+    }
+  },
+  "Outputs": {
+    "VolumeId": {
+      "Value": {
+        "Ref": "DataVolume"
+      }
+    }
+  }
+}

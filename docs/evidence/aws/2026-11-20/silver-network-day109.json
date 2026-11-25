@@ -1,0 +1,99 @@
+{
+  "dataset": "network",
+  "day": 109,
+  "synthetic_source": false,
+  "version": "silver-v1",
+  "code_sha256": "99a4033d88e95eed80ff20dcf6ec87cdd149ce316a05ccaaf3d44ab7b639b2a0",
+  "source_fingerprint": "b8a544913f112ef1e2765eb29c491574ef9041603a6a2f1fa8979cd062113e47",
+  "source_bytes": 29010782,
+  "accepted": "silver_versions/network/day=109/silver-v1/81adf569a20b4623804394d9dfaae204/accepted",
+  "quarantine": "silver_versions/network/day=109/silver-v1/81adf569a20b4623804394d9dfaae204/quarantine",
+  "quality": {
+    "input_rows": 766207,
+    "accepted_rows": 766207,
+    "quarantined_rows": 0,
+    "null_counts": {
+      "server_id": 0,
+      "rx_gibps_avg": 0,
+      "tx_gibps_avg": 0
+    },
+    "blank_counts": {
+      "server_id": 0
+    },
+    "unknown_literal_counts": {
+      "server_id": 0
+    },
+    "non_finite_counts": {
+      "rx_gibps_avg": {
+        "nan": 0,
+        "positive_infinity": 0,
+        "negative_infinity": 0
+      },
+      "tx_gibps_avg": {
+        "nan": 0,
+        "positive_infinity": 0,
+        "negative_infinity": 0
+      }
+    },
+    "boolean_counts": {},
+    "quality_flags": {},
+    "quarantine_reasons": {},
+    "candidate_key_audit": {
+      "keys": [
+        "day",
+        "hour",
+        "server_id"
+      ],
+      "duplicate_groups": 0,
+      "rows_in_duplicate_groups": 0,
+      "policy": "quarantine_all_duplicate_keys"
+    },
+    "source_observations": [],
+    "inventory_join_audit": {
+      "status": "complete",
+      "inventory_source_fingerprint": "b738ac49d13790f7f93bb14885bded066037edf7c3e692576db91a8599d8b09a",
+      "inventory_manifest": "manifests/silver/server/day=109.current.json",
+      "matched_observations": 766017,
+      "unmatched_observations": 190,
+      "inventory_server_hours_without_observations": 9087,
+      "inventory_quarantined_rows": 0,
+      "interpretation": "Unmatched/missing observations are unknown, not zero demand."
+    }
+  },
+  "output_files": {
+    "accepted": [
+      {
+        "path": "silver_versions/network/day=109/silver-v1/81adf569a20b4623804394d9dfaae204/accepted/part-00000-aba1eb13-46e2-4ea1-8a75-a5e64fef69cd-c000.zstd.parquet",
+        "bytes": 5729075,
+        "identity": "\"8474bb483e0efe2ca86eefd9722275bc\""
+      },
+      {
+        "path": "silver_versions/network/day=109/silver-v1/81adf569a20b4623804394d9dfaae204/accepted/part-00001-aba1eb13-46e2-4ea1-8a75-a5e64fef69cd-c000.zstd.parquet",
+        "bytes": 5732061,
+        "identity": "\"6a5099071db7ce4cbf4dde20baa171e9\""
+      },
+      {
+        "path": "silver_versions/network/day=109/silver-v1/81adf569a20b4623804394d9dfaae204/accepted/part-00002-aba1eb13-46e2-4ea1-8a75-a5e64fef69cd-c000.zstd.parquet",
+        "bytes": 5726941,
+        "identity": "\"627395ccf829eb535832130e768ed82a\""
+      },
+      {
+        "path": "silver_versions/network/day=109/silver-v1/81adf569a20b4623804394d9dfaae204/accepted/part-00003-aba1eb13-46e2-4ea1-8a75-a5e64fef69cd-c000.zstd.parquet",
+        "bytes": 5724310,
+        "identity": "\"0d14b9de9b6ea86efc92033f19993594\""
+      }
+    ],
+    "quarantine": [
+      {
+        "path": "silver_versions/network/day=109/silver-v1/81adf569a20b4623804394d9dfaae204/quarantine/part-00000-e900fcf7-2310-48c4-9e0d-9f95f63ad8f5-c000.zstd.parquet",
+        "bytes": 1360,
+        "identity": "\"4a590f868ca7a964118d8325e2839e5f\""
+      }
+    ]
+  },
+  "elapsed_seconds": 25.484423215995776,
+  "spark_application_id": "local-1795179525709",
+  "spark_master": "local[6]",
+  "output_partitions": 4,
+  "gpu_view_filter": null
+}

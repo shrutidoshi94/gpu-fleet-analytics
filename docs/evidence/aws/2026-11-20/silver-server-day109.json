@@ -1,0 +1,90 @@
+{
+  "dataset": "server",
+  "day": 109,
+  "synthetic_source": false,
+  "version": "silver-v1",
+  "code_sha256": "99a4033d88e95eed80ff20dcf6ec87cdd149ce316a05ccaaf3d44ab7b639b2a0",
+  "source_fingerprint": "b738ac49d13790f7f93bb14885bded066037edf7c3e692576db91a8599d8b09a",
+  "source_bytes": 17478905,
+  "accepted": "silver_versions/server/day=109/silver-v1/6345da608b3d4e77b8544cfb8949463a/accepted",
+  "quarantine": "silver_versions/server/day=109/silver-v1/6345da608b3d4e77b8544cfb8949463a/quarantine",
+  "quality": {
+    "input_rows": 775104,
+    "accepted_rows": 775104,
+    "quarantined_rows": 0,
+    "null_counts": {
+      "server_id": 0,
+      "cluster_id": 0,
+      "asw_id": 7536,
+      "gpu_spec_public": 0,
+      "gpu_count": 0,
+      "cpu_capacity_cores": 0
+    },
+    "blank_counts": {
+      "server_id": 0,
+      "cluster_id": 0,
+      "asw_id": 0,
+      "gpu_spec_public": 0
+    },
+    "unknown_literal_counts": {
+      "server_id": 0,
+      "cluster_id": 0,
+      "asw_id": 0,
+      "gpu_spec_public": 0
+    },
+    "non_finite_counts": {},
+    "boolean_counts": {},
+    "quality_flags": {},
+    "quarantine_reasons": {},
+    "candidate_key_audit": {
+      "keys": [
+        "day",
+        "hour",
+        "server_id"
+      ],
+      "duplicate_groups": 0,
+      "rows_in_duplicate_groups": 0,
+      "policy": "quarantine_all_duplicate_keys"
+    },
+    "source_observations": [],
+    "inventory_join_audit": {
+      "status": "not_applicable"
+    }
+  },
+  "output_files": {
+    "accepted": [
+      {
+        "path": "silver_versions/server/day=109/silver-v1/6345da608b3d4e77b8544cfb8949463a/accepted/part-00000-3f0a67c5-07a6-4355-b074-1d7eb8397110-c000.zstd.parquet",
+        "bytes": 3413752,
+        "identity": "\"cc430981ceb4d6bd0e95a3914c6d049e\""
+      },
+      {
+        "path": "silver_versions/server/day=109/silver-v1/6345da608b3d4e77b8544cfb8949463a/accepted/part-00001-3f0a67c5-07a6-4355-b074-1d7eb8397110-c000.zstd.parquet",
+        "bytes": 3407074,
+        "identity": "\"a062e1c982ee8f5ce0a519c1d5f30aab\""
+      },
+      {
+        "path": "silver_versions/server/day=109/silver-v1/6345da608b3d4e77b8544cfb8949463a/accepted/part-00002-3f0a67c5-07a6-4355-b074-1d7eb8397110-c000.zstd.parquet",
+        "bytes": 3406401,
+        "identity": "\"f153ba64968f870f84506e7e5196deb5\""
+      },
+      {
+        "path": "silver_versions/server/day=109/silver-v1/6345da608b3d4e77b8544cfb8949463a/accepted/part-00003-3f0a67c5-07a6-4355-b074-1d7eb8397110-c000.zstd.parquet",
+        "bytes": 3408669,
+        "identity": "\"4aefeb661cbdccd89c0feb29a1f8e4be\""
+      }
+    ],
+    "quarantine": [
+      {
+        "path": "silver_versions/server/day=109/silver-v1/6345da608b3d4e77b8544cfb8949463a/quarantine/part-00000-0dad4b7a-6f8e-4208-b3a9-728784893e72-c000.zstd.parquet",
+        "bytes": 1646,
+        "identity": "\"e7b1ea5b8250fdb6d12f6e964eb3fda8\""
+      }
+    ]
+  },
+  "elapsed_seconds": 22.818305351000163,
+  "spark_application_id": "local-1795179203599",
+  "spark_master": "local[6]",
+  "output_partitions": 4,
+  "gpu_view_filter": null
+}

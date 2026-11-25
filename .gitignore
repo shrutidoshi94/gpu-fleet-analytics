@@ -1,0 +1,23 @@
+.venv/
+sample/
+output/
+*.zip
+__pycache__/
+airflow-home/
+
+# Generated/private runtime state
+.aws/
+.env
+.env.*
+*.pem
+*.key
+*.dump
+production-secrets.json
+production.env.sh
+*generated_passwords*.json
+silver-sample/
+airflow-production/
+*.parquet
+
+# Local verified historical dashboard snapshot
+data/gold/

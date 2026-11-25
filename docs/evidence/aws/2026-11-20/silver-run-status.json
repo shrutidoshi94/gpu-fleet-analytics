@@ -1,0 +1,34 @@
+{
+  "started_utc": "2026-11-20T03:50:54.594530+00:00",
+  "updated_utc": "2026-11-21T00:03:24.534323+00:00",
+  "run_id": "silver_full_20261119_r2",
+  "dag_state": "success",
+  "task_states": {
+    "success": 380
+  },
+  "runtime_hours": 20.208316613055555,
+  "seconds_since_task_progress": 0.02597975730895996,
+  "free_disk_gib": 53.67484664916992,
+  "services": {
+    "api": "active",
+    "scheduler": "active",
+    "dag-processor": "active"
+  },
+  "expected_transform_partitions": 378,
+  "active_tasks": [],
+  "failed_tasks": [],
+  "health_check": {
+    "completed_task_reports": 588,
+    "row_accounting_ok": true,
+    "quarantined_rows_across_reports": 0,
+    "unmatched_final_audit_observations": 1940
+  },
+  "verified_complete": true,
+  "verified_partitions": 378,
+  "accepted_rows": 6759480015,
+  "quarantined_rows": 0,
+  "completed_utc": "2026-11-21T00:04:43.546351+00:00",
+  "run_outcome": "success",
+  "worker_shutdown_requested": false,
+  "handoff_gold_release": "gold_20261120"
+}

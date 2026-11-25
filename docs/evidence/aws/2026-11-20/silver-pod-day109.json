@@ -1,0 +1,179 @@
+{
+  "dataset": "pod",
+  "day": 109,
+  "synthetic_source": false,
+  "version": "silver-v1",
+  "code_sha256": "99a4033d88e95eed80ff20dcf6ec87cdd149ce316a05ccaaf3d44ab7b639b2a0",
+  "source_fingerprint": "25c86d55e5d9da84dfb1489b350d07e6f16fbd6785592ed954d0be1ede1ebc86",
+  "source_bytes": 2013347052,
+  "accepted": "silver_versions/pod/day=109/silver-v1/5d9bd4a7731d42ddbadde351998674bc/accepted",
+  "quarantine": "silver_versions/pod/day=109/silver-v1/5d9bd4a7731d42ddbadde351998674bc/quarantine",
+  "quality": {
+    "input_rows": 36264315,
+    "accepted_rows": 36264315,
+    "quarantined_rows": 0,
+    "null_counts": {
+      "pod_id": 0,
+      "workload_id": 11097764,
+      "server_id": 0,
+      "cluster_id": 0,
+      "state_public": 0,
+      "gpu_spec_public": 0,
+      "server_gpu_count": 0,
+      "server_cpu_capacity_cores": 0,
+      "priority_class": 0,
+      "job_type_public": 0,
+      "model_type_public": 0,
+      "is_genai_request": 0,
+      "gpu_request": 0,
+      "gpu_mem_request": 0,
+      "cpu_request_cores": 0,
+      "used_gpu_hours": 0,
+      "avg_gpu_sm_util": 34205115,
+      "avg_gpu_mem_gib": 33573735,
+      "avg_cpu_request_util": 640909,
+      "avg_memory_util": 317217,
+      "ready_status": 4098003,
+      "schedule_delay_sec": 4098003,
+      "ready_delay_sec": 4098003
+    },
+    "blank_counts": {
+      "pod_id": 0,
+      "workload_id": 0,
+      "server_id": 0,
+      "cluster_id": 0,
+      "state_public": 0,
+      "gpu_spec_public": 0,
+      "priority_class": 0,
+      "job_type_public": 0,
+      "model_type_public": 0
+    },
+    "unknown_literal_counts": {
+      "pod_id": 0,
+      "workload_id": 0,
+      "server_id": 0,
+      "cluster_id": 0,
+      "state_public": 36174656,
+      "gpu_spec_public": 0,
+      "priority_class": 0,
+      "job_type_public": 33458673,
+      "model_type_public": 33562158
+    },
+    "non_finite_counts": {
+      "gpu_request": {
+        "nan": 0,
+        "positive_infinity": 0,
+        "negative_infinity": 0
+      },
+      "cpu_request_cores": {
+        "nan": 0,
+        "positive_infinity": 0,
+        "negative_infinity": 0
+      },
+      "used_gpu_hours": {
+        "nan": 0,
+        "positive_infinity": 0,
+        "negative_infinity": 0
+      },
+      "avg_gpu_sm_util": {
+        "nan": 0,
+        "positive_infinity": 0,
+        "negative_infinity": 0
+      },
+      "avg_gpu_mem_gib": {
+        "nan": 0,
+        "positive_infinity": 0,
+        "negative_infinity": 0
+      },
+      "avg_cpu_request_util": {
+        "nan": 0,
+        "positive_infinity": 0,
+        "negative_infinity": 0
+      },
+      "avg_memory_util": {
+        "nan": 0,
+        "positive_infinity": 0,
+        "negative_infinity": 0
+      }
+    },
+    "boolean_counts": {
+      "is_genai_request": {
+        "true": 1172746,
+        "false": 35091569,
+        "null": 0
+      },
+      "ready_status": {
+        "true": 28947941,
+        "false": 3218371,
+        "null": 4098003
+      }
+    },
+    "quality_flags": {
+      "ready_delay_sec:negative": 8981744,
+      "job_type_public:unknown": 33458673,
+      "model_type_public:unknown": 33562158,
+      "schedule_delay_sec:negative": 7909,
+      "state_public:unknown": 36174656,
+      "avg_memory_util:negative": 68036
+    },
+    "quarantine_reasons": {},
+    "candidate_key_audit": {
+      "keys": [
+        "day",
+        "hour",
+        "pod_id",
+        "server_id"
+      ],
+      "duplicate_groups": 0,
+      "rows_in_duplicate_groups": 0,
+      "policy": "retain_and_report_unproven_key"
+    },
+    "source_observations": [],
+    "inventory_join_audit": {
+      "status": "complete",
+      "inventory_source_fingerprint": "b738ac49d13790f7f93bb14885bded066037edf7c3e692576db91a8599d8b09a",
+      "inventory_manifest": "manifests/silver/server/day=109.current.json",
+      "matched_observations": 36264315,
+      "unmatched_observations": 0,
+      "inventory_server_hours_without_observations": 8903,
+      "inventory_quarantined_rows": 0,
+      "interpretation": "Unmatched/missing observations are unknown, not zero demand."
+    }
+  },
+  "output_files": {
+    "accepted": [
+      {
+        "path": "silver_versions/pod/day=109/silver-v1/5d9bd4a7731d42ddbadde351998674bc/accepted/part-00000-9d01146a-1146-4ac7-831e-27e5d521454d-c000.zstd.parquet",
+        "bytes": 531234792,
+        "identity": "\"a705f187dcfb9f9592fd8de58444148a-8\""
+      },
+      {
+        "path": "silver_versions/pod/day=109/silver-v1/5d9bd4a7731d42ddbadde351998674bc/accepted/part-00001-9d01146a-1146-4ac7-831e-27e5d521454d-c000.zstd.parquet",
+        "bytes": 531347986,
+        "identity": "\"08b5d45338d357f9723be19152e98f20-8\""
+      },
+      {
+        "path": "silver_versions/pod/day=109/silver-v1/5d9bd4a7731d42ddbadde351998674bc/accepted/part-00002-9d01146a-1146-4ac7-831e-27e5d521454d-c000.zstd.parquet",
+        "bytes": 531735132,
+        "identity": "\"d4c05a653b81bcdc44457ecb45ac94c5-8\""
+      },
+      {
+        "path": "silver_versions/pod/day=109/silver-v1/5d9bd4a7731d42ddbadde351998674bc/accepted/part-00003-9d01146a-1146-4ac7-831e-27e5d521454d-c000.zstd.parquet",
+        "bytes": 531394390,
+        "identity": "\"c739554190650efb94907671f944f2dc-8\""
+      }
+    ],
+    "quarantine": [
+      {
+        "path": "silver_versions/pod/day=109/silver-v1/5d9bd4a7731d42ddbadde351998674bc/quarantine/part-00000-b762d793-ed8c-45c6-abfe-b77e3e0a0c77-c000.zstd.parquet",
+        "bytes": 3823,
+        "identity": "\"820d9f228712a830d30fa12f90eacf75\""
+      }
+    ]
+  },
+  "elapsed_seconds": 283.980916489003,
+  "spark_application_id": "local-1795179234728",
+  "spark_master": "local[6]",
+  "output_partitions": 4,
+  "gpu_view_filter": "is_gpu_requesting = true"
+}

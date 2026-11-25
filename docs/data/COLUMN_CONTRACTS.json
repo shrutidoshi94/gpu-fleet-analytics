@@ -1,0 +1,425 @@
+{
+  "version": "silver-v1-recovery",
+  "tables": {
+    "pod": {
+      "pod_id": {
+        "logical_type": "string",
+        "allowed_physical_types": [
+          "string",
+          "null"
+        ],
+        "semantics": "Opaque string, not a number. Candidate uniqueness is audited at the documented grain; no cross-hour blind deduplication."
+      },
+      "workload_id": {
+        "logical_type": "string",
+        "allowed_physical_types": [
+          "string",
+          "null"
+        ],
+        "semantics": "Nullable workload grouping identity. Nulls are retained; not a unique join key and must not become an empty string."
+      },
+      "server_id": {
+        "logical_type": "string",
+        "allowed_physical_types": [
+          "string",
+          "null"
+        ],
+        "semantics": "Join identity with day/hour. Inventory/network missing or blank server keys and ALL duplicate server-hour rows are quarantined; workloads/execution missing identities are retained and reported."
+      },
+      "cluster_id": {
+        "logical_type": "string",
+        "allowed_physical_types": [
+          "string",
+          "null"
+        ],
+        "semantics": "Opaque cohort identity; missing/blank values remain explicit. Do not invent a cluster or join by row position."
+      },
+      "state_public": {
+        "logical_type": "string",
+        "allowed_physical_types": [
+          "string",
+          "null"
+        ],
+        "semantics": "Open categorical vocabulary. Unknown is not failed or inactive. Preserve and report unknown/null/blank observations."
+      },
+      "gpu_spec_public": {
+        "logical_type": "string",
+        "allowed_physical_types": [
+          "string",
+          "null"
+        ],
+        "semantics": "Open/masked model categories; no inferred vendor identity or automatic hardware interchangeability."
+      },
+      "server_gpu_count": {
+        "logical_type": "bigint",
+        "allowed_physical_types": [
+          "int32",
+          "int64",
+          "null"
+        ],
+        "semantics": "Capacity hint from workload record; do not multiply into fleet capacity across pods. Zero and null remain distinct."
+      },
+      "server_cpu_capacity_cores": {
+        "logical_type": "bigint",
+        "allowed_physical_types": [
+          "int32",
+          "int64",
+          "null"
+        ],
+        "semantics": "Preserve source capacity hint; do not multiply across workload rows. Negative values flagged."
+      },
+      "priority_class": {
+        "logical_type": "string",
+        "allowed_physical_types": [
+          "string",
+          "null"
+        ],
+        "semantics": "Open categorical vocabulary. Preserve labels; count null/blank/Unknown without inventing priority ordering."
+      },
+      "job_type_public": {
+        "logical_type": "string",
+        "allowed_physical_types": [
+          "string",
+          "null"
+        ],
+        "semantics": "Open categorical vocabulary. Do not reject a new label or equate workload types for performance analysis."
+      },
+      "model_type_public": {
+        "logical_type": "string",
+        "allowed_physical_types": [
+          "string",
+          "null"
+        ],
+        "semantics": "Open/masked categorical vocabulary; null and Unknown remain distinct and visible."
+      },
+      "is_genai_request": {
+        "logical_type": "boolean",
+        "allowed_physical_types": [
+          "boolean",
+          "null"
+        ],
+        "semantics": "Three states: true, false, unknown. Never fill null with false or infer from job/model label."
+      },
+      "gpu_request": {
+        "logical_type": "double",
+        "allowed_physical_types": [
+          "int32",
+          "int64",
+          "float32",
+          "float64",
+          "null"
+        ],
+        "semantics": "Preserve fractional requests and zero-GPU rows. Missing/non-finite request => unknown GPU-view membership. Negative requests are flagged, not clipped."
+      },
+      "gpu_mem_request": {
+        "logical_type": "bigint",
+        "allowed_physical_types": [
+          "int32",
+          "int64",
+          "null"
+        ],
+        "semantics": "Preserve raw integer and nulls; units remain unconfirmed. No conversion into bytes/GiB or comparison with measured GiB without a verified unit definition."
+      },
+      "cpu_request_cores": {
+        "logical_type": "double",
+        "allowed_physical_types": [
+          "int32",
+          "int64",
+          "float32",
+          "float64",
+          "null"
+        ],
+        "semantics": "Preserve fractional requests and zeros. Negative/non-finite values flagged; no arbitrary upper cap."
+      },
+      "used_gpu_hours": {
+        "logical_type": "double",
+        "allowed_physical_types": [
+          "int32",
+          "int64",
+          "float32",
+          "float64",
+          "null"
+        ],
+        "semantics": "Preserve partial-hour/fractional attribution. Do not assume equality to instantaneous request or infer elapsed running time."
+      },
+      "avg_gpu_sm_util": {
+        "logical_type": "double",
+        "allowed_physical_types": [
+          "int32",
+          "int64",
+          "float32",
+          "float64",
+          "null"
+        ],
+        "semantics": "Preserve raw source measurement; finite presence is separate from non-negative/eligible quality. No unverified range clipping or automatic reclaim interpretation."
+      },
+      "avg_gpu_mem_gib": {
+        "logical_type": "double",
+        "allowed_physical_types": [
+          "int32",
+          "int64",
+          "float32",
+          "float64",
+          "null"
+        ],
+        "semantics": "Preserve measured GiB and nulls; do not compare to request field until request units are verified."
+      },
+      "avg_cpu_request_util": {
+        "logical_type": "double",
+        "allowed_physical_types": [
+          "int32",
+          "int64",
+          "float32",
+          "float64",
+          "null"
+        ],
+        "semantics": "Ratios above 1 are allowed; never clamp to 1. Missing, measured zero and non-finite values stay distinct."
+      },
+      "avg_memory_util": {
+        "logical_type": "double",
+        "allowed_physical_types": [
+          "int32",
+          "int64",
+          "float32",
+          "float64",
+          "null"
+        ],
+        "semantics": "Preserve raw source units; do not assume percent, clamp, or fill missing readings with zero."
+      },
+      "ready_status": {
+        "logical_type": "boolean",
+        "allowed_physical_types": [
+          "boolean",
+          "null"
+        ],
+        "semantics": "Three states: true, false, unknown. Retain independently from delay/sentinel fields; do not impose unverified equivalences."
+      },
+      "schedule_delay_sec": {
+        "logical_type": "bigint",
+        "allowed_physical_types": [
+          "int32",
+          "int64",
+          "null"
+        ],
+        "semantics": "Retain raw negative/sentinel candidates with a negative flag. Do not convert -1 to zero or infer failed status."
+      },
+      "ready_delay_sec": {
+        "logical_type": "bigint",
+        "allowed_physical_types": [
+          "int32",
+          "int64",
+          "null"
+        ],
+        "semantics": "Retain raw negative/sentinel candidates with a negative flag, even when ready_status is true. Semantics require source confirmation."
+      }
+    },
+    "server": {
+      "server_id": {
+        "logical_type": "string",
+        "allowed_physical_types": [
+          "string",
+          "null"
+        ],
+        "semantics": "Join identity with day/hour. Inventory/network missing or blank server keys and ALL duplicate server-hour rows are quarantined; workloads/execution missing identities are retained and reported."
+      },
+      "cluster_id": {
+        "logical_type": "string",
+        "allowed_physical_types": [
+          "string",
+          "null"
+        ],
+        "semantics": "Opaque cohort identity; missing/blank values remain explicit. Do not invent a cluster or join by row position."
+      },
+      "asw_id": {
+        "logical_type": "string",
+        "allowed_physical_types": [
+          "string",
+          "null"
+        ],
+        "semantics": "Opaque switch grouping. Null-only Parquet columns occur in real data; restore typed nulls, do not populate an invented switch."
+      },
+      "gpu_spec_public": {
+        "logical_type": "string",
+        "allowed_physical_types": [
+          "string",
+          "null"
+        ],
+        "semantics": "Open/masked model categories; no inferred vendor identity or automatic hardware interchangeability."
+      },
+      "gpu_count": {
+        "logical_type": "bigint",
+        "allowed_physical_types": [
+          "int32",
+          "int64",
+          "null"
+        ],
+        "semantics": "Capacity denominator only after unique server/hour validation. Zero is retained; null is unknown; negatives require quality filtering."
+      },
+      "cpu_capacity_cores": {
+        "logical_type": "bigint",
+        "allowed_physical_types": [
+          "int32",
+          "int64",
+          "null"
+        ],
+        "semantics": "Capacity denominator only after unique server/hour validation. Zero and null remain distinct; negatives flagged."
+      }
+    },
+    "network": {
+      "server_id": {
+        "logical_type": "string",
+        "allowed_physical_types": [
+          "string",
+          "null"
+        ],
+        "semantics": "Join identity with day/hour. Inventory/network missing or blank server keys and ALL duplicate server-hour rows are quarantined; workloads/execution missing identities are retained and reported."
+      },
+      "rx_gibps_avg": {
+        "logical_type": "double",
+        "allowed_physical_types": [
+          "int32",
+          "int64",
+          "float32",
+          "float64",
+          "null"
+        ],
+        "semantics": "Hourly mean receive rate; released unit is GiB/s. No inference of link utilization/saturation without link capacities."
+      },
+      "tx_gibps_avg": {
+        "logical_type": "double",
+        "allowed_physical_types": [
+          "int32",
+          "int64",
+          "float32",
+          "float64",
+          "null"
+        ],
+        "semantics": "Hourly mean transmit rate; released unit is GiB/s. Missing is not zero and hourly means do not reveal bursts."
+      }
+    },
+    "execution": {
+      "pod_id": {
+        "logical_type": "string",
+        "allowed_physical_types": [
+          "string",
+          "null"
+        ],
+        "semantics": "Opaque string, not a number. Candidate uniqueness is audited at the documented grain; no cross-hour blind deduplication."
+      },
+      "workload_id": {
+        "logical_type": "string",
+        "allowed_physical_types": [
+          "string",
+          "null"
+        ],
+        "semantics": "Nullable workload grouping identity. Nulls are retained; not a unique join key and must not become an empty string."
+      },
+      "server_id": {
+        "logical_type": "string",
+        "allowed_physical_types": [
+          "string",
+          "null"
+        ],
+        "semantics": "Join identity with day/hour. Inventory/network missing or blank server keys and ALL duplicate server-hour rows are quarantined; workloads/execution missing identities are retained and reported."
+      },
+      "gpu_spec_public": {
+        "logical_type": "string",
+        "allowed_physical_types": [
+          "string",
+          "null"
+        ],
+        "semantics": "Open/masked model categories; no inferred vendor identity or automatic hardware interchangeability."
+      },
+      "priority_class": {
+        "logical_type": "string",
+        "allowed_physical_types": [
+          "string",
+          "null"
+        ],
+        "semantics": "Open categorical vocabulary. Preserve labels; count null/blank/Unknown without inventing priority ordering."
+      },
+      "job_type_public": {
+        "logical_type": "string",
+        "allowed_physical_types": [
+          "string",
+          "null"
+        ],
+        "semantics": "Open categorical vocabulary. Do not reject a new label or equate workload types for performance analysis."
+      },
+      "model_type_public": {
+        "logical_type": "string",
+        "allowed_physical_types": [
+          "string",
+          "null"
+        ],
+        "semantics": "Open/masked categorical vocabulary; null and Unknown remain distinct and visible."
+      },
+      "is_genai_request": {
+        "logical_type": "boolean",
+        "allowed_physical_types": [
+          "boolean",
+          "null"
+        ],
+        "semantics": "Three states: true, false, unknown. Never fill null with false or infer from job/model label."
+      },
+      "gpu_request": {
+        "logical_type": "double",
+        "allowed_physical_types": [
+          "int32",
+          "int64",
+          "float32",
+          "float64",
+          "null"
+        ],
+        "semantics": "Preserve fractional requests and zero-GPU rows. Missing/non-finite request => unknown GPU-view membership. Negative requests are flagged, not clipped."
+      },
+      "duration_hours": {
+        "logical_type": "double",
+        "allowed_physical_types": [
+          "int32",
+          "int64",
+          "float32",
+          "float64",
+          "null"
+        ],
+        "semantics": "Observed execution span, not necessarily completed-job runtime. Zero retained, negative/non-finite flagged; no invented daily mapping."
+      },
+      "schedule_delay_sec": {
+        "logical_type": "bigint",
+        "allowed_physical_types": [
+          "int32",
+          "int64",
+          "null"
+        ],
+        "semantics": "Retain raw negative/sentinel candidates with a negative flag. Do not convert -1 to zero or infer failed status."
+      },
+      "ready_delay_sec": {
+        "logical_type": "bigint",
+        "allowed_physical_types": [
+          "int32",
+          "int64",
+          "null"
+        ],
+        "semantics": "Retain raw negative/sentinel candidates with a negative flag, even when ready_status is true. Semantics require source confirmation."
+      },
+      "ready_status": {
+        "logical_type": "boolean",
+        "allowed_physical_types": [
+          "boolean",
+          "null"
+        ],
+        "semantics": "Three states: true, false, unknown. Retain independently from delay/sentinel fields; do not impose unverified equivalences."
+      },
+      "schedule_status": {
+        "logical_type": "boolean",
+        "allowed_physical_types": [
+          "boolean",
+          "null"
+        ],
+        "semantics": "Three states: true, false, unknown. Retain independently from observed delay/span fields."
+      }
+    }
+  },
+  "integer_to_double_rule": "abs(value) <= 2**53; reject larger values before casting",
+  "scope": "Explicit known invariants; not a claim that every semantic edge case is proven"
+}
