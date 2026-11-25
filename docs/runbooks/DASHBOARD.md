@@ -12,8 +12,8 @@ For a clean synthetic Gold demo, run `python examples/make_dashboard_sample.py /
 
 ```bash
 aws login --profile gpu-fleet --region us-east-2
-python examples/download_gold.py --bucket YOUR_BUCKET --profile gpu-fleet
-python examples/verify_gold_bundle.py data/gold/gold_20261120
+python scripts/download_gold.py --bucket YOUR_BUCKET --profile gpu-fleet
+python scripts/verify_gold_bundle.py data/gold/gold_20261120
 ```
 
 The downloader uses AWS CLI only during setup, verifies a staging directory, then publishes the local folder. An existing bundle is verified/reused, not overwritten. No EC2 restart is required. The47.4-MB production bundle is installed locally; a second downloaded copy remains in this chat workspace. Those copies share a laptop and are not an independent disaster-recovery backup.
@@ -22,14 +22,14 @@ Checks:9 exported file SHA256 hashes; seven Parquet schemas/row counts; Arrow su
 
 ## Story and contracts
 
-The main page has three short single-line headings: Find the pressure, Review existing capacity, Test the requirement. A selected cohort drives every step. Each step leads with a finding; supporting tables, source scopes and lineage are inside Data and definitions. Settings and hourly evidence are optional drill-downs. No competing page tabs remain.
+Three numbered tabs form the decision journey: Demand pressure, Existing GPUs, Plan for growth. Click a GPU bar in step 1 to carry that selection through all tabs; no duplicate GPU dropdown. Types without screened requests remain selectable with buttons. Activity shows measured values and missing coverage without an arbitrary low-activity threshold. Scenario choices use visible radio controls. Data and definitions remains a shared supporting expander.
 
 The metric contracts below still apply:
 
 | View | Decision support | Interpretation |
 |---|---|---|
-| Capacity | Inventory/request trend, p95 concurrent request evidence, cohort pressure and coverage | Sum within each hour before calculating percentiles; no sum of cohort percentiles. Inventory remains visible across excluded request periods. Gaps stay gaps. |
-| Activity | Configurable low-activity/persistence/coverage review; workload context | SM is in source units, not fleet GPU utilization. Means use sums/valid counts. Review hours are not reclaim amounts. |
+| Capacity | Inventory/request trend, p95 hourly request evidence, cohort pressure and coverage | Sum within each hour before calculating percentiles; no sum of cohort percentiles. Inventory remains visible across excluded request periods. Gaps stay gaps. |
+| Activity | Measured activity trend and missing measurement coverage | SM is in source units, not fleet GPU utilization. Means use sums/valid counts. Review hours are not reclaim amounts. |
 | Placement | Server-hour headroom bins by cohort, unknown coverage and over-requested hours | Inventory is counted once. Gold puts incomplete/anomalous/duplicate-candidate evidence into unknown bins. No device-level fragmentation or safe spare-GPU claim. |
 | Scenarios | One-cohort growth/reserve sensitivity with explicit acknowledgement | Request anchor excludes flagged observations; capacity baseline uses latest/minimum valid inventory independently. No hardware equivalence or performance sufficiency assumption. |
 | Trace context | Network days109–115, global observed execution spans/delays | Network uses only the selected overlap, not zero-filled outside coverage. Execution ignores day/cluster filters and never enters daily capacity. |

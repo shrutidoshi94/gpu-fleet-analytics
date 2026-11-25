@@ -35,7 +35,7 @@ Day5/hour06 has zero requests but positive GPU activity: preserve/flag, do not i
 
 ## Next actions
 
-1. Download and dashboard build were authorized November23 and completed locally. Do not overwrite the verified bundle with fixtures. Use examples/download_gold.py / verify_gold_bundle.py for reproducible setup.
+1. Download and dashboard build were authorized November23 and completed locally. Do not overwrite the verified bundle with fixtures. Use scripts/download_gold.py / verify_gold_bundle.py for reproducible setup.
 2. Review dashboard locally; public deployment and a portable hosting/data-package strategy remain pending. Bundle is gitignored, so source-only deployment will not contain real data. Do not reintroduce AWS reads on visitor interactions.
 3. Keep EC2 stopped and retain S3/root until verified independent backup and explicit teardown. The user has not authorized deleting these resources in this phase.
 4. Latest published checkpoint before this work: ac56831 on gpu-fleet-analytics. Dashboard changes are local/uncommitted in this turn; do not imply they were pushed or main merged.
@@ -45,3 +45,11 @@ Day5/hour06 has zero requests but positive GPU activity: preserve/flag, do not i
 [Evidence](docs/evidence/README.md) · [Data contracts](docs/data/COLUMN_CONTRACTS.md) · [Silver runbook](docs/runbooks/SILVER_RUNBOOK.md) · [Gold plan](docs/design/GOLD_TRANSFORMATION_PLAN.md). Historical operations and local helper paths remain in [archived handoff](docs/archive/HANDOFF-history.md).
 
 Repository was renamed from Data-Eng to gpu-fleet-analytics. Main CloudFormation still reflects historical t3.large/30-GiB defaults: do not overwrite approved live sizing blindly. Credits are shared/delayed; no remaining-balance guarantee.
+
+
+### Dashboard journey — November 24
+Three numbered tabs now share GPU selection from a clickable pressure bar chart. Removed the GPU dropdown and arbitrary low-activity thresholds; missing readings remain unknown. Scenario references use radio controls. All data stays local; no AWS resources changed.
+
+
+### Repository navigation — November 24
+Download and verification tools moved from examples/ to scripts/; use the current README commands. Directory guides distinguish production tasks, pilot code, fixtures and local data. Processing source files and captured evidence retain their original paths and bytes. Existing dashboard edits were preserved. These organization changes have not been committed or pushed in this task.
